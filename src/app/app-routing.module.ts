@@ -6,27 +6,39 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 const routes: Routes = [
     {
         path: "",
-        redirectTo: "/(homeTab:home/default//browseTab:browse/default//searchTab:search/default)",
+        redirectTo: "/(home:home/default//search:search/default//categories:categories/default//account:account/default//shopping:shopping/default)",
         pathMatch: "full"
     },
 
     {
         path: "home",
         component: NSEmptyOutletComponent,
-        loadChildren: () => import("~/app/home/home.module").then((m) => m.HomeModule),
-        outlet: "homeTab"
-    },
-    {
-        path: "browse",
-        component: NSEmptyOutletComponent,
-        loadChildren: () => import("~/app/browse/browse.module").then((m) => m.BrowseModule),
-        outlet: "browseTab"
+        loadChildren: () => import("~/app/components/home/home.module").then((m) => m.HomeModule),
+        outlet: "home"
     },
     {
         path: "search",
         component: NSEmptyOutletComponent,
-        loadChildren: () => import("~/app/search/search.module").then((m) => m.SearchModule),
-        outlet: "searchTab"
+        loadChildren: () => import("~/app/components/search/search.module").then((m) => m.SearchModule),
+        outlet: "search"
+    },
+    {
+        path: "categories",
+        component: NSEmptyOutletComponent,
+        loadChildren: () => import("~/app/components/categories/categories.module").then((m) => m.CategoriesModule),
+        outlet: "categories"
+    },
+    {
+        path: "account",
+        component: NSEmptyOutletComponent,
+        loadChildren: () => import("~/app/components/account/account.module").then((m) => m.AccountModule),
+        outlet: "account"
+    },
+    {
+        path: "shopping",
+        component: NSEmptyOutletComponent,
+        loadChildren: () => import("~/app/components/shopping/shopping.module").then((m) => m.ShoppingModule),
+        outlet: "shopping"
     }
 ];
 

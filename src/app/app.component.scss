@@ -6,5 +6,15 @@ $custom_sand: #dbd1bc;
 $custom_grey: #808185;
 
 .bottomnav_container {
-    background-color: $custom_blue;
+    background-color: $main_color;
+}
+
+.navigation__item {
+    color: $custom_blue;
+}
+
+.navigation__item {
+    &:active, &:active Label {
+        color: $custom_orange;
+    }
 }
