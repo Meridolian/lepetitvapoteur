@@ -2,3 +2,11 @@
     <!-- <NavigationButton icon="font://&#xf060;" class="fas back" stretch="none" (tap)="goBack()"></NavigationButton> -->
     <Image src="~/fonts/logo-menu-uni.png" stretch="none"></Image>
 </ActionBar>
+
+<GridLayout columns="*,auto" rows="auto,*">
+    <TextField class="searchField" hint="Rechercher ..." returnKeyType="done" (returnPress)="onSearch()"
+        (blur)="onBlur($event)" row="0" col="0">
+    </TextField>
+    <Button class="searchButton fas t-20" text="&#xf002;" (tap)="onSearch()" row="0" col="1"></Button>
+    <Label row="1" col="0" colspan="2" backgroundColor="blue"></Label>
+</GridLayout>
