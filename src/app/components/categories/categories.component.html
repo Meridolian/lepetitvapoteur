@@ -1,28 +1,29 @@
 <ActionBar class="actionbar">
     <GridLayout rows="*" columns="*,*,*">
-        <Button row="0" col="0" class="btn" text="RETOUR" (tap)="goBack()" *ngIf="route !== 'firstCategory'"></Button>
+        <Button row="0" col="0" class="btn" text="RETOUR" (tap)="goBack()" *ngIf="categoryRoute.length > 0"></Button>
         <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" horizontalAlignment="center" stretch="none"></Image>
         <Image row="0" col="2" class="settings fas" stretch="none" src="font://&#xf013;"></Image>
     </GridLayout>
 </ActionBar>
 
-<GridLayout rows="*,*,*" columns="*,*" class="page" *ngIf="currentRoute === 'cat1'">
-    <StackLayout class="labelContainer" row="0" col="0" verticalAlignment="center">
-        <Label text="JE DÉBUTE"></Label>
-    </StackLayout>
-    <StackLayout class="labelContainer" row="0" col="1" verticalAlignment="center">
-        <Label text="ECIGARETTES"></Label>
-    </StackLayout>
-    <StackLayout class="labelContainer" row="1" col="0" verticalAlignment="center">
-        <Label text="ELIQUIDES"></Label>
-    </StackLayout>
-    <StackLayout class="labelContainer" row="1" col="1" verticalAlignment="center">
-        <Label text="COIN DES EXPERTS" textWrap="true"></Label>
-    </StackLayout>
-    <StackLayout class="labelContainer" row="2" col="0" verticalAlignment="center">
-        <Label text="DIY"></Label>
-    </StackLayout>
-    <StackLayout class="labelContainer" row="2" col="1" verticalAlignment="center">
-        <Label text="BONS PLANS"></Label>
-    </StackLayout>
-</GridLayout>
+<StackLayout orientation="vertical" class="categoriesContainer" itemHeight="100">
+    <Button *ngFor="let category of currentCategory; let index = index" class="category" text="{{category[0]}}" textWrap="true"
+        (tap)="onCategory(index)" [ngClass]="{'sixItems': currentCategory.length === 6, 'fiveItems': currentCategory.length === 5,
+        'fourItems': currentCategory.length === 4, 'threeFullItems': currentCategory.length === 3, 'twoItems': currentCategory.length === 2}">
+    </Button>
+
+<!-- 
+    if(category === ELIQUIDE)
+    faire une section ELIQUIDE pour afficher la partie "comment choisir son eliquide" avec les guides
+ -->
+
+ <!-- 
+    if(category === EXPERT)
+    faire une section EXPERT pour afficher la partie "Vous voulez passer en mode EXPERT" avec les guides
+ -->
+
+ <!-- 
+    if(category === DIY)
+    faire une section DIY pour afficher la partie "Fabriquer son ELIQUIDE" avec les guides
+ -->
+</StackLayout>

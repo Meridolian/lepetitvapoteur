@@ -14,4 +14,8 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         // Init your component properties here.
     }
+
+    onInitCategories(){
+        console.log("coucou")
+    }
 }

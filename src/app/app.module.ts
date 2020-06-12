@@ -15,6 +15,8 @@ import { AppComponent } from "./app.component";
     declarations: [
         AppComponent,
     ],
+    providers: [
+    ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

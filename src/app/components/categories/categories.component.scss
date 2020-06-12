@@ -5,22 +5,44 @@ $custom_orange: #f28231;
 $custom_sand: #dbd1bc;
 $custom_grey: #808185;
 
-.page {
+.categoriesContainer {
     background-color: $custom_sand;
 }
 
-.labelContainer {
-    height: 28%;
-    width: 45%;
-    background-color: $main_color;
-    border-radius: 5;
-}
-
-Label {
+.category {
     text-align: center;
     font-size: 35;
     color: $custom_grey;
+    background-color: $main_color;
+    border-radius: 5;
+    &:active{
+        opacity: 0.75;
+    }
 }
+.sixItems {
+    height: 12.5%;
+    margin: 2%;
+};
+.fiveItems {
+    height: 15%;
+    margin: 2.5%;
+};
+.fourItems {
+    height: 20%;
+    margin: 2.5%;
+};
+.threeFullItems {
+    height: 27.5%;
+    margin: 3%;
+};
+.threeItems {
+    
+};
+.twoItems{
+    height: 25%;
+    margin: 2.5%;
+};
+
 
 .btn {
     font-size: 20;
