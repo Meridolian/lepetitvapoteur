@@ -4,9 +4,9 @@
 </ActionBar>
 
 <GridLayout columns="*,auto" rows="auto,*">
-    <TextField class="searchField" hint="Rechercher ..." returnKeyType="done" (returnPress)="onSearch()"
-        (blur)="onBlur($event)" row="0" col="0">
+    <TextField class="searchField" id="searchField" hint="Rechercher ..." returnKeyType="done" (returnPress)="onSearch()"
+        (blur)="onBlur($event)" (focus)="onFocus($event)" row="0" col="0">
     </TextField>
-    <Button class="searchButton fas t-20" text="&#xf002;" (tap)="onSearch()" row="0" col="1"></Button>
+    <Button class="btn searchButton fas t-20" text="&#xf002;" (tap)="onSearch($event)" row="0" col="1"></Button>
     <Label row="1" col="0" colspan="2" backgroundColor="blue"></Label>
 </GridLayout>

@@ -1,25 +1,28 @@
 <ActionBar class="actionbar">
-    <!-- <NavigationButton icon="font://&#xf060;" class="fas back" stretch="none" (tap)="goBack()"></NavigationButton> -->
-    <Image src="~/fonts/logo-menu-uni.png" stretch="none"></Image>
+    <GridLayout rows="*" columns="*,*,*">
+        <Button row="0" col="0" class="btn" text="RETOUR" (tap)="goBack()" *ngIf="route !== 'firstCategory'"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" horizontalAlignment="center" stretch="none"></Image>
+        <Image row="0" col="2" class="settings fas" stretch="none" src="font://&#xf013;"></Image>
+    </GridLayout>
 </ActionBar>
 
-<GridLayout rows="auto, auto, auto" columns="auto,auto">
-    <StackLayout row="0" col="0" backgroundColor="red">
-
+<GridLayout rows="*,*,*" columns="*,*" class="page" *ngIf="currentRoute === 'cat1'">
+    <StackLayout class="labelContainer" row="0" col="0" verticalAlignment="center">
+        <Label text="JE DÉBUTE"></Label>
     </StackLayout>
-    <StackLayout row="0" col="1" backgroundColor="blue">
-
+    <StackLayout class="labelContainer" row="0" col="1" verticalAlignment="center">
+        <Label text="ECIGARETTES"></Label>
     </StackLayout>
-    <StackLayout row="1" col="0" backgroundColor="yellow">
-
+    <StackLayout class="labelContainer" row="1" col="0" verticalAlignment="center">
+        <Label text="ELIQUIDES"></Label>
     </StackLayout>
-    <StackLayout row="1" col="1" backgroundColor="orange">
-
+    <StackLayout class="labelContainer" row="1" col="1" verticalAlignment="center">
+        <Label text="COIN DES EXPERTS" textWrap="true"></Label>
     </StackLayout>
-    <StackLayout row="2" col="0" backgroundColor="green">
-
+    <StackLayout class="labelContainer" row="2" col="0" verticalAlignment="center">
+        <Label text="DIY"></Label>
     </StackLayout>
-    <StackLayout row="2" col="1" backgroundColor="black">
-
+    <StackLayout class="labelContainer" row="2" col="1" verticalAlignment="center">
+        <Label text="BONS PLANS"></Label>
     </StackLayout>
 </GridLayout>

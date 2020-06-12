@@ -12,12 +12,6 @@ $custom_grey: #808185;
 
 .actionbar {
     background-color: $main_color;
-    label {
-        color: $custom_grey;
-    }
-    .back {
-        color: $custom_grey;
-    }
 }
 
 // Font icon class
@@ -34,4 +28,8 @@ $custom_grey: #808185;
 .far {
     font-family: "Font Awesome 5 Free", "fa-regular-400";
     font-weight: 400;
+}
+
+* {
+    font-family: "bebasneue", "BebasNeue-Regular";
 }

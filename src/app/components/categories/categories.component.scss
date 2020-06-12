@@ -5,18 +5,39 @@ $custom_orange: #f28231;
 $custom_sand: #dbd1bc;
 $custom_grey: #808185;
 
-/* .tabs {
+.page {
     background-color: $custom_sand;
-    .tab {
-        color: $custom_blue;
-        &:active, &:active Label {
-            color: $custom_orange;
-        }
-    }
-} */
+}
 
-TabStrip {
-    selected-item-color: $custom_orange;
-    un-selected-item-color: $custom_blue;
-    highlight-color: $custom_orange;
+.labelContainer {
+    height: 28%;
+    width: 45%;
+    background-color: $main_color;
+    border-radius: 5;
+}
+
+Label {
+    text-align: center;
+    font-size: 35;
+    color: $custom_grey;
+}
+
+.btn {
+    font-size: 20;
+    border-radius: 5;
+    color: white;
+    background-color: $custom_orange;
+    &:active {
+        opacity: 0.5;
+        color: white;
+    }
+}
+
+.settings {
+    color: $custom_grey;
+    margin-right: 10;
+    vertical-align: middle;
+    &:active {
+        opacity: 0.5;
+    }
 }

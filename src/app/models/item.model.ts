@@ -4,7 +4,7 @@ export class Item {
 
     id: number;
     name: string;
-    pictures: [string];
+    pictures: string[];
     price: number;
     description: string;
     product_type: ProductType;

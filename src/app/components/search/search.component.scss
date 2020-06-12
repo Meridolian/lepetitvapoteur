@@ -5,10 +5,9 @@ $custom_orange: #f28231;
 $custom_sand: #dbd1bc;
 $custom_grey: #808185;
 
-
 .searchField {
-    width: 60%;
-    border-width: 2; 
+    width: 65%;
+    border-width: 2;
     border-color: $custom_blue;
     border-radius: 5;
     text-align: center;
@@ -16,10 +15,12 @@ $custom_grey: #808185;
     font-size: 20;
 }
 
-.searchButton {
-    left: 10;
-    width: 30%;
+.btn {
     border-radius: 5;
     color: white;
     background-color: $custom_orange;
+    &:active {
+        opacity: 0.5;
+        color: white;
+    }
 }
