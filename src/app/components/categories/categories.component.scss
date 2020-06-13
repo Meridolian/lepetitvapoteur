@@ -14,10 +14,6 @@ $custom_grey: #808185;
     font-size: 35;
     color: $custom_grey;
     background-color: $main_color;
-    border-radius: 5;
-    &:active{
-        opacity: 0.75;
-    }
 }
 .sixItems {
     height: 12.5%;
@@ -44,22 +40,16 @@ $custom_grey: #808185;
 };
 
 
-.btn {
+.back {
     font-size: 20;
-    border-radius: 5;
     color: white;
     background-color: $custom_orange;
-    &:active {
-        opacity: 0.5;
-        color: white;
-    }
 }
 
 .settings {
+    width: 75;
+    height: 75;
+    background-color: $main_color;
     color: $custom_grey;
-    margin-right: 10;
-    vertical-align: middle;
-    &:active {
-        opacity: 0.5;
-    }
+    font-size: 30;
 }

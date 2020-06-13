@@ -9,12 +9,19 @@ import * as utils from "tns-core-modules/utils/utils";
     styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
-    constructor() {
-        // Use the constructor to inject services.
-    }
+    
+    back: boolean = false;
+
+    constructor() { }
 
     ngOnInit(): void {
-        // Use the "ngOnInit" handler to initialize data for the view.
+    }
+
+    goBack(): void {
+    }
+
+    onSettings(): void {
+        alert("coucou")
     }
 
     onFocus(args) {

@@ -1,4 +1,7 @@
 <ActionBar class="actionbar">
-    <!-- <NavigationButton icon="font://&#xf060;" class="fas back" stretch="none" (tap)="goBack()"></NavigationButton> -->
-    <Image src="~/fonts/logo-menu-uni.png" stretch="none"></Image>
+    <GridLayout rows="*" columns="*,*,*">
+        <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" horizontalAlignment="center" stretch="none"></Image>
+        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right" (tap)="onSettings()"></Button>
+    </GridLayout>
 </ActionBar>

@@ -40,6 +40,8 @@ export class CategoriesComponent implements OnInit {
     this.categoryRoute.pop();
   }
 
-
+  onSettings(): void {
+    alert("coucou")
+  }
 
 }

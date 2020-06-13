@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
         // Init your component properties here.
     }
 
-    onInitCategories(){
+    /* onInitCategories(){
         console.log("coucou")
-    }
+    } */
 }

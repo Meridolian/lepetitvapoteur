@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  back: boolean = false;
 
-  ngOnInit(): void {
-  }
+    constructor() { }
 
+    ngOnInit(): void {
+    }
+
+    goBack(): void {
+    }
+
+    onSettings(): void {
+        alert("coucou")
+    }
 }

@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingComponent implements OnInit {
 
+  back: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  goBack(): void {
+  }
+
+  onSettings(): void {
+    alert("coucou")
   }
 
 }

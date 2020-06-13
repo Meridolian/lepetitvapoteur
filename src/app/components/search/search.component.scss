@@ -15,12 +15,22 @@ $custom_grey: #808185;
     font-size: 20;
 }
 
-.btn {
-    border-radius: 5;
+.searchButton {
+    font-size: 25;
     color: white;
     background-color: $custom_orange;
-    &:active {
-        opacity: 0.5;
-        color: white;
-    }
+}
+
+.back {
+    font-size: 20;
+    color: white;
+    background-color: $custom_orange;
+}
+
+.settings {
+    width: 75;
+    height: 75;
+    background-color: $main_color;
+    color: $custom_grey;
+    font-size: 30;
 }
