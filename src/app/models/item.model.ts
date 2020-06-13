@@ -1,4 +1,4 @@
-import { ProductType, SubCategory } from "./categories";
+import { Categories } from "./categories";
 
 export class Item {
 
@@ -7,7 +7,6 @@ export class Item {
     pictures: string[];
     price: number;
     description: string;
-    product_type: ProductType;
-    sub_category: SubCategory;
+    categories: Categories[];
     brand_id: number;
 }

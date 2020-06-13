@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     onRotate(args) {
         let image = <Image>args.object;
         image.animate({
-            rotate: 360, // will take into account originX and originY
+            rotate: 360, 
             duration: 750
         }).then(() => image.rotate = 0);
     }
