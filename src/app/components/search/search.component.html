@@ -2,14 +2,22 @@
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
         <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" horizontalAlignment="center" stretch="none"></Image>
-        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right" (tap)="onSettings()"></Button>
+        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right"
+            (tap)="onSettings()"></Button>
     </GridLayout>
 </ActionBar>
 
-<GridLayout columns="*,auto" rows="auto,*">
-    <TextField class="searchField" id="searchField" hint="Rechercher ..." returnKeyType="done" (returnPress)="onSearch()"
-        (blur)="onBlur($event)" (focus)="onFocus($event)" row="0" col="0">
+<GridLayout columns="*,auto" rows="auto,*" class="page">
+    <TextField class="searchField" id="searchField" hint="Rechercher ..." returnKeyType="done"
+        (returnPress)="onSearch()" row="0" col="0" [(ngModel)]="search" verticalAlignment="center">
     </TextField>
     <Button row="0" col="1" class="searchButton fas" text="&#xf002;" (tap)="onSearch($event)"></Button>
-    <Label row="1" col="0" colspan="2" backgroundColor="blue"></Label>
+    <ScrollView *ngIf="showSearch" row="1" col="0" colspan="2">
+        <WrapLayout orientation="horizontal">
+            <ns-list-item></ns-list-item>
+            <ns-list-item></ns-list-item>
+            <ns-list-item></ns-list-item>
+            <ns-list-item></ns-list-item>
+        </WrapLayout>
+    </ScrollView>
 </GridLayout>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { TextField } from "tns-core-modules/ui/text-field";
-import { Page, isIOS } from "tns-core-modules/ui/page/page";
+import { isIOS, Page } from "tns-core-modules/ui/page/page";
 import * as utils from "tns-core-modules/utils/utils";
 
 @Component({
@@ -11,10 +11,15 @@ import * as utils from "tns-core-modules/utils/utils";
 export class SearchComponent implements OnInit {
     
     back: boolean = false;
+    search: string;
+    showSearch: boolean;
+
+    text: string = "lol";
 
     constructor() { }
 
     ngOnInit(): void {
+        this.showSearch = false;
     }
 
     goBack(): void {
@@ -24,29 +29,22 @@ export class SearchComponent implements OnInit {
         alert("coucou")
     }
 
-    onFocus(args) {
-    }
-
-    onBlur(args){
-        let textField = <TextField>args.object;
-        textField.dismissSoftInput();
-    }
 
     onSearch(args): void {
+        this.hideKeyboard(args);
+        
+        this.showSearch = true;
+    }
 
-        // This code force lose focus on the text field and hide keyboard
-        let button = args.object;
-        let page: Page = button.page;
+    hideKeyboard(args){
+        let page: Page = args.object.page;
+        let searchField: TextField = page.getViewById('searchField');
         if (isIOS) {
-            page.nativeView.endEditing(true);
+            searchField.nativeView.endEditing(true);
         } else {
-            let field: TextField = page.getViewById("searchField");
-            field.nativeView.clearFocus();
+            searchField.nativeView.clearFocus();
             utils.ad.dismissSoftInput();
         }
-
-        // code to search an item
-
     }
 
 }
