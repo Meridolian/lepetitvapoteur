@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { TextField } from "tns-core-modules/ui/text-field";
 import { isIOS, Page } from "tns-core-modules/ui/page/page";
 import * as utils from "tns-core-modules/utils/utils";
+import { ItemService } from "~/app/shared/item.service";
+import { Item } from "~/app/models/item.model";
 
 @Component({
     selector: "Search",
@@ -11,29 +13,49 @@ import * as utils from "tns-core-modules/utils/utils";
 export class SearchComponent implements OnInit {
     
     back: boolean = false;
-    search: string;
+    searchField: string;
     showSearch: boolean;
+    arrayItem: Array<Item>;
+    showError: boolean;
+    errorMessage: string;
 
-    text: string = "lol";
-
-    constructor() { }
+    constructor(private itemService: ItemService) { }
 
     ngOnInit(): void {
         this.showSearch = false;
+        this.showError = false;
+        this.errorMessage = "";
     }
 
     goBack(): void {
     }
 
     onSettings(): void {
-        alert("coucou")
+        alert("Settings")
     }
 
 
     onSearch(args): void {
-        this.hideKeyboard(args);
-        
-        this.showSearch = true;
+        this.arrayItem = [];
+        if(this.searchField !== undefined && this.searchField !== "" && this.searchField !== null){
+            this.arrayItem = this.itemService.getItemByName(this.searchField);
+            if(this.arrayItem.length < 1){
+                this.showError = true;
+                this.errorMessage = "Aucun article trouvé.";
+            }
+            else {
+                this.hideKeyboard(args);
+                this.showError = false;
+                this.errorMessage = "";
+                this.showSearch = true;
+            }
+            
+        }
+        else {
+            this.showSearch = false;
+            this.showError = true;
+            this.errorMessage = "Veuillez rentrer un nom d'article à chercher !";
+        }
     }
 
     hideKeyboard(args){

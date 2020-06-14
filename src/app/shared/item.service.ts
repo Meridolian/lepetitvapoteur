@@ -17,6 +17,8 @@ export class ItemService {
             "&#xa;" + "Composé de 60% de Propylène Glycol et de 40% de Glycérine Végétale pour s’adapter au plus grand nombre de matériel."
             + "&#xa;" + "&#xa;" + "Dosage en nicotine au choix : 0 mg/ml, 3mg/ml, 6 mg/ml, 12 mg/ml, 16 mg/ml" + "&#xa;" + "&#xa;" + 
             "Le RY4 Le Petit Vapoteur est fabriqué en France.",
+            shortDescription: "Un goût Classic avec des notes de vanille et de caramel. " +
+            "Une saveur ronde en bouche et généralement très appréciée.",
             price: 4.90,
             pictures: ["ry4"],
             categories: [Categories.juice, Categories.classicJuice, Categories.favoriteJuice],
@@ -30,6 +32,7 @@ export class ItemService {
             "de 10 ml PET avec compte-goutte et protection enfant." + "&#xa;" + "&#xa;" + "Composé de 60% de Propylène Glycol et de 40% " +
             "de Glycérine Végétale pour s’adapter au plus grand nombre de matériel." + "&#xa;" + "&#xa;" + "Dosage en nicotine au choix : " +
             "0 mg/ml, 3 mg/ml, 6 mg/ml, 12 mg/ml, 16 mg/ml" + "&#xa;" + "&#xa;" + "Le liquide Rouge Le Petit Vapoteur est fabriqué en France.",
+            shortDescription: "Découvrez notre cocktail fruité, frais, complexe à base de fruits rouges avec une légère pointe anisée.",
             price: 4.90,
             pictures: ["le_rouge"],
             categories: [Categories.juice, Categories.freshJuice, Categories.favoriteJuice, Categories.freshJuice],
@@ -59,6 +62,17 @@ export class ItemService {
                 if(currentCategory === category){
                     itemsArray.push(currenItem);
                 }
+            }
+        }
+        return itemsArray;
+    }
+
+    getItemByName(name: string): Array<Item> {
+        let itemsArray: Array<Item> = [];
+        for(let i = 0; i < this.items.length; i++){
+            let currentItem = this.items[i];
+            if(currentItem.name.includes(name.toUpperCase())){
+                itemsArray.push(currentItem);
             }
         }
         return itemsArray;

@@ -5,6 +5,7 @@ import { SearchRoutingModule } from "./search-routing.module";
 import { SearchComponent } from "./search.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { ListItemComponent } from "../item/list-item/list-item.component";
+import { ItemService } from "~/app/shared/item.service";
 
 @NgModule({
     imports: [
@@ -15,6 +16,9 @@ import { ListItemComponent } from "../item/list-item/list-item.component";
     declarations: [
         SearchComponent,
         ListItemComponent
+    ],
+    providers: [
+        ItemService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -9,15 +9,15 @@
 
 <GridLayout columns="*,auto" rows="auto,*" class="page">
     <TextField class="searchField" id="searchField" hint="Rechercher ..." returnKeyType="done"
-        (returnPress)="onSearch()" row="0" col="0" [(ngModel)]="search" verticalAlignment="center">
+        (returnPress)="onSearch()" row="0" col="0" [(ngModel)]="searchField" verticalAlignment="center">
     </TextField>
     <Button row="0" col="1" class="searchButton fas" text="&#xf002;" (tap)="onSearch($event)"></Button>
     <ScrollView *ngIf="showSearch" row="1" col="0" colspan="2">
         <WrapLayout orientation="horizontal">
-            <ns-list-item></ns-list-item>
-            <ns-list-item></ns-list-item>
-            <ns-list-item></ns-list-item>
-            <ns-list-item></ns-list-item>
+            <ns-list-item *ngFor="let item of arrayItem" [name]="item.name" [shortDescription]="item.shortDescription"
+            [price]="item.price" [picture]="item.pictures[0]"></ns-list-item>
         </WrapLayout>
     </ScrollView>
+
+    <Label *ngIf="showError" class="errorMessage" row="1" col="0" colspan="2" [text]="errorMessage"></Label>
 </GridLayout>

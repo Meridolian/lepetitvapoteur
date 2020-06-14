@@ -7,6 +7,7 @@ export class Item {
     pictures: string[];
     price: number;
     description: string;
+    shortDescription;
     categories: Categories[];
     brand_id: number;
 }
