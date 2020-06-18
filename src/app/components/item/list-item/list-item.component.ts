@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ns-list-item',
@@ -7,17 +7,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
 
-  @Input()name: string;
-  @Input()picture: string;
-  @Input()shortDescription: string;
-  @Input()price: number;
+  @Input() id: number;
+  @Input() name: string;
+  @Input() picture: string;
+  @Input() shortDescription: string;
+  @Input() price: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSingleItem(){
+  @Output() singleItem = new EventEmitter();
+
+  onSingleItem() {
+    this.singleItem.emit(null);
   }
 
 }

@@ -6,6 +6,7 @@ import { SearchComponent } from "./search.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { ListItemComponent } from "../item/list-item/list-item.component";
 import { ItemService } from "~/app/shared/item.service";
+import { SingleItemComponent } from "../item/single-item/single-item.component";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { ItemService } from "~/app/shared/item.service";
     ],
     declarations: [
         SearchComponent,
-        ListItemComponent
+        ListItemComponent,
+        SingleItemComponent
     ],
     providers: [
         ItemService

@@ -1,1 +1,29 @@
-<Button text="single-item works!" class="btn btn-primary"></Button>
+<ScrollView>
+    <StackLayout class="container">
+
+        <GridLayout rows="auto" columns="*,auto,*" orientation="horizontal" class="head">
+            <StackLayout row="0" col="0" verticalAlignment="center">
+                <Label class="blueLine"></Label>
+            </StackLayout>
+            <StackLayout row="0" col="1" class="name">
+                <Label [text]="item.name"></Label>
+            </StackLayout>
+            <StackLayout row="0" col="2" verticalAlignment="center">
+                <Label class="blueLine"></Label>
+            </StackLayout>
+        </GridLayout>
+
+        <Image class="image" src="~/item_pictures/{{item.pictures[pictureId]}}.jpg" (swipe)="onSwipeImage($event)">
+        </Image>
+
+        <StackLayout class="buyBorder">
+            <StackLayout class="buyContainer">
+               <GridLayout rows="*" columns="*,*">
+                    <StackLayout row="0" col="0" orientation="vertical">
+                        <Label text="COULEUR"></Label>
+                    </StackLayout>
+               </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

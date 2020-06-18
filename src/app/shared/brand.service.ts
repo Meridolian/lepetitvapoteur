@@ -26,6 +26,16 @@ export class BrandService {
             "ou 50 ml, un e liquide Vampire Vape résulte toujours du génie de ses fabricants. Ne contenant que des arômes certifiés de " +
             "qualité alimentaire, un e liquide Vampire Vape est garanti sans diacétyle, ni parabène, ni ambrox.",
             picture: "vampire_vape_logo",
+        },
+        {
+            id: 2,
+            name: "GEEK VAPE",
+            description: "Geekvape est une marque de cigarette electronique basée en Chine. L'entreprise Geek Vape s'est spécialisée dans " +
+            "la fabrication de produits innovants destinés à un public de vapoteurs expérimentés. On doit par exemple à cette marque "+
+            "l'atomiseur Geek Vape Zeus RTA et la box Aegis Mini qui sont d'ailleurs disponibles sur le site du Petit Vapoteur. " +
+            "Nous proposons aussi dans notre catalogue des accessoires Geek Vape comme, par exemple, des fils résistifs pour atomiseur " +
+            "reconstructible.",
+            picture: "geek_vape",
         }
     );
 

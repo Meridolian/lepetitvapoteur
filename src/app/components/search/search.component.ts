@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { TextField } from "tns-core-modules/ui/text-field";
-import { isIOS, Page } from "tns-core-modules/ui/page/page";
+import { isIOS, Page, EventData, View, getViewById } from "tns-core-modules/ui/page/page";
 import * as utils from "tns-core-modules/utils/utils";
 import { ItemService } from "~/app/shared/item.service";
 import { Item } from "~/app/models/item.model";
+import { RouterExtensions } from "nativescript-angular";
 
 @Component({
     selector: "Search",
@@ -11,23 +12,31 @@ import { Item } from "~/app/models/item.model";
     styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
-    
-    back: boolean = false;
+
+    back: boolean;
     searchField: string;
     showSearch: boolean;
     arrayItem: Array<Item>;
     showError: boolean;
     errorMessage: string;
+    showSingleItem: boolean;
+    singleItem: Item;
 
-    constructor(private itemService: ItemService) { }
+
+    constructor(private itemService: ItemService, private router: RouterExtensions) { }
 
     ngOnInit(): void {
+        this.back = false;
         this.showSearch = false;
         this.showError = false;
         this.errorMessage = "";
+        this.showSingleItem = false;
     }
 
     goBack(): void {
+        delete this.singleItem;
+        this.showSingleItem = false;
+        this.back = false;
     }
 
     onSettings(): void {
@@ -37,9 +46,9 @@ export class SearchComponent implements OnInit {
 
     onSearch(args): void {
         this.arrayItem = [];
-        if(this.searchField !== undefined && this.searchField !== "" && this.searchField !== null){
+        if (this.searchField !== undefined && this.searchField !== "" && this.searchField !== null) {
             this.arrayItem = this.itemService.getItemByName(this.searchField);
-            if(this.arrayItem.length < 1){
+            if (this.arrayItem.length < 1) {
                 this.showError = true;
                 this.errorMessage = "Aucun article trouvé.";
             }
@@ -49,7 +58,7 @@ export class SearchComponent implements OnInit {
                 this.errorMessage = "";
                 this.showSearch = true;
             }
-            
+
         }
         else {
             this.showSearch = false;
@@ -58,7 +67,7 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    hideKeyboard(args){
+    hideKeyboard(args) {
         let page: Page = args.object.page;
         let searchField: TextField = page.getViewById('searchField');
         if (isIOS) {
@@ -67,6 +76,12 @@ export class SearchComponent implements OnInit {
             searchField.nativeView.clearFocus();
             utils.ad.dismissSoftInput();
         }
+    }
+
+    onSingleItem(id: number) {
+        this.singleItem = this.itemService.getItem(id);
+        this.showSingleItem = true;
+        this.back = true;
     }
 
 }
