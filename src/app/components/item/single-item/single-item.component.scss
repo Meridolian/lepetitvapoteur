@@ -64,6 +64,8 @@ $custom_darkSand: #a49981;
     border: 0;
     color: $custom_grey;
     border-radius: 5;
+    border-width: 0;
+    border-color: white;
 }
 
 .quantityContainer{
@@ -107,6 +109,8 @@ $custom_darkSand: #a49981;
     margin: 0;
     color: $custom_grey;
     background-color: white;
+    border-width: 0;
+    border-color: white;
 }
 
 .price {

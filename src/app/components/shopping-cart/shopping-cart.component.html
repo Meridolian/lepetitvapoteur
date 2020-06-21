@@ -1,8 +1,10 @@
 <ActionBar class="actionbar">
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
-        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center" stretch="none"></Image>
-        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right" (tap)="onSettings()"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center"
+            stretch="none"></Image>
+        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right"
+            (tap)="onSettings()"></Button>
     </GridLayout>
 </ActionBar>
 
@@ -20,29 +22,47 @@
             </StackLayout>
         </GridLayout>
 
-        <StackLayout orientation="vertical" class="itemsContainer">
-            <StackLayout class="item" orientation="horizontal" *ngFor="let item of shoppingCart.items; let index = index">
+        <StackLayout orientation="vertical" class="itemsContainer" *ngIf="!emptyShoppingCart">
+            <GridLayout rows="*,*,*,*,*" columns="*,*,*,*,*" class="item"
+                *ngFor="let item of shoppingCart.items; let index = index">
+                <Image row="0" col="0" colSpan="2" rowSpan="3" src="~/item_pictures/{{item[0].pictures[0]}}.jpg" class="image"></Image>
 
-                <Image src="~/item_pictures/{{item[0].pictures[0]}}.jpg"></Image>
+                <Label row="0" col="2" colSpan="3" [text]="item[0].name" class="itemName" textWrap="true"></Label>
 
-                <StackLayout orientation="vertical">
-                    <Label [text]="item[0].name"></Label>
-                    <StackLayout orientation="horizontal" *ngIf="item[0].colors.length > 0">
-                        <Label class="labelField" text="Couleur"></Label>
-                        <TextField class="select" [(ngModel)]="item[0].color" (tap)="onChooseColor(index)"
-                            editable="false">
-                        </TextField>
-                    </StackLayout>
-                    <StackLayout orientation="horizontal" *ngIf="item[0].nicotineRates.length > 0">
-                        <Label class="labelField" text="Taux nicotine"></Label>
-                        <TextField class="select" [(ngModel)]="item[0].nicotine" (tap)="onChooseNicotine(index)"
-                            editable="false">
-                        </TextField>
-                    </StackLayout>
-                </StackLayout>
+                <Label row="1" col="2" class="labelField" text="Couleur" *ngIf="item[0].colors.length > 0"></Label>
+                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].color" (tap)="onChooseColor(index)"
+                        editable="false" *ngIf="item[0].colors.length > 0">
+                </TextField>
 
+                <Label row="1" col="2" class="labelField" text="Nicotine"
+                        *ngIf="item[0].nicotineRates.length > 0"></Label>
+                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].nicotine" (tap)="onChooseNicotine(index)"
+                        editable="false" *ngIf="item[0].nicotineRates.length > 0">
+                </TextField>
 
-            </StackLayout>
+                <Label row="2" col="2" colSpan="3" class="price" [text]="item[0].price.toFixed(2) + '€'"></Label>
+
+                <Button row="3" col="0" class="quantityButton fas" text="&#xf068;" (tap)="onQuantity('minus', index)"></Button>
+                <TextField row="3" col="1" class="quantityField" [text]="item[1]" editable="false"></TextField>
+                <Button row="3" col="2" class="quantityButton fas" text="&#xf067;" (tap)="onQuantity('plus', index)"></Button>
+
+                <Label row="3" col="3" colSpan="2" class="totalItemPrice" [text]="(item[2]).toFixed(2) + '€'"></Label>
+
+                <Button row="4" col="0" colSpan="5" class="deleteButton" text="SUPPRIMER" (tap)="onDeleteItem(index)"></Button>
+            </GridLayout>
+        </StackLayout>
+
+        <GridLayout rows="*" columns="*,*" class="totalContainer" *ngIf="!emptyShoppingCart">
+            <Label row="0" col="0" class="totalLabel" text="TOTAL TTC :"></Label>
+            <Label row="0" col="1" class="totalPrice" [text]="(shoppingCart.total_price).toFixed(2) + '€'"></Label>
+        </GridLayout>
+
+        <StackLayout class="validateCart" *ngIf="!emptyShoppingCart">
+            <Button class="validateCartButton" text="VALIDER LA COMMANDE"></Button>
+        </StackLayout>
+
+        <StackLayout *ngIf="emptyShoppingCart" class="emptyShoppingCart">
+            <Image src="~/fonts/shopping_cart_empty.png"></Image>
         </StackLayout>
     </StackLayout>
 </ScrollView>

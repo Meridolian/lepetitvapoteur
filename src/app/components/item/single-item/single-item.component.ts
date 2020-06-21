@@ -41,15 +41,17 @@ export class SingleItemComponent implements OnInit {
       cancelButtonText: "Annuler",
       actions: this.item.colors
     }).then(result => {
-      this.item.color = result;
-      for(let i = 0; i < this.item.pictures.length; i++){
-        let currentPicture = this.item.pictures[i];
-        if(currentPicture.includes(result.replace(/\s/g, "").toLocaleLowerCase())){
-          let tempString = "picture" + i;
-          let base = <View>page.getViewById("picture0");
-          let target = <View>page.getViewById(tempString);
-          scrollViewPictures.scrollToHorizontalOffset(target.getLocationRelativeTo(base).x, true);
-          break;
+      if(result !== "Annuler"){
+        this.item.color = result;
+        for(let i = 0; i < this.item.pictures.length; i++){
+          let currentPicture = this.item.pictures[i];
+          if(currentPicture.includes(result.replace(/\s/g, "").toLocaleLowerCase())){
+            let tempString = "picture" + i;
+            let base = <View>page.getViewById("picture0");
+            let target = <View>page.getViewById(tempString);
+            scrollViewPictures.scrollToHorizontalOffset(target.getLocationRelativeTo(base).x, true);
+            break;
+          }
         }
       }
     });
@@ -61,7 +63,9 @@ export class SingleItemComponent implements OnInit {
       cancelButtonText: "Annuler",
       actions: this.item.nicotineRates
     }).then(result => {
-      this.item.nicotine = result;
+      if(result !== "Annuler"){
+        this.item.nicotine = result;
+      }
     });
   }
 

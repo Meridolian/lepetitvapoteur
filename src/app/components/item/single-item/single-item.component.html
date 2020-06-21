@@ -33,7 +33,7 @@
                     </StackLayout>
                     <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'nicotine'">
                         <Label class="label" text="NICOTINE"></Label>
-                        <TextField class="select" [(ngModel)]="item.nicotine" (tap)="onChooseNicotine($event)"
+                        <TextField class="select" [(ngModel)]="item.nicotine" (tap)="onChooseNicotine()"
                             editable="false"></TextField>
                     </StackLayout>
                     <StackLayout row="0" col="1" orientation="vertical">

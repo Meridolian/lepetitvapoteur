@@ -36,28 +36,26 @@ export class ShoppingCartService {
             }
         }
         if(!itemAlreadyInCart){
-            this.shoppingCart.items.push([item, quantity]);
+            this.shoppingCart.items.push([item, quantity, 0]);
         }
-        this.totalPrice();
+        this.totalItemPrice();
     }
 
-    changeQuantity(item: Item, quantity: number){
-        for(let i = 0; i < this.shoppingCart.items.length; i++){
-            let currentItem = this.shoppingCart.items[i];
-            if(item === currentItem[0]){
-                this.shoppingCart.items[i][1] = quantity;
-            }
-        }
-        this.totalPrice();
+    changeQuantity(index: number, quantity: number){
+        this.shoppingCart.items[index][1] = quantity;
+        this.totalItemPrice();
     }
 
-    removeItemToCart(item: Item){
+    removeItemToCart(index: number){
+        this.shoppingCart.items.splice(index, 1);
+        this.totalItemPrice();
+    }
+
+    totalItemPrice(){
         for(let i = 0; i < this.shoppingCart.items.length; i++){
             let currentItem = this.shoppingCart.items[i];
-            if(item === currentItem[0]){
-                this.shoppingCart.items.splice(i);
-                break;
-            }
+            let total = currentItem[0].price * currentItem[1];
+            this.shoppingCart.items[i][2] = total;
         }
         this.totalPrice();
     }
@@ -66,7 +64,7 @@ export class ShoppingCartService {
         this.shoppingCart.total_price = 0;
         for(let i = 0; i < this.shoppingCart.items.length; i++){
             let currentItem = this.shoppingCart.items[i];
-            this.shoppingCart.total_price += currentItem[0].price * currentItem[1];
+            this.shoppingCart.total_price += currentItem[2];
         }
         this.emitShoppingCart();
     }

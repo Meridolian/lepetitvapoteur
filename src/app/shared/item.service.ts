@@ -70,7 +70,7 @@ export class ItemService {
             brand_id: 2,
             colors: ["BLACK", "BLUE", "GOLD", "GREEN", "GUNMETAL", "RAINBOW", "RED", "STAINLESS STEEL", "WINE RED"],
             color: "",
-            nicotineRates: ["0mg", "3mg", "6mg", "12mg", "16mg"],
+            nicotineRates: [],
             nicotine: ""
         }
     );
