@@ -24,6 +24,9 @@ export class AppComponent implements OnInit, OnDestroy {
                 for(let i = 0; i < cart.items.length; i++){
                     this.itemsInCart += cart.items[i][1];
                 }
+                if(this.itemsInCart === 0){
+                    this.itemsInCart = null;
+                }
             }
         );
     }
