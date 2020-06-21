@@ -1,4 +1,4 @@
-<BottomNavigation>
+<BottomNavigation height="100%" width="100%" top="0" bottom="0" right="0" left="0">
     <TabStrip class="bottomnav_container">
         <TabStripItem class="navigation__item">
             <Image src="font://&#xf015;" class="fas t-36"></Image>
@@ -14,6 +14,7 @@
         </TabStripItem>
         <TabStripItem class="navigation__item">
             <Image src="font://&#xf07a;" class="fas t-36"></Image>
+            <Label text="{{itemsInCart}}" class="itemsInCart"></Label>
         </TabStripItem>
     </TabStrip>
 
@@ -34,6 +35,6 @@
     </TabContentItem>
 
     <TabContentItem>
-        <page-router-outlet name="shopping"></page-router-outlet>
+        <page-router-outlet name="shopping-cart"></page-router-outlet>
     </TabContentItem>
 </BottomNavigation>

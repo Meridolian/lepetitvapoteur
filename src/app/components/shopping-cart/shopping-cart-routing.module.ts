@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { ShoppingComponent } from "./shopping.component";
+import { ShoppingCartComponent } from "./shopping-cart.component";
 
 const routes: Routes = [
-    { path: "default", component: ShoppingComponent }
+    { path: "default", component: ShoppingCartComponent }
 ];
 
 @NgModule({
     imports: [NativeScriptRouterModule.forChild(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class ShoppingRoutingModule { }
+export class ShoppingCartRoutingModule { }

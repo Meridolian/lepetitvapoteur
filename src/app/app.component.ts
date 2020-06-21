@@ -1,25 +1,34 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Subscription } from "rxjs";
+import { ShoppingCartService } from "./shared/shopping-cart.service";
+import { ShoppingCart } from "./models/shopping-cart.model";
 
 @Component({
     selector: "ns-app",
     templateUrl: "app.component.html",
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
-    item = {
-        colors: ["Black", "Blue", "Gold"]
-    }
+    itemsInCart: number;
+    itemsSubscription: Subscription;
 
-    constructor() {
+    constructor(private shoppingCartService: ShoppingCartService) {
         // Use the component constructor to inject providers.
     }
 
     ngOnInit(): void {
-        // Init your component properties here.
+        this.itemsSubscription = this.shoppingCartService.shoppingCartSubject.subscribe(
+            (cart: ShoppingCart) => {
+                this.itemsInCart = 0;
+                for(let i = 0; i < cart.items.length; i++){
+                    this.itemsInCart += cart.items[i][1];
+                }
+            }
+        );
     }
 
-    /* onInitCategories(){
-        console.log("coucou")
-    } */
+    ngOnDestroy() {
+		this.itemsSubscription.unsubscribe();
+	}
 }

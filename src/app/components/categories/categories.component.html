@@ -1,28 +1,38 @@
 <ActionBar class="actionbar">
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="categoryRoute.length > 0"></Button>
-        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" horizontalAlignment="center" stretch="none"></Image>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center" stretch="none"></Image>
         <Button row="0" col="2" class="settings fas" text="&#xf013;" (tap)="onSettings()"></Button>
     </GridLayout>
 </ActionBar>
 
-<StackLayout *ngIf="currentCategory.length < 7" class="categoriesContainer">
+<StackLayout *ngIf="currentCategory.length < 7 && !showListItems && !showSingleItem" class="categoriesContainer">
     <Button *ngFor="let category of currentCategory; let index = index" class="category" text="{{category[0]}}"
         textWrap="true" (tap)="onCategory(index)"
         [ngClass]="{'sixItems': currentCategory.length === 6, 'fiveItems': currentCategory.length === 5,
-        'fourItems': currentCategory.length === 4, 'threeFullItems': currentCategory.length === 3, 'twoItems': currentCategory.length === 2}">
+            'fourItems': currentCategory.length === 4, 'threeFullItems': currentCategory.length === 3, 'twoItems': currentCategory.length === 2}">
     </Button>
 </StackLayout>
 
-<ScrollView *ngIf="currentCategory.length > 6">
+<ScrollView *ngIf="currentCategory.length > 6 && !showListItems && !showSingleItem">
     <StackLayout class="categoriesContainer">
         <Button *ngFor="let category of currentCategory; let index = index" class="category" text="{{category[0]}}"
             textWrap="true" (tap)="onCategory(index)"
             [ngClass]="{'sixItems': currentCategory.length === 6, 'fiveItems': currentCategory.length === 5,
-            'fourItems': currentCategory.length === 4, 'threeFullItems': currentCategory.length === 3, 'twoItems': currentCategory.length === 2}">
+                'fourItems': currentCategory.length === 4, 'threeFullItems': currentCategory.length === 3, 'twoItems': currentCategory.length === 2}">
         </Button>
     </StackLayout>
 </ScrollView>
+
+<ScrollView *ngIf="showListItems && !showSingleItem" class="listItemsContainer">
+    <WrapLayout orientation="horizontal">
+        <ns-list-item *ngFor="let item of arrayItem" [name]="item.name" [shortDescription]="item.shortDescription"
+            [price]="item.price" [picture]="item.pictures[0]" (singleItem)="onSingleItem(item.id)"></ns-list-item>
+    </WrapLayout>
+</ScrollView>
+
+<ns-single-item *ngIf="showSingleItem" [item]="singleItem"></ns-single-item>
+
 
 <!-- 
     if(category === ELIQUIDE)

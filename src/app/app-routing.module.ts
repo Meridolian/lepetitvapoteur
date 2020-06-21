@@ -6,7 +6,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 const routes: Routes = [
     {
         path: "",
-        redirectTo: "/(home:home/default//search:search/default//categories:categories/default//account:account/default//shopping:shopping/default)",
+        redirectTo: "/(home:home/default//search:search/default//categories:categories/default//account:account/default//shopping-cart:shopping-cart/default)",
         pathMatch: "full"
     },
 
@@ -35,10 +35,10 @@ const routes: Routes = [
         outlet: "account"
     },
     {
-        path: "shopping",
+        path: "shopping-cart",
         component: NSEmptyOutletComponent,
-        loadChildren: () => import("~/app/components/shopping/shopping.module").then((m) => m.ShoppingModule),
-        outlet: "shopping"
+        loadChildren: () => import("~/app/components/shopping-cart/shopping-cart.module").then((m) => m.ShoppingCartModule),
+        outlet: "shopping-cart"
     }
 ];
 

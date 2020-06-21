@@ -45,7 +45,7 @@ export class CategoryUtil {
     ["NOS MARQUES ELIQUIDE", "juiceBrands", "ViewList"]];
 
     //if NOS E-LIQUIDES
-    typeJuiceCategory: [string, string, string][] = [["TOUS NOS ELIQUIDES", "allJuice", "ViewList"], ["CLASSIC", "classicJuice", "ViewList"],
+    typeJuiceCategory: [string, string, string][] = [["TOUS NOS ELIQUIDES", "juice", "ViewList"], ["CLASSIC", "classicJuice", "ViewList"],
     ["MENTHE", "mentholJuice", "ViewList"], ["FRUITÉS", "fruitJuice", "ViewList"], ["BOISSONS", "drinkJuice", "ViewList"], 
     ["FRAIS", "freshJuice", "ViewList"], ["GOURMANDS", "greedyJuice", "ViewList"], ["COUP DE COEUR", "favoriteJuice", "ViewList"],
     ["LES TOPS", "topJuice", "Category"], ["DÉCOUVERTE", "discoverJuice", "ViewList"], ["10 ML", "tenMlJuice", "ViewList"], 

@@ -4,24 +4,21 @@ import { NativeScriptFormsModule } from "nativescript-angular";
 import { SearchRoutingModule } from "./search-routing.module";
 
 import { SearchComponent } from "./search.component";
-import { ListItemComponent } from "../item/list-item/list-item.component";
-import { SingleItemComponent } from "../item/single-item/single-item.component";
-
-import { ItemService } from "~/app/shared/item.service";
+import { SingleItemModule } from "../item/single-item/single-item.module";
+import { ListItemModule } from "../item/list-item/list-item.module";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
         SearchRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        ListItemModule,
+        SingleItemModule
     ],
     declarations: [
         SearchComponent,
-        ListItemComponent,
-        SingleItemComponent
     ],
     providers: [
-        ItemService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

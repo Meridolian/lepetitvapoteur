@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { TextField } from "tns-core-modules/ui/text-field";
-import { isIOS, Page, EventData, View, getViewById } from "tns-core-modules/ui/page/page";
+import { isIOS, Page } from "tns-core-modules/ui/page/page";
 import * as utils from "tns-core-modules/utils/utils";
 import { ItemService } from "~/app/shared/item.service";
 import { Item } from "~/app/models/item.model";
 import { RouterExtensions } from "nativescript-angular";
+import { Image } from "tns-core-modules/ui/image";
 
 @Component({
     selector: "Search",
@@ -83,4 +84,11 @@ export class SearchComponent implements OnInit {
         this.back = true;
     }
 
+    onRotate(args) {
+        let image = <Image>args.object;
+        image.animate({
+            rotate: 360,
+            duration: 750
+        }).then(() => image.rotate = 0);
+    }
 }

@@ -3,13 +3,15 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { CategoriesComponent } from './categories.component';
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoryUtil } from '~/app/utils/category.util';
-
-
+import { ListItemModule } from '../item/list-item/list-item.module';
+import { SingleItemModule } from '../item/single-item/single-item.module';
 
 @NgModule({
   imports: [
     NativeScriptCommonModule,
-    CategoriesRoutingModule
+    CategoriesRoutingModule,
+    ListItemModule,
+    SingleItemModule
   ],
   declarations: [
     CategoriesComponent

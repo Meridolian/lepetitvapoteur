@@ -1,0 +1,48 @@
+<ActionBar class="actionbar">
+    <GridLayout rows="*" columns="*,*,*">
+        <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center" stretch="none"></Image>
+        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right" (tap)="onSettings()"></Button>
+    </GridLayout>
+</ActionBar>
+
+<ScrollView class="shoppingCartContainer">
+    <StackLayout orientation="vertical">
+        <GridLayout rows="auto" columns="*,auto,*" orientation="horizontal" class="head">
+            <StackLayout row="0" col="0" verticalAlignment="center">
+                <Label class="blueLine"></Label>
+            </StackLayout>
+            <StackLayout row="0" col="1" class="cartHead">
+                <Label text="MON PANIER"></Label>
+            </StackLayout>
+            <StackLayout row="0" col="2" verticalAlignment="center">
+                <Label class="blueLine"></Label>
+            </StackLayout>
+        </GridLayout>
+
+        <StackLayout orientation="vertical" class="itemsContainer">
+            <StackLayout class="item" orientation="horizontal" *ngFor="let item of shoppingCart.items; let index = index">
+
+                <Image src="~/item_pictures/{{item[0].pictures[0]}}.jpg"></Image>
+
+                <StackLayout orientation="vertical">
+                    <Label [text]="item[0].name"></Label>
+                    <StackLayout orientation="horizontal" *ngIf="item[0].colors.length > 0">
+                        <Label class="labelField" text="Couleur"></Label>
+                        <TextField class="select" [(ngModel)]="item[0].color" (tap)="onChooseColor(index)"
+                            editable="false">
+                        </TextField>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal" *ngIf="item[0].nicotineRates.length > 0">
+                        <Label class="labelField" text="Taux nicotine"></Label>
+                        <TextField class="select" [(ngModel)]="item[0].nicotine" (tap)="onChooseNicotine(index)"
+                            editable="false">
+                        </TextField>
+                    </StackLayout>
+                </StackLayout>
+
+
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
