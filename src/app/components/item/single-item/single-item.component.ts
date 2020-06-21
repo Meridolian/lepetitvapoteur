@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SwipeGestureEventData } from "tns-core-modules/ui/gestures";
 import { Item } from '~/app/models/item.model';
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import { EventData, Page, View } from 'tns-core-modules/ui/page';
+import { ScrollView } from "tns-core-modules/ui/scroll-view";
 
 @Component({
   selector: 'ns-single-item',
@@ -10,38 +12,56 @@ import { Item } from '~/app/models/item.model';
 export class SingleItemComponent implements OnInit {
 
   @Input() item: Item;
-  pictureId: number;
+  colorsOrNicotine: string;
+  colorChoosed: string;
+  quantity: number;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.pictureId = 0;
-  }
-
-  onSwipeImage(args: SwipeGestureEventData) {
-    let view = args.view;
-    if (args.direction === 1) {
-      if (this.pictureId !== 0) {
-        view.animate({
-          translate: { x: 500, y: 0 }, duration: 100,
-        }).then(() => {
-          this.pictureId--;
-          view.translateX = -500;
-        }).then(() => view.animate({
-          translate: { x: 0, y: 0 }, duration: 100,
-        }));
-      }
+    this.quantity = 1;
+    this.colorChoosed = this.item.colors[0];
+    if (this.item.colors.length > 0) {
+      this.colorsOrNicotine = "colors";
     }
     else {
-      if (this.pictureId !== (this.item.pictures.length - 1)) {
-        view.animate({
-          translate: { x: -500, y: 0 }, duration: 100,
-        }).then(() => {
-          this.pictureId++;
-          view.translateX = 500;
-        }).then(() => view.animate({
-          translate: { x: 0, y: 0 }, duration: 100,
-        }));
+      this.colorsOrNicotine = "nicotine";
+    }
+  }
+
+  onChooseColor(args: EventData) {
+    let element = <View>args.object;
+    let page = <Page>element.page;
+    let scrollViewPictures = <ScrollView>page.getViewById("scrollViewPictures");
+    dialogs.action({
+      message: "Choisissez une couleur",
+      cancelButtonText: "Annuler",
+      actions: this.item.colors
+    }).then(result => {
+      this.colorChoosed = result;
+      for(let i = 0; i < this.item.pictures.length; i++){
+        let currentPicture = this.item.pictures[i];
+        if(currentPicture.includes(result.replace(/\s/g, "").toLocaleLowerCase())){
+          let tempString = "picture" + i;
+          let base = <View>page.getViewById("picture0");
+          let target = <View>page.getViewById(tempString);
+          scrollViewPictures.scrollToHorizontalOffset(target.getLocationRelativeTo(base).x, true);
+          break;
+        }
+      }
+    });
+  }
+
+  onQuantity(choice){
+    if(choice === "plus"){
+      this.quantity++;
+    }
+    else if(choice === "minus") {
+      if((this.quantity - 1) < 1){
+        this.quantity = 1;
+      }
+      else {
+        this.quantity--;
       }
     }
   }

@@ -7,6 +7,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AppComponent implements OnInit {
 
+    item = {
+        colors: ["Black", "Blue", "Gold"]
+    }
+
     constructor() {
         // Use the component constructor to inject providers.
     }

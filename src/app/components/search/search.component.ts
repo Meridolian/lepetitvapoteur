@@ -22,7 +22,6 @@ export class SearchComponent implements OnInit {
     showSingleItem: boolean;
     singleItem: Item;
 
-
     constructor(private itemService: ItemService, private router: RouterExtensions) { }
 
     ngOnInit(): void {

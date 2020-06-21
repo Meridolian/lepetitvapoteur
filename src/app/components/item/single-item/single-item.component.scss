@@ -5,9 +5,11 @@ $custom_orange: #f28231;
 $custom_sand: #dbd1bc;
 $custom_grey: #808185;
 $custom_greyWhite: #e7e7e7;
+$custom_darkSand: #a49981;
 
 .container {
     background-color: $custom_greyWhite;
+    color: $custom_grey;
 }
 
 .head {
@@ -44,4 +46,87 @@ $custom_greyWhite: #e7e7e7;
     margin: 3;
     background-image: url("~/fonts/fond_buy.jpg");
     background-repeat: repeat;
+}
+
+.buyGrid {
+    margin-top: 5;
+}
+
+.label {
+    text-align: center;
+    font-size: 25;
+}
+
+.color {
+    text-align: center;
+    font-size: 20;
+    background-color: white;
+    border: 0;
+    color: $custom_grey;
+    border-radius: 5;
+    /* &:active {
+        color: 
+    } */
+}
+
+.quantityContainer{
+    margin-top: 5;
+}
+.plusButton{
+    height: 35;
+    width: 35;
+    margin: 0;
+    border-width: 3 3 3 0;
+    border-color: $custom_darkSand;
+    border-radius: 0 10 10 0;
+    background-color: $custom_sand;
+    color: $custom_darkSand;
+    &:active {
+        background-color: $custom_darkSand;
+        color: $custom_sand;
+    }
+}
+.minusButton{
+    height: 35;
+    width: 35;
+    margin: 0;
+    border-width: 3 0 3 3;
+    border-color: $custom_darkSand;
+    border-radius: 10 0 0 10;
+    background-color: $custom_sand;
+    color: $custom_darkSand;
+    &:active {
+        background-color: $custom_darkSand;
+        color: $custom_sand;
+    }
+}
+.quantityField {
+    text-align: center;
+    font-size: 20;
+    height: 35;
+    width: 65;
+    margin: 0;
+    color: $custom_grey;
+    background-color: white;
+}
+
+.price {
+    text-align: center;
+    font-size: 30;
+    color: $custom_orange;
+}
+
+.buyButton {
+    background-color: $custom_blue;
+    color: white;
+    font-size: 30;
+    &:active {
+        background-color: $custom_orange;
+        color: white;
+    }
+}
+
+.description {
+    margin: 20;
+    font-size: 20;
 }

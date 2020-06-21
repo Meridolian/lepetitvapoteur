@@ -1,6 +1,5 @@
 <ScrollView>
     <StackLayout class="container">
-
         <GridLayout rows="auto" columns="*,auto,*" orientation="horizontal" class="head">
             <StackLayout row="0" col="0" verticalAlignment="center">
                 <Label class="blueLine"></Label>
@@ -13,17 +12,48 @@
             </StackLayout>
         </GridLayout>
 
-        <Image class="image" src="~/item_pictures/{{item.pictures[pictureId]}}.jpg" (swipe)="onSwipeImage($event)">
-        </Image>
+
+        <ScrollView id="scrollViewPictures" orientation="horizontal" height="325">
+            <StackLayout orientation="horizontal">
+                <Image id="{{'picture' + i}}" *ngFor="let picture of item.pictures; let i = index" class="image"
+                    src="~/item_pictures/{{picture}}.jpg">
+                </Image>
+            </StackLayout>
+        </ScrollView>
+
 
         <StackLayout class="buyBorder">
             <StackLayout class="buyContainer">
-               <GridLayout rows="*" columns="*,*">
-                    <StackLayout row="0" col="0" orientation="vertical">
-                        <Label text="COULEUR"></Label>
+                <GridLayout rows="auto,auto,auto" columns="*,*" class="buyGrid">
+                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'colors'">
+                        <Label class="label" text="COULEUR"></Label>
+                        <TextField class="color" [(ngModel)]="colorChoosed" (tap)="onChooseColor($event)"
+                            editable="false">
+                        </TextField>
                     </StackLayout>
-               </GridLayout>
+                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'nicotine'">
+                        <Label class="label" text="NICOTINE"></Label>
+                    </StackLayout>
+                    <StackLayout row="0" col="1" orientation="vertical">
+                        <Label class="label" text="QUANTITÉ"></Label>
+                        <StackLayout orientation="horizontal" class="quantityContainer" horizontalAlignment="center">
+                            <Button class="minusButton fas" text="&#xf068;" (tap)="onQuantity('minus')"></Button>
+                            <TextField class="quantityField" [text]="quantity" editable="false"></TextField>
+                            <Button class="plusButton fas" text="&#xf067;" (tap)="onQuantity('plus')"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout row="1" col="0" colSpan="2">
+                        <Label class="price" text="{{item.price}} €"></Label>
+                    </StackLayout>
+                    <StackLayout row="2" col="0" colSpan="2">
+                        <Button class="buyButton" text="J'ACHÈTE !"></Button>
+                    </StackLayout>
+                </GridLayout>
             </StackLayout>
+        </StackLayout>
+
+        <StackLayout class="description">
+            <Label [text]="item.description" textWrap="true"></Label>
         </StackLayout>
     </StackLayout>
 </ScrollView>
