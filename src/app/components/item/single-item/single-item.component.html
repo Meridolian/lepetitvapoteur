@@ -27,26 +27,29 @@
                 <GridLayout rows="auto,auto,auto" columns="*,*" class="buyGrid">
                     <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'colors'">
                         <Label class="label" text="COULEUR"></Label>
-                        <TextField class="color" [(ngModel)]="colorChoosed" (tap)="onChooseColor($event)"
+                        <TextField class="select" [(ngModel)]="item.color" (tap)="onChooseColor($event)"
                             editable="false">
                         </TextField>
                     </StackLayout>
                     <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'nicotine'">
                         <Label class="label" text="NICOTINE"></Label>
+                        <TextField class="select" [(ngModel)]="item.nicotine" (tap)="onChooseNicotine($event)"
+                            editable="false"></TextField>
                     </StackLayout>
                     <StackLayout row="0" col="1" orientation="vertical">
                         <Label class="label" text="QUANTITÉ"></Label>
                         <StackLayout orientation="horizontal" class="quantityContainer" horizontalAlignment="center">
                             <Button class="minusButton fas" text="&#xf068;" (tap)="onQuantity('minus')"></Button>
-                            <TextField class="quantityField" [text]="quantity" editable="false"></TextField>
+                            <TextField class="quantityField" [(ngModel)]="quantity" keyboardType="number"
+                                (blur)="onQuantity('field')"></TextField>
                             <Button class="plusButton fas" text="&#xf067;" (tap)="onQuantity('plus')"></Button>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout row="1" col="0" colSpan="2">
-                        <Label class="price" text="{{item.price}} €"></Label>
+                        <Label class="price" text="{{price}} €"></Label>
                     </StackLayout>
                     <StackLayout row="2" col="0" colSpan="2">
-                        <Button class="buyButton" text="J'ACHÈTE !"></Button>
+                        <Button class="buyButton" text="J'ACHÈTE !" (tap)="onAddToCart()"></Button>
                     </StackLayout>
                 </GridLayout>
             </StackLayout>

@@ -7,7 +7,7 @@ import { Categories } from "../models/categories";
 })
 export class ItemService {
 
-    private items = new Array<Item>(
+    private items: Array<Item> = new Array<Item>(
         {
             id: 0,
             name: "RY4",
@@ -19,12 +19,14 @@ export class ItemService {
                 "Le RY4 Le Petit Vapoteur est fabriqué en France.",
             shortDescription: "Un goût Classic avec des notes de vanille et de caramel. " +
                 "Une saveur ronde en bouche et généralement très appréciée.",
-            price: "4,90",
+            price: 4.90,
             pictures: ["ry4"],
             categories: [Categories.juice, Categories.classicJuice, Categories.favoriteJuice],
             brand_id: 0,
             colors: [],
-            nicotine: 0
+            color: "",
+            nicotineRates: ["0mg", "3mg", "6mg", "12mg", "16mg"],
+            nicotine: ""
         },
         {
             id: 1,
@@ -35,12 +37,14 @@ export class ItemService {
                 "de Glycérine Végétale pour s’adapter au plus grand nombre de matériel." + "\n" + "\n" + "Dosage en nicotine au choix : " +
                 "0 mg/ml, 3 mg/ml, 6 mg/ml, 12 mg/ml, 16 mg/ml" + "\n" + "\n" + "Le liquide Rouge Le Petit Vapoteur est fabriqué en France.",
             shortDescription: "Découvrez notre cocktail fruité, frais, complexe à base de fruits rouges avec une légère pointe anisée.",
-            price: "4,90",
+            price: 4.90,
             pictures: ["le_rouge"],
             categories: [Categories.juice, Categories.freshJuice, Categories.favoriteJuice, Categories.freshJuice],
             brand_id: 0,
             colors: [],
-            nicotine: 0
+            color: "",
+            nicotineRates: ["0mg", "3mg", "6mg", "12mg", "16mg"],
+            nicotine: ""
         },
         {
             id: 2,
@@ -57,7 +61,7 @@ export class ItemService {
             "L'atomiseur reconstructible Zeus X RTA est fabriqué par Geekvape.",
             shortDescription: "Une version complètement revue et corrigée du célèbre Zeus RTA pour vous offrir toujours plus de vapeur et " +
             "de saveurs.",
-            price: "23,50",
+            price: 23.50,
             pictures: ["zeus_x_rta_black_1","zeus_x_rta_black_2","zeus_x_rta_blue_1","zeus_x_rta_blue_2","zeus_x_rta_gold_1","zeus_x_rta_gold_2",
             "zeus_x_rta_green_1","zeus_x_rta_green_2","zeus_x_rta_gunmetal_1","zeus_x_rta_gunmetal_2","zeus_x_rta_rainbow_1","zeus_x_rta_rainbow_2",
             "zeus_x_rta_red_1","zeus_x_rta_red_2","zeus_x_rta_stainlesssteel_1","zeus_x_rta_stainlesssteel_2","zeus_x_rta_winered_1",
@@ -65,7 +69,9 @@ export class ItemService {
             categories: [Categories.favoriteExpert, Categories.rebuildable],
             brand_id: 2,
             colors: ["BLACK", "BLUE", "GOLD", "GREEN", "GUNMETAL", "RAINBOW", "RED", "STAINLESS STEEL", "WINE RED"],
-            nicotine: 0
+            color: "",
+            nicotineRates: ["0mg", "3mg", "6mg", "12mg", "16mg"],
+            nicotine: ""
         }
     );
 

@@ -57,22 +57,20 @@ $custom_darkSand: #a49981;
     font-size: 25;
 }
 
-.color {
+.select {
     text-align: center;
     font-size: 20;
     background-color: white;
     border: 0;
     color: $custom_grey;
     border-radius: 5;
-    /* &:active {
-        color: 
-    } */
 }
 
 .quantityContainer{
     margin-top: 5;
 }
 .plusButton{
+    vertical-align: top;
     height: 35;
     width: 35;
     margin: 0;
@@ -87,6 +85,7 @@ $custom_darkSand: #a49981;
     }
 }
 .minusButton{
+    vertical-align: top;
     height: 35;
     width: 35;
     margin: 0;

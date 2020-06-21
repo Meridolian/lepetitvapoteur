@@ -4,12 +4,14 @@ export class Item {
 
     id: number;
     name: string;
-    pictures: string[];
-    price: string;
+    pictures: Array<string>;
+    price: number;
     description: string;
     shortDescription: string;
-    categories: Categories[];
+    categories: Array<Categories>;
     brand_id: number;
-    colors: string[];
-    nicotine: number;
+    colors: Array<string>;
+    color: string;
+    nicotineRates: string[];
+    nicotine: string;
 }

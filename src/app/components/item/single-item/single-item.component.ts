@@ -3,6 +3,7 @@ import { Item } from '~/app/models/item.model';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { EventData, Page, View } from 'tns-core-modules/ui/page';
 import { ScrollView } from "tns-core-modules/ui/scroll-view";
+import { ShoppingCartService } from '~/app/shared/shopping-cart.service';
 
 @Component({
   selector: 'ns-single-item',
@@ -13,14 +14,16 @@ export class SingleItemComponent implements OnInit {
 
   @Input() item: Item;
   colorsOrNicotine: string;
-  colorChoosed: string;
   quantity: number;
+  price: string;
 
-  constructor() { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.price = this.item.price.toFixed(2);
     this.quantity = 1;
-    this.colorChoosed = this.item.colors[0];
+    this.item.color = this.item.colors[0];
+    this.item.nicotine = this.item.nicotineRates[0];
     if (this.item.colors.length > 0) {
       this.colorsOrNicotine = "colors";
     }
@@ -38,7 +41,7 @@ export class SingleItemComponent implements OnInit {
       cancelButtonText: "Annuler",
       actions: this.item.colors
     }).then(result => {
-      this.colorChoosed = result;
+      this.item.color = result;
       for(let i = 0; i < this.item.pictures.length; i++){
         let currentPicture = this.item.pictures[i];
         if(currentPicture.includes(result.replace(/\s/g, "").toLocaleLowerCase())){
@@ -49,6 +52,16 @@ export class SingleItemComponent implements OnInit {
           break;
         }
       }
+    });
+  }
+
+  onChooseNicotine(){
+    dialogs.action({
+      message: "Choisissez un taux de nicotine",
+      cancelButtonText: "Annuler",
+      actions: this.item.nicotineRates
+    }).then(result => {
+      this.item.nicotine = result;
     });
   }
 
@@ -64,10 +77,15 @@ export class SingleItemComponent implements OnInit {
         this.quantity--;
       }
     }
+    else if(choice === "field"){
+      if(this.quantity < 1) {
+        this.quantity = 1;
+      }
+    }
   }
 
   onAddToCart() {
-
+    this.shoppingCartService.addToCart(this.item, this.quantity);
   }
 
 }
