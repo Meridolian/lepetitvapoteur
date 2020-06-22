@@ -5,6 +5,7 @@ import { EventData, Page, View } from 'tns-core-modules/ui/page';
 import { ScrollView } from "tns-core-modules/ui/scroll-view";
 import { ShoppingCartService } from '~/app/shared/shopping-cart.service';
 
+
 @Component({
   selector: 'ns-single-item',
   templateUrl: './single-item.component.html',
@@ -16,10 +17,12 @@ export class SingleItemComponent implements OnInit {
   colorsOrNicotine: string;
   quantity: number;
   price: string;
+  showGif: boolean;
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.showGif = false;
     this.price = this.item.price.toFixed(2);
     this.quantity = 1;
     this.item.color = this.item.colors[0];
@@ -90,6 +93,10 @@ export class SingleItemComponent implements OnInit {
 
   onAddToCart() {
     this.shoppingCartService.addToCart(this.item, this.quantity);
+    this.showGif = true;
+    setTimeout(() => {
+      this.showGif = false;
+    }, 3000);
   }
 
 }

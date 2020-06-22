@@ -24,7 +24,7 @@
 
         <StackLayout class="buyBorder">
             <StackLayout class="buyContainer">
-                <GridLayout rows="auto,auto,auto" columns="*,*" class="buyGrid">
+                <GridLayout rows="auto,auto,auto,auto" columns="*,*" class="buyGrid">
                     <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'colors'">
                         <Label class="label" text="COULEUR"></Label>
                         <TextField class="select" [(ngModel)]="item.color" (tap)="onChooseColor($event)"
@@ -51,6 +51,9 @@
                     <StackLayout row="2" col="0" colSpan="2">
                         <Button class="buyButton" text="J'ACHÈTE !" (tap)="onAddToCart()"></Button>
                     </StackLayout>
+                    <!-- <StackLayout row="3" col="0" colSpan="2" *ngIf="showGif">
+                        <Gif src="~/fonts/add_item.gif" height="50"></Gif>
+                    </StackLayout> -->
                 </GridLayout>
             </StackLayout>
         </StackLayout>

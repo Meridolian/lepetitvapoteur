@@ -4,6 +4,9 @@ import { NativeScriptFormsModule } from "nativescript-angular";
 
 import { SingleItemComponent } from "./single-item.component";
 
+import { registerElement } from 'nativescript-angular/element-registry';
+registerElement('Gif', () => require('nativescript-gif').Gif);
+
 @NgModule({
     imports: [
         NativeScriptCommonModule,
