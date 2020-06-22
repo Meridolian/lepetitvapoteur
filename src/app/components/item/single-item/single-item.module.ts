@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular";
+import { DropDownModule } from "nativescript-drop-down/angular";
 
 import { SingleItemComponent } from "./single-item.component";
 
@@ -10,7 +11,8 @@ registerElement('Gif', () => require('nativescript-gif').Gif);
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        DropDownModule
     ],
     declarations: [
         SingleItemComponent,
