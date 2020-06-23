@@ -14,4 +14,6 @@ export class Item {
     color: string;
     nicotineRates: string[];
     nicotine: string;
+    bottleSizes: string[];
+    bottleSize: string;
 }

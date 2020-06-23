@@ -1,11 +1,11 @@
 <ScrollView>
     <StackLayout class="container">
-        <GridLayout rows="auto" columns="*,auto,*" orientation="horizontal" class="head">
+        <GridLayout rows="*" columns="*,auto,*" orientation="horizontal" class="head">
             <StackLayout row="0" col="0" verticalAlignment="center">
                 <Label class="blueLine"></Label>
             </StackLayout>
             <StackLayout row="0" col="1" class="name">
-                <Label [text]="item.name"></Label>
+                <Label [text]="item.name" textWrap="true"></Label>
             </StackLayout>
             <StackLayout row="0" col="2" verticalAlignment="center">
                 <Label class="blueLine"></Label>
@@ -24,17 +24,23 @@
 
         <StackLayout class="buyBorder">
             <StackLayout class="buyContainer">
-                <GridLayout rows="auto,auto,auto,auto" columns="*,*" class="buyGrid">
-                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'colors'">
+                <GridLayout rows="auto,auto,auto" columns="*,*" class="buyGrid">
+                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="typeSelect === 'color'">
                         <Label class="label" text="COULEUR"></Label>
                         <TextField class="select" [(ngModel)]="item.color" (tap)="onChooseColor($event)"
                             editable="false">
                         </TextField>
                     </StackLayout>
-                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="colorsOrNicotine === 'nicotine'">
+                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="typeSelect === 'nicotine'">
                         <Label class="label" text="NICOTINE"></Label>
                         <TextField class="select" [(ngModel)]="item.nicotine" (tap)="onChooseNicotine()"
                             editable="false"></TextField>
+                    </StackLayout>
+                    <StackLayout row="0" col="0" orientation="vertical" *ngIf="typeSelect === 'bottleSize'">
+                        <Label class="label" text="FLACON DE"></Label>
+                        <TextField class="select" [(ngModel)]="item.bottleSize" (tap)="onChooseBottleSize()"
+                            editable="false">
+                        </TextField>
                     </StackLayout>
                     <StackLayout row="0" col="1" orientation="vertical">
                         <Label class="label" text="QUANTITÉ"></Label>
@@ -50,9 +56,6 @@
                     </StackLayout>
                     <StackLayout row="2" col="0" colSpan="2">
                         <Button class="buyButton" text="J'ACHÈTE !" (tap)="onAddToCart()"></Button>
-                    </StackLayout>
-                    <StackLayout row="3" col="0" colSpan="2" *ngIf="showGif">
-                        <Gif src="~/fonts/add_item.gif" height="54"></Gif>
                     </StackLayout>
                 </GridLayout>
             </StackLayout>

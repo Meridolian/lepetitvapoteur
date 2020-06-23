@@ -9,12 +9,15 @@ $custom_greyWhite: #e7e7e7;
 .container {
     background-color: white;
     margin: 5;
-    height: 350;
     width: 170;
+    border-radius: 5;
 }
 
 .picture {
-    margin: 10;
+    margin-top: 10;
+    margin-left: 10;
+    margin-right: 10;
+    margin-bottom: 0;
 }
 
 .price_container {
@@ -26,20 +29,29 @@ $custom_greyWhite: #e7e7e7;
 
 .name {
     text-align: center;
-    font-size: 25;
-    color: $custom_orange
+    color: $custom_orange;
+    font-size: 20;
+    height: 50;
+    margin-top: 5;
+    margin-left: 5;
+    margin-right: 5;
+    margin-bottom: 0;
 }
 
 .shortDescription {
     text-align: center;
     font-size: 15;
+    margin-top: 5;
     margin-left: 5;
     margin-right: 5;
     margin-bottom: 0;
 }
 
 .buyButton {
-    margin: 0;
+    margin-top: 5;
+    margin-left: 5;
+    margin-right: 5;
+    margin-bottom: 0;
     background-color: $custom_blue;
     color: white;
     &:active {

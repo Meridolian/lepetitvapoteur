@@ -1,6 +1,6 @@
 <StackLayout class="container">
     <Image class="picture" src="~/item_pictures/{{picture}}.jpg"></Image>
-    <Label class="name" [text]="name" editable="false"></Label>
+    <Label class="name" [text]="name" editable="false" textWrap="true"></Label>
     <TextView class="shortDescription" [text]="shortDescription" editable="false"></TextView>
     <Button class="buyButton" text="EN SAVOIR PLUS" (tap)="onSingleItem()"></Button>
 </StackLayout>

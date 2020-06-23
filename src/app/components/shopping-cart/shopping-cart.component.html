@@ -25,30 +25,40 @@
         <StackLayout orientation="vertical" class="itemsContainer" *ngIf="!emptyShoppingCart">
             <GridLayout rows="*,*,*,*,*" columns="*,*,*,*,*" class="item"
                 *ngFor="let item of shoppingCart.items; let index = index">
-                <Image row="0" col="0" colSpan="2" rowSpan="3" src="~/item_pictures/{{item[0].pictures[0]}}.jpg" class="image"></Image>
+                <Image id="{{'picture' + index}}" row="0" col="0" colSpan="2" rowSpan="3"
+                    src="~/item_pictures/{{item[0].pictures[0]}}.jpg" class="image" (loaded)="onInitPicture(index, $event)"></Image>
 
                 <Label row="0" col="2" colSpan="3" [text]="item[0].name" class="itemName" textWrap="true"></Label>
 
-                <Label row="1" col="2" class="labelField" text="Couleur" *ngIf="item[0].colors.length > 0"></Label>
-                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].color" (tap)="onChooseColor(index)"
-                        editable="false" *ngIf="item[0].colors.length > 0">
+                <Label row="1" col="2" class="labelField" text="COULEUR" *ngIf="item[0].colors.length > 0"></Label>
+                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].color"
+                    (tap)="onChooseColor(index, $event)" editable="false" *ngIf="item[0].colors.length > 0">
                 </TextField>
 
-                <Label row="1" col="2" class="labelField" text="Nicotine"
-                        *ngIf="item[0].nicotineRates.length > 0"></Label>
-                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].nicotine" (tap)="onChooseNicotine(index)"
-                        editable="false" *ngIf="item[0].nicotineRates.length > 0">
+                <Label row="1" col="2" class="labelField" text="NICOTINE"
+                    *ngIf="item[0].nicotineRates.length > 0"></Label>
+                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].nicotine"
+                    (tap)="onChooseNicotine(index)" editable="false" *ngIf="item[0].nicotineRates.length > 0">
+                </TextField>
+
+                <Label row="1" col="2" class="labelField" text="FLACON DE"
+                    *ngIf="item[0].bottleSizes.length > 0"></Label>
+                <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].bottleSize"
+                    (tap)="onChooseBottleSize(index)" editable="false" *ngIf="item[0].bottleSizes.length > 0">
                 </TextField>
 
                 <Label row="2" col="2" colSpan="3" class="price" [text]="item[0].price.toFixed(2) + '€'"></Label>
 
-                <Button row="3" col="0" class="quantityButton fas" text="&#xf068;" (tap)="onQuantity('minus', index)"></Button>
+                <Button row="3" col="0" class="quantityButton fas" text="&#xf068;"
+                    (tap)="onQuantity('minus', index)"></Button>
                 <TextField row="3" col="1" class="quantityField" [text]="item[1]" editable="false"></TextField>
-                <Button row="3" col="2" class="quantityButton fas" text="&#xf067;" (tap)="onQuantity('plus', index)"></Button>
+                <Button row="3" col="2" class="quantityButton fas" text="&#xf067;"
+                    (tap)="onQuantity('plus', index)"></Button>
 
                 <Label row="3" col="3" colSpan="2" class="totalItemPrice" [text]="(item[2]).toFixed(2) + '€'"></Label>
 
-                <Button row="4" col="0" colSpan="5" class="deleteButton" text="SUPPRIMER" (tap)="onDeleteItem(index)"></Button>
+                <Button row="4" col="0" colSpan="5" class="deleteButton" text="SUPPRIMER"
+                    (tap)="onDeleteItem(index)"></Button>
             </GridLayout>
         </StackLayout>
 

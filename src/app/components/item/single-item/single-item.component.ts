@@ -14,24 +14,27 @@ import { ShoppingCartService } from '~/app/shared/shopping-cart.service';
 export class SingleItemComponent implements OnInit {
 
   @Input() item: Item;
-  colorsOrNicotine: string;
+  typeSelect: string;
   quantity: number;
   price: string;
-  showGif: boolean;
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.showGif = false;
     this.price = this.item.price.toFixed(2);
     this.quantity = 1;
-    this.item.color = this.item.colors[0];
-    this.item.nicotine = this.item.nicotineRates[0];
+    
     if (this.item.colors.length > 0) {
-      this.colorsOrNicotine = "colors";
+      this.item.color = this.item.colors[0];
+      this.typeSelect = "color";
     }
-    else {
-      this.colorsOrNicotine = "nicotine";
+    else if(this.item.nicotineRates.length > 0){
+      this.item.nicotine = this.item.nicotineRates[0];
+      this.typeSelect = "nicotine";
+    }
+    else if(this.item.bottleSizes.length > 0){
+      this.item.bottleSize = this.item.bottleSizes[0];
+      this.typeSelect = "bottleSize";
     }
   }
 
@@ -72,6 +75,18 @@ export class SingleItemComponent implements OnInit {
     });
   }
 
+  onChooseBottleSize(){
+    dialogs.action({
+      message: "Choisissez la contenance",
+      cancelButtonText: "Annuler",
+      actions: this.item.bottleSizes
+    }).then(result => {
+      if(result !== "Annuler"){
+        this.item.bottleSize = result;
+      }
+    });
+  }
+
   onQuantity(choice){
     if(choice === "plus"){
       this.quantity++;
@@ -93,10 +108,7 @@ export class SingleItemComponent implements OnInit {
 
   onAddToCart() {
     this.shoppingCartService.addToCart(this.item, this.quantity);
-    this.showGif = true;
-    setTimeout(() => {
-      this.showGif = false;
-    }, 3000);
+    //TODO show Item acheté
   }
 
 }

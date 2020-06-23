@@ -4,6 +4,7 @@ import { ShoppingCart } from '~/app/models/shopping-cart.model';
 import { Subscription } from 'rxjs';
 import { ShoppingCartService } from '~/app/shared/shopping-cart.service';
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import { EventData, View, Page } from 'tns-core-modules/ui/page';
 
 @Component({
   selector: 'ns-shopping-cart',
@@ -34,15 +35,39 @@ export class ShoppingCartComponent implements OnInit {
     );
   }
 
-  onChooseColor(index: number) {
+  onInitPicture(index: number, args: EventData){
+    let pictureView = <Image>args.object;
+    let currentColor = this.shoppingCart.items[index][0].color;
+    for(let i = 0; i < this.shoppingCart.items[index][0].pictures.length; i++){
+      let currentPicture = this.shoppingCart.items[index][0].pictures[i];
+      if(currentPicture.includes(currentColor.replace(/\s/g, "").toLocaleLowerCase())){
+        let source = "~/item_pictures/" + currentPicture + ".jpg";
+        pictureView.src = source;
+        break;
+      }
+    }
+  }
+
+  onChooseColor(index: number, args: EventData) {
     dialogs.action({
       message: "Choisissez une couleur",
       cancelButtonText: "Annuler",
       actions: this.shoppingCart.items[index][0].colors
     }).then(result => {
-      console.log(result)
       if (result !== "Annuler") {
         this.shoppingCart.items[index][0].color = result;
+        for(let i = 0; i < this.shoppingCart.items[index][0].pictures.length; i++){
+          let currentPicture = this.shoppingCart.items[index][0].pictures[i];
+          if(currentPicture.includes(result.replace(/\s/g, "").toLocaleLowerCase())){
+            let tempString = "picture" + index;
+            let field = <View>args.object;
+            let page = <Page>field.page;
+            let pictureView = <Image>page.getViewById(tempString);
+            let source = "~/item_pictures/" + currentPicture + ".jpg";
+            pictureView.src = source;
+            break;
+          }
+        }
       }
     });
   }
@@ -55,6 +80,18 @@ export class ShoppingCartComponent implements OnInit {
     }).then(result => {
       if (result !== "Annuler") {
         this.shoppingCart.items[index][0].nicotine = result;
+      }
+    });
+  }
+
+  onChooseBottleSize(index: number) {
+    dialogs.action({
+      message: "Choisissez la contenance",
+      cancelButtonText: "Annuler",
+      actions: this.shoppingCart.items[index][0].bottleSizes
+    }).then(result => {
+      if (result !== "Annuler") {
+        this.shoppingCart.items[index][0].bottleSize = result;
       }
     });
   }

@@ -36,6 +36,25 @@ export class BrandService {
             "Nous proposons aussi dans notre catalogue des accessoires Geek Vape comme, par exemple, des fils résistifs pour atomiseur " +
             "reconstructible.",
             picture: "geek_vape",
+        },
+        {
+            id: 3,
+            name: "MR BREWER",
+            description: "Les arômes concentrés de la gamme Mr Brewer sont fabriqués en Italie par Juice & Joy. Les concentrés Mr Brewer " +
+            "pour votre cigarette électronique doivent être mélangés avec une base neutre de PG/VG (Propylène Glycol/Glycérine Végétale). " +
+            "Les concentrés Mr Brewer sont conditionnés en flacon allongé de 30ml et composés  de propylène glycol et d’arômes alimentaires.",
+            picture: "mr_brewer",
+        },
+        {
+            id: 4,
+            name: "EXO",
+            description: "EXO est une gamme de concentrés pour la préparation des e liquides en DIY. Une gamme de recettes complexes " +
+            "composées de deux saveurs dominantes et mêlées à un puissant mix de fruits tropicaux. Comme un air de Malaisie, sans Koolada " +
+            "(additif frais), ni sucralose. Les concentrés Exo sont proposés en flacon de 10 ml avec bouchon de sécurité et embout " +
+            "compte-goutte. Composés de propylène glycol et d'arômes artificiels et/ou naturels, les concentrés de la gamme de concentrés " +
+            "EXO pour cigarette électronique sont à mélanger dans une base de PG/VG éventuellement avec un ou plusieurs boosters de nicotine. " +
+            "Les concentrés EXO sont fabriqués en France par Revolute.",
+            picture: "exo",
         }
     );
 
