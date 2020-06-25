@@ -38,7 +38,7 @@
                     </StackLayout>
                     <StackLayout row="0" col="0" orientation="vertical" *ngIf="typeSelect === 'bottleSize'">
                         <Label class="label" text="FLACON DE"></Label>
-                        <TextField class="select" [(ngModel)]="item.bottleSize" (tap)="onChooseBottleSize()"
+                        <TextField class="select" [(ngModel)]="item.capacity" (tap)="onChooseBottleSize()"
                             editable="false">
                         </TextField>
                     </StackLayout>

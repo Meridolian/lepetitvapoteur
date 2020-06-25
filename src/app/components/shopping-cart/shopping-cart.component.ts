@@ -88,10 +88,10 @@ export class ShoppingCartComponent implements OnInit {
     dialogs.action({
       message: "Choisissez la contenance",
       cancelButtonText: "Annuler",
-      actions: this.shoppingCart.items[index][0].bottleSizes
+      actions: this.shoppingCart.items[index][0].capacities
     }).then(result => {
       if (result !== "Annuler") {
-        this.shoppingCart.items[index][0].bottleSize = result;
+        this.shoppingCart.items[index][0].capacity = result;
       }
     });
   }

@@ -32,8 +32,8 @@ export class SingleItemComponent implements OnInit {
       this.item.nicotine = this.item.nicotineRates[0];
       this.typeSelect = "nicotine";
     }
-    else if(this.item.bottleSizes.length > 0){
-      this.item.bottleSize = this.item.bottleSizes[0];
+    else if(this.item.capacities.length > 0){
+      this.item.capacity = this.item.capacities[0];
       this.typeSelect = "bottleSize";
     }
   }
@@ -79,10 +79,10 @@ export class SingleItemComponent implements OnInit {
     dialogs.action({
       message: "Choisissez la contenance",
       cancelButtonText: "Annuler",
-      actions: this.item.bottleSizes
+      actions: this.item.capacities
     }).then(result => {
       if(result !== "Annuler"){
-        this.item.bottleSize = result;
+        this.item.capacity = result;
       }
     });
   }

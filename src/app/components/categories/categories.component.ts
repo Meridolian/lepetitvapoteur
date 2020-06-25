@@ -49,7 +49,6 @@ export class CategoriesComponent implements OnInit {
 
       
       this.arrayItem = this.itemService.getItemByCategory(Categories[tempCategory[1]]);
-      console.log(this.arrayItem.length)
 
       this.showListItems = true;
     }
