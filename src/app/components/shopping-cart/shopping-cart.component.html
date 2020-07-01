@@ -42,7 +42,7 @@
                 </TextField>
 
                 <Label row="1" col="2" class="labelField" text="FLACON DE"
-                    *ngIf="item[0].bottleSizes.length > 0"></Label>
+                    *ngIf="item[0].capacities.length > 0"></Label>
                 <TextField row="1" col="3" colSpan="2" class="select" [text]="item[0].capacity"
                     (tap)="onChooseBottleSize(index)" editable="false" *ngIf="item[0].capacities.length > 0">
                 </TextField>

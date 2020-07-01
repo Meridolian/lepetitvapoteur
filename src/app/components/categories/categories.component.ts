@@ -12,8 +12,6 @@ import { Image } from "tns-core-modules/ui/image";
 })
 export class CategoriesComponent implements OnInit {
 
-  @ViewChild('category', { static: false }) button: ElementRef;
-
   categoryRoute: [string, string, string][][];
   currentCategory: [string, string, string][];
   showListItems: boolean;
