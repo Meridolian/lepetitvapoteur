@@ -3,7 +3,7 @@ import { Item } from '~/app/models/item.model';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { EventData, Page, View } from 'tns-core-modules/ui/page';
 import { ScrollView } from "tns-core-modules/ui/scroll-view";
-import { ShoppingCartService } from '~/app/shared/shopping-cart.service';
+import { ShoppingCartService } from '~/app/services/shopping-cart.service';
 
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { TextField } from "tns-core-modules/ui/text-field";
 import { isIOS, Page } from "tns-core-modules/ui/page/page";
 import * as utils from "tns-core-modules/utils/utils";
-import { ItemService } from "~/app/shared/item.service";
+import { ItemService } from "~/app/services/item.service";
 import { Item } from "~/app/models/item.model";
 import { RouterExtensions } from "nativescript-angular";
 import { Image } from "tns-core-modules/ui/image";

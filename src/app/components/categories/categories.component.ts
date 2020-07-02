@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CategoryUtil } from '~/app/utils/category.util';
-import { ItemService } from '~/app/shared/item.service';
+import { ItemService } from '~/app/services/item.service';
 import { Item } from '~/app/models/item.model';
 import { Categories } from '~/app/models/categories';
 import { Image } from "tns-core-modules/ui/image";

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
-import { ShoppingCartService } from "./shared/shopping-cart.service";
+import { ShoppingCartService } from "./services/shopping-cart.service";
 import { ShoppingCart } from "./models/shopping-cart.model";
 
 @Component({
