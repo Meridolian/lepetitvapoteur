@@ -1,37 +1,22 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
-import { ShoppingCartService } from "./services/shopping-cart.service";
-import { ShoppingCart } from "./models/shopping-cart.model";
+import { RouterExtensions } from "nativescript-angular";
+import { UserService } from "./services/user.service";
 
 @Component({
     selector: "ns-app",
     templateUrl: "app.component.html",
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
-    itemsInCart: number;
-    itemsSubscription: Subscription;
-
-    constructor(private shoppingCartService: ShoppingCartService) {
-        // Use the component constructor to inject providers.
-    }
+    constructor(private userService: UserService, private router: RouterExtensions) {}
 
     ngOnInit(): void {
-        this.itemsSubscription = this.shoppingCartService.shoppingCartSubject.subscribe(
-            (cart: ShoppingCart) => {
-                this.itemsInCart = 0;
-                for(let i = 0; i < cart.items.length; i++){
-                    this.itemsInCart += cart.items[i][1];
-                }
-                if(this.itemsInCart === 0){
-                    this.itemsInCart = null;
-                }
-            }
-        );
+        if(this.userService.logged){
+            this.router.navigate(['/app']);
+        }
+        else {
+            this.router.navigate(['/auth']);
+        }
     }
-
-    ngOnDestroy() {
-		this.itemsSubscription.unsubscribe();
-	}
 }

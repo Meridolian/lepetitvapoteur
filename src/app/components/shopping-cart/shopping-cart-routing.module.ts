@@ -4,7 +4,8 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { ShoppingCartComponent } from "./shopping-cart.component";
 
 const routes: Routes = [
-    { path: "default", component: ShoppingCartComponent }
+    { path: "", redirectTo: "shoppingCart", pathMatch: "full" },
+    { path: "shoppingCart", component: ShoppingCartComponent }
 ];
 
 @NgModule({

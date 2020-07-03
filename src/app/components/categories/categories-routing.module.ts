@@ -4,7 +4,8 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { CategoriesComponent } from "./categories.component";
 
 const routes: Routes = [
-    { path: "default", component: CategoriesComponent }
+    { path: "", redirectTo: "categories", pathMatch: "full" },
+    { path: "categories", component: CategoriesComponent }
 ];
 
 @NgModule({
