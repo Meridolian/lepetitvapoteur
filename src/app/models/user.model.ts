@@ -29,7 +29,7 @@ export class Address {
 }
 
 export enum Civility {
-    Mr = "Monsieur",
-    Mme = "Madame",
-    other = "Je ne souhaite pas répondre",
+    MONSIEUR = "MONSIEUR",
+    MADAME = "MADAME",
+    AUTRE = "AUTRE"
 }

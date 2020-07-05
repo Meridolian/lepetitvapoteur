@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular";
 import { UserService } from "./services/user.service";
+import { NavigationExtras } from "@angular/router";
+import { User } from "./models/user.model";
 
 @Component({
     selector: "ns-app",
@@ -16,7 +18,7 @@ export class AppComponent implements OnInit {
             this.router.navigate(['/app']);
         }
         else {
-            this.router.navigate(['/auth']);
+            this.router.navigate(['/auth', { startingApp: true }]);
         }
     }
 }
