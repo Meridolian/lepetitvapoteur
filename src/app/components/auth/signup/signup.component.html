@@ -1,0 +1,42 @@
+<ScrollView>
+    <StackLayout>
+        <StackLayout class="authContainer text-center">
+    
+            <Label class="signupLabel" text="CRÉER UN COMPTE LE PETIT VAPOTEUR" textWrap="true"></Label>
+    
+            <TextField class="field" hint="E-mail..." [(ngModel)]="email"></TextField>
+            <TextField class="field" secure="true" hint="Mot de passe..." [(ngModel)]="password"></TextField>
+            <TextField class="field" secure="true" hint="Confirmer mot de passe..." [(ngModel)]="confirmPassword"></TextField>
+    
+            <StackLayout orientation="horizontal" width="90%" class="civilityContainer">
+                <Label class="civilityLabel" text="CIVILITÉ"></Label>
+                <Button class="civilityButton civilityButton1"
+                    [ngClass]="{'civilityButtonActive' : civility === 'MONSIEUR'}" text="MONSIEUR"
+                    (tap)="onCivility('MONSIEUR')"></Button>
+                <Button class="civilityButton civilityButton2"
+                    [ngClass]="{'civilityButtonActive' : civility === 'MADAME'}" text="MADAME"
+                    (tap)="onCivility('MADAME')"></Button>
+                <Button class="civilityButton civilityButton3"
+                    [ngClass]="{'civilityButtonActive' : civility === 'AUTRE'}" text="AUTRE"
+                    (tap)="onCivility('AUTRE')"></Button>
+            </StackLayout>
+    
+            <StackLayout orientation="horizontal" width="90%" class="birthdayContainer">
+                <Label class="birthdayLabel" text="DATE DE NAISSANCE"></Label>
+                <Button class="birthdayButton" [text]="birthdayShort" (tap)="onBirthday()"></Button>
+            </StackLayout>
+    
+            <TextField class="field" hint="Nom..." [(ngModel)]="lastName" marginTop="15"></TextField>
+            <TextField class="field" hint="Prénom..." [(ngModel)]="firstName"></TextField>
+    
+            <Button type="submit" class="signupButton" text="CRÉER UN COMPTE !" (tap)="onSignup()"></Button>
+    
+            <StackLayout orientation="horizontal" width="90%">
+                <Label class="goToLoginLabel" text="VOUS POSSÉDEZ DÉJÀ UN COMPTE ?"></Label>
+                <Button class="goToLoginButton" text="SE CONNECTER" (tap)="goToLogin()"></Button>
+            </StackLayout>
+    
+            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"></Button>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

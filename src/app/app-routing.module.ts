@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { AuthComponent } from "./components/auth/auth.component";
+import { LoginComponent } from "./components/auth/login/login.component";
+import { SignupComponent } from "./components/auth/signup/signup.component";
 
 const routes: Routes = [
     {
@@ -10,8 +11,12 @@ const routes: Routes = [
         pathMatch: "full"
     },
     {
-        path: "auth",
-        component: AuthComponent
+        path: "login",
+        component: LoginComponent
+    },
+    {
+        path: "signup",
+        component: SignupComponent
     },
     {
         path: "app",

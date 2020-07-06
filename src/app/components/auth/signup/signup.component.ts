@@ -1,19 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Image } from 'tns-core-modules/ui/image';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Image } from "tns-core-modules/ui/image";
 import { RouterExtensions } from 'nativescript-angular';
 import { User } from '~/app/models/user.model';
 import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
+import { ActivatedRoute } from '@angular/router';
+import { EmailValidator } from '@angular/forms';
+import { UserService } from '~/app/services/user.service';
 
 @Component({
-	selector: 'ns-auth',
-	templateUrl: './auth.component.html',
-	styleUrls: ['./auth.component.scss']
+	selector: 'ns-signup',
+	templateUrl: './signup.component.html',
+	styleUrls: ['./signup.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
-	signup: boolean;
-	@Input()
 	startingApp: boolean;
 
 	user: User;
@@ -28,25 +28,24 @@ export class AuthComponent implements OnInit {
 
 	birthdayShort: string;
 
-	constructor(private route: ActivatedRoute, private router: RouterExtensions) { }
+	constructor(private router: RouterExtensions, private route: ActivatedRoute, private userService: UserService) { }
 
 	ngOnInit(): void {
-		this.signup = true;
 		this.startingApp = JSON.parse(this.route.snapshot.paramMap.get("startingApp"));
 
-		this.birthday = new Date;
+		this.initFields();
 
 		this.shortDate(this.birthday);
 	}
 
-	initFields(){
-		this.user = new User();
+	initFields() {
 		this.email = "";
 		this.password = "";
 		this.confirmPassword = "";
 		this.civility = "";
 		this.firstName = "";
 		this.lastName = "";
+		this.birthday = new Date;
 		this.newsletter = false;
 	}
 
@@ -56,11 +55,6 @@ export class AuthComponent implements OnInit {
 			rotate: 360,
 			duration: 750
 		}).then(() => image.rotate = 0);
-	}
-
-	loginSignup() {
-		this.signup = !this.signup;
-		this.initFields();
 	}
 
 	onCivility(choice) {
@@ -80,17 +74,28 @@ export class AuthComponent implements OnInit {
 		});
 	}
 
+	onSignup() {
+		//TODO validators for all fields
+		this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
+			null, null, null, null, null, null);
 
-	onLogin(){
+		this.userService.createUser(this.user);
 
+		this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
 	}
 
-	onSignup(){
-		console.log(this.email)
+	/* validatorFields(): boolean{
+		let validator: boolean = false;
+		
+		let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+	} */
+
+	goToLogin() {
+		this.router.navigate(['/login', { startingApp: this.startingApp }], { animated: true, transition: { name: 'slideRight', duration: 250 } });
 	}
 
-
-	noLogin() {
+	goToApp() {
 		this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
 	}
 
@@ -101,4 +106,5 @@ export class AuthComponent implements OnInit {
 		let year = date.getFullYear();
 		this.birthdayShort = day + " " + month + " " + year;
 	}
+
 }

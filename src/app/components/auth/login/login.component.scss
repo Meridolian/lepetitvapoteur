@@ -7,7 +7,6 @@ $custom_grey: #808185;
 $custom_greyWhite: #e7e7e7;
 $custom_darkSand: #a49981;
 
-
 .authContainer {
     height: 100%;
     width: 90%;
@@ -22,10 +21,10 @@ $custom_darkSand: #a49981;
     background-color: $custom_orange;
 }
 
-.connectionLabel {
+.loginLabel {
     font-size: 25;
     color: $custom_blue;
-    margin-top: 20vh;
+    margin-top: 15vh;
     margin-bottom: 10vh;
 }
 
@@ -42,6 +41,7 @@ $custom_darkSand: #a49981;
 }
 
 .loginButton {
+    margin: 0;
     width: 75%;
     background-color: $custom_orange;
     color: white;
@@ -57,11 +57,11 @@ $custom_darkSand: #a49981;
     margin: 0;
 }
 
-.loginSignupLabel {
+.goToSignupLabel {
     vertical-align: center;
     font-size: 15;
 }
-.loginSignupButton {
+.goToSignupButton {
     width: 100vw;
     background-color: $custom_blue;
     color: white;
@@ -76,67 +76,4 @@ $custom_darkSand: #a49981;
     background-color: $custom_grey;
     font-size: 15;
     color: white;
-}
-
-
-.civilityContainer {
-    margin-top: 15;
-}
-.civilityLabel {
-    vertical-align: center;
-    font-size: 20;
-    color: $custom_grey;
-}
-.civilityButton {
-    width: 27.5%;
-    border-color: $custom_grey;
-    font-size: 20;
-    color: $custom_blue;
-    &:active {
-        background-color: $custom_blue;
-        color: white;
-    }
-}
-.civilityButton1 {
-    border-width: 0.5 0.5 0.5 0.5;
-    border-radius: 5 0 0 5;
-    margin-right: 0;
-    margin-right: 0px;
-}
-.civilityButton2 {
-    border-width: 0.5 0 0.5 0;
-    margin-right: 0px;
-    margin-left: 0px;
-}
-.civilityButton3 {
-    border-width: 0.5 0.5 0.5 0.5;
-    border-radius: 0 5 5 0;
-    margin-left: 0px;
-}
-.civilityButtonActive {
-    background-color: $custom_blue;
-    color: white;
-}
-
-
-.birthdayContainer {
-    margin-top: 15;
-}
-.birthdayLabel {
-    vertical-align: center;
-    font-size: 20;
-    color: $custom_grey;
-}
-.birthdayButton {
-    width: 50%;
-    height: 10%;
-    border-width: 0.5;
-    border-color: $custom_grey;
-    border-radius: 5;
-    font-size: 20;
-    color: $custom_blue;
-    &:active {
-        background-color: $custom_blue;
-        color: white;
-    }
 }

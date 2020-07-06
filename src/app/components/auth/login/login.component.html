@@ -1,0 +1,29 @@
+<ScrollView>
+    <StackLayout *ngIf="!signup">
+        <StackLayout class="authContainer text-center">
+    
+            <Image *ngIf="startingApp" src="~/fonts/logo_lpv.png" (tap)="onRotate($event)"></Image>
+    
+            <StackLayout *ngIf="startingApp">
+                <Label class="welcomeBar"></Label>
+                <Label class="welcomeLabel" text="BIENVENUE SUR LE PETIT VAPOTEUR MOBILE !" textWrap="true"></Label>
+                <Label class="welcomeBar"></Label>
+            </StackLayout>
+    
+            <Label class="loginLabel" text="CONNEXION À VOTRE COMPTE LE PETIT VAPOTEUR" textWrap="true"></Label>
+    
+            <TextField class="field" hint="E-mail..." [(ngModel)]="email"></TextField>
+            <TextField class="field" secure="true" hint="Mot de passe..." [(ngModel)]="password"></TextField>
+            <Label *ngIf="errorMessage" class="errorMessage" color="red"
+                text="Adresse e-mail ou mot de passe incorrect."></Label>
+            <Button class="loginButton" text="CONNEXION" (tap)="onLogin()"></Button>
+    
+            <StackLayout orientation="horizontal">
+                <Label class="goToSignupLabel" text="Vous ne possédez pas encore de compte ?"></Label>
+                <Button class="goToSignupButton" text="Créez-en un" (tap)="goToSignup()"></Button>
+            </StackLayout>
+    
+            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"></Button>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
