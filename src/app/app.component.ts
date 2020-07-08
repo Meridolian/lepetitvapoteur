@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
     constructor(private userService: UserService, private router: RouterExtensions) { }
 
     ngOnInit(): void {
-        if (!this.userService.logged) {
+        if (this.userService.showLoginSignup) {
             this.router.navigate(['/login', { startingApp: true }]);
         }
     }

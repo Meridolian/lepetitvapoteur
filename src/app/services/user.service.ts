@@ -10,6 +10,7 @@ import { Subject } from "rxjs";
 export class UserService {
 
     logged: boolean;
+    showLoginSignup: boolean;
 
     user: User;
     userSubject: Subject<User>;
@@ -30,6 +31,13 @@ export class UserService {
         if (getString("users") !== undefined) {
             this.users = JSON.parse(getString("users"));
         }
+
+        if (getString("showLoginSignup") !== undefined) {
+            this.showLoginSignup = JSON.parse(getString("showLoginSignup"));
+        }
+        else {
+            this.showLoginSignup = true;
+        }
     }
 
     emitUser() {
@@ -45,6 +53,8 @@ export class UserService {
         this.emitUser();
         this.logged = true;
         setString("users", JSON.stringify(this.users));
+        this.showLoginSignup = false;
+        setString("showLoginSignup", JSON.stringify(this.showLoginSignup));
     }
 
     logIn(email: string, password: string): boolean {
@@ -62,6 +72,8 @@ export class UserService {
         }
 
         if (this.logged) {
+            this.showLoginSignup = false;
+            setString("showLoginSignup", JSON.stringify(this.showLoginSignup));
             return true;
         }
         else {
@@ -88,5 +100,10 @@ export class UserService {
         this.emitUser();
         this.logged = false;
         remove("user");
+    }
+
+    setShowLoginSignup(showLoginSignup: boolean) {
+        this.showLoginSignup = showLoginSignup;
+        setString("showLoginSignup", JSON.stringify(this.showLoginSignup));
     }
 }

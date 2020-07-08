@@ -89,6 +89,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	goToApp() {
+		this.userService.setShowLoginSignup(false);
 		this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
 	}
 }
