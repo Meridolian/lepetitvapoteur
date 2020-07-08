@@ -10,6 +10,7 @@ $custom_darkSand: #a49981;
 .authContainer {
     height: 100%;
     width: 90%;
+    margin-top: 20;
 }
 
 .signupLabel {
@@ -31,9 +32,6 @@ $custom_darkSand: #a49981;
     margin: 0;
 }
 
-.invalidField {
-    border-color: red;
-}
 
 .signupButton {
     width: 75%;
@@ -71,7 +69,6 @@ $custom_darkSand: #a49981;
     font-size: 15;
     color: white;
 }
-
 
 .civilityContainer {
 }
@@ -114,6 +111,7 @@ $custom_darkSand: #a49981;
 
 .birthdayContainer {
     margin-top: 15;
+    margin-bottom: 15;
 }
 .birthdayLabel {
     vertical-align: center;
@@ -132,4 +130,8 @@ $custom_darkSand: #a49981;
         background-color: $custom_blue;
         color: white;
     }
+}
+
+.invalidField {
+    border-color: red;
 }

@@ -1,42 +1,78 @@
 <ScrollView>
     <StackLayout>
         <StackLayout class="authContainer text-center">
-    
+
             <Label class="signupLabel" text="CRÉER UN COMPTE LE PETIT VAPOTEUR" textWrap="true"></Label>
-    
-            <TextField class="field" hint="E-mail..." [(ngModel)]="email"></TextField>
-            <TextField class="field" secure="true" hint="Mot de passe..." [(ngModel)]="password"></TextField>
-            <TextField class="field" secure="true" hint="Confirmer mot de passe..." [(ngModel)]="confirmPassword"></TextField>
-    
-            <StackLayout orientation="horizontal" width="90%" class="civilityContainer">
-                <Label class="civilityLabel" text="CIVILITÉ"></Label>
-                <Button class="civilityButton civilityButton1"
-                    [ngClass]="{'civilityButtonActive' : civility === 'MONSIEUR'}" text="MONSIEUR"
-                    (tap)="onCivility('MONSIEUR')"></Button>
-                <Button class="civilityButton civilityButton2"
-                    [ngClass]="{'civilityButtonActive' : civility === 'MADAME'}" text="MADAME"
-                    (tap)="onCivility('MADAME')"></Button>
-                <Button class="civilityButton civilityButton3"
-                    [ngClass]="{'civilityButtonActive' : civility === 'AUTRE'}" text="AUTRE"
-                    (tap)="onCivility('AUTRE')"></Button>
+
+
+            <Label class="errorMessage" *ngIf="invalidEmail"
+                text="Veuillez rentrer une addresse e-mail valide."></Label>
+            <TextField class="field" id="email" hint="E-mail..." [(ngModel)]="email"
+                [ngClass]="{ 'invalidField' : invalidEmail }"></TextField>
+
+
+            <Label class="errorMessage" *ngIf="invalidPassword" text="Veuillez rentrer un mot de passe."></Label>
+            <TextField class="field" id="password" secure="true" hint="Mot de passe..." [(ngModel)]="password"
+                [ngClass]="{ 'invalidField' : invalidPassword || invalidConfirmPassword }">
+            </TextField>
+
+
+            <Label class="errorMessage" *ngIf="invalidConfirmPassword"
+                text="Les mots de passe ne correspondent pas."></Label>
+            <TextField class="field" id="confirmPassword" secure="true" hint="Confirmer mot de passe..."
+                [(ngModel)]="confirmPassword" [ngClass]="{ 'invalidField' : invalidConfirmPassword }"></TextField>
+
+
+            <StackLayout width="90%" class="civilityContainer">
+                <Label class="errorMessage" *ngIf="invalidCivility" textWrap="true"
+                    text="Veuillez sélectionner une civilité. Si vous ne souhaitez pas la communiquer, mettez simplement 'Autre' !"></Label>
+                <StackLayout orientation="horizontal">
+                    <Label class="civilityLabel" text="CIVILITÉ"></Label>
+                    <Button class="civilityButton civilityButton1"
+                        [ngClass]="{'civilityButtonActive' : civility === 'MONSIEUR', 'invalidField' : invalidCivility }"
+                        text="MONSIEUR" (tap)="onCivility('MONSIEUR')" id="civility"></Button>
+                    <Button class="civilityButton civilityButton2"
+                        [ngClass]="{'civilityButtonActive' : civility === 'MADAME', 'invalidField' : invalidCivility }"
+                        text="MADAME" (tap)="onCivility('MADAME')" id="civility"></Button>
+                    <Button class="civilityButton civilityButton3"
+                        [ngClass]="{'civilityButtonActive' : civility === 'AUTRE', 'invalidField' : invalidCivility }"
+                        text="AUTRE" (tap)="onCivility('AUTRE')" id="civility"></Button>
+                </StackLayout>
             </StackLayout>
-    
-            <StackLayout orientation="horizontal" width="90%" class="birthdayContainer">
-                <Label class="birthdayLabel" text="DATE DE NAISSANCE"></Label>
-                <Button class="birthdayButton" [text]="birthdayShort" (tap)="onBirthday()"></Button>
+
+
+            <StackLayout width="90%" class="birthdayContainer">
+                <Label class="errorMessage" *ngIf="invalidBirthday" text="La vente de e-cigarettes et de produits nicotinés est interdite aux mineurs. 
+                Vous devez avoir 18 ans ou plus pour créer un compte Le Petit Vapoteur." textWrap="true"></Label>
+                <StackLayout orientation="horizontal">
+                    <Label class="birthdayLabel" text="DATE DE NAISSANCE"></Label>
+                    <Button class="birthdayButton" id="birthday" [text]="birthdayShort" (tap)="onBirthday()"
+                        [ngClass]="{ 'invalidField' : invalidBirthday }"></Button>
+                </StackLayout>
             </StackLayout>
-    
-            <TextField class="field" hint="Nom..." [(ngModel)]="lastName" marginTop="15"></TextField>
-            <TextField class="field" hint="Prénom..." [(ngModel)]="firstName"></TextField>
-    
-            <Button type="submit" class="signupButton" text="CRÉER UN COMPTE !" (tap)="onSignup()"></Button>
-    
+
+
+            <Label class="errorMessage" *ngIf="invalidLastName" text="Veuillez rentrer un nom de famille."></Label>
+            <TextField class="field" id="lastName" hint="Nom..." [(ngModel)]="lastName"
+                [ngClass]="{ 'invalidField' : invalidLastName }"></TextField>
+
+
+            <Label class="errorMessage" *ngIf="invalidFirstName" text="Veuillez rentrer un prénom."></Label>
+            <TextField class="field" id="firstName" hint="Prénom..." [(ngModel)]="firstName"
+                [ngClass]="{ 'invalidField' : invalidFirstName }"></TextField>
+
+
+            <Button type="submit" class="signupButton" text="CRÉER UN COMPTE !" (tap)="onSignup($event)"></Button>
+
+
             <StackLayout orientation="horizontal" width="90%">
                 <Label class="goToLoginLabel" text="VOUS POSSÉDEZ DÉJÀ UN COMPTE ?"></Label>
                 <Button class="goToLoginButton" text="SE CONNECTER" (tap)="goToLogin()"></Button>
             </StackLayout>
-    
+
+
             <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"></Button>
+
         </StackLayout>
     </StackLayout>
 </ScrollView>

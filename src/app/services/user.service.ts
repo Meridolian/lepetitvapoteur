@@ -43,6 +43,7 @@ export class UserService {
         this.users.push(user);
         this.user = user;
         this.emitUser();
+        this.logged = true;
         setString("users", JSON.stringify(this.users));
     }
 

@@ -10,6 +10,7 @@ $custom_darkSand: #a49981;
 .authContainer {
     height: 100%;
     width: 90%;
+    margin-top: 20;
 }
 
 .welcomeLabel {
@@ -76,4 +77,8 @@ $custom_darkSand: #a49981;
     background-color: $custom_grey;
     font-size: 15;
     color: white;
+}
+
+.invalidField {
+    border-color: red;
 }

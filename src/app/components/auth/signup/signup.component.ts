@@ -4,7 +4,6 @@ import { RouterExtensions } from 'nativescript-angular';
 import { User } from '~/app/models/user.model';
 import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 import { ActivatedRoute } from '@angular/router';
-import { EmailValidator } from '@angular/forms';
 import { UserService } from '~/app/services/user.service';
 
 @Component({
@@ -21,12 +20,20 @@ export class SignupComponent implements OnInit {
 	password: string;
 	confirmPassword: string;
 	civility: string;
-	firstName: string;
-	lastName: string;
 	birthday: Date;
+	lastName: string;
+	firstName: string;
 	newsletter: boolean;
 
 	birthdayShort: string;
+
+	invalidEmail: boolean;
+	invalidPassword: boolean;
+	invalidConfirmPassword: boolean;
+	invalidCivility: boolean;
+	invalidBirthday: boolean;
+	invalidLastName: boolean;
+	invalidFirstName: boolean;
 
 	constructor(private router: RouterExtensions, private route: ActivatedRoute, private userService: UserService) { }
 
@@ -75,21 +82,96 @@ export class SignupComponent implements OnInit {
 	}
 
 	onSignup() {
-		//TODO validators for all fields
-		this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
-			null, null, null, null, null, null);
-
-		this.userService.createUser(this.user);
-
-		this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+		if(this.validatorFields()){
+			this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
+				null, null, null, null, null, null);
+	
+			this.userService.createUser(this.user);
+	
+			this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+		}
 	}
 
-	/* validatorFields(): boolean{
-		let validator: boolean = false;
+	validatorFields(): boolean {
+		let validator: boolean = true;
 		
-		let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+		//check email field
+		let regexEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+		if(!regexEmail.test(this.email)){
+			this.invalidEmail = true;
+			validator = false;
+		}
+		else {
+			this.invalidEmail = false;
+		}
 
-	} */
+		//check password field
+		if(this.password.length < 1){
+			this.invalidPassword = true;
+			validator = false;
+		}
+		else {
+			this.invalidPassword = false;
+		}
+
+		//check confirmPassword field
+		if(this.confirmPassword !== this.password){
+			this.invalidConfirmPassword = true;
+			validator = false;
+		}
+		else {
+			this.invalidConfirmPassword = false;
+		}
+
+		//check civility field
+		if(this.civility.length < 1){
+			this.invalidCivility = true;
+			validator = false;
+		}
+		else {
+			this.invalidCivility = false;
+		}
+	
+		//check birthday field
+		let age = this.calculateAge(this.birthday);
+		if(age < 18){
+			this.invalidBirthday = true;
+			validator = false;
+		}
+		else {
+			this.invalidBirthday = false;
+		}
+
+		//check lastName field
+		if(this.lastName.length < 1){
+			this.invalidLastName = true;
+			validator = false;
+		}
+		else {
+			this.invalidLastName = false;
+		}
+
+		//check firstName field
+		if(this.firstName.length < 1){
+			this.invalidFirstName = true;
+			validator = false;
+		}
+		else {
+			this.invalidFirstName = false;
+		}
+
+		return validator;
+	}
+
+	calculateAge(birthday: Date): number{
+		let today: Date = new Date();
+		let age = today.getFullYear() - birthday.getFullYear();
+		let month = today.getMonth() - birthday.getMonth();
+		if(month < 0 || (month === 0 && today.getDate() < birthday.getDate())){
+			age--;
+		}
+		return age;
+	}
 
 	goToLogin() {
 		this.router.navigate(['/login', { startingApp: this.startingApp }], { animated: true, transition: { name: 'slideRight', duration: 250 } });

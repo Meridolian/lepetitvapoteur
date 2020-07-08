@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular';
 import { Image } from "tns-core-modules/ui/image";
 import { UserService } from '~/app/services/user.service';
+import { Validators } from '@angular/forms';
 
 @Component({
 	selector: 'ns-login',
@@ -16,6 +17,9 @@ export class LoginComponent implements OnInit {
 
 	email: string;
 	password: string;
+
+	invalidEmail: boolean;
+	invalidPassword: boolean;
 
 	errorMessage: boolean;
 
@@ -43,15 +47,41 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin() {
-		//TODO validators for all fields
-		if(this.userService.logIn(this.email, this.password)){
-			this.errorMessage = false;
+		if(this.validatorFields()){
+			if (this.userService.logIn(this.email, this.password)) {
+				this.errorMessage = false;
+	
+				this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+			}
+			else {
+				this.errorMessage = true;
+			}
+		}
+	}
 
-			this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+	validatorFields(): boolean {
+		let validator: boolean = true;
+
+		//check email field
+		let regexEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+		if(!regexEmail.test(this.email)){
+			this.invalidEmail = true;
+			validator = false;
 		}
 		else {
-			this.errorMessage = true;
+			this.invalidEmail = false;
 		}
+
+		//check password field
+		if(this.password.length < 1){
+			this.invalidPassword = true;
+			validator = false;
+		}
+		else {
+			this.invalidPassword = false;
+		}
+
+		return validator;
 	}
 
 	goToSignup() {

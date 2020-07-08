@@ -9,16 +9,11 @@ import { UserService } from "./services/user.service";
 })
 export class AppComponent implements OnInit {
 
-    constructor(private userService: UserService, private router: RouterExtensions) {}
+    constructor(private userService: UserService, private router: RouterExtensions) { }
 
     ngOnInit(): void {
-        setTimeout(() => {
-            if(this.userService.logged){
-                this.router.navigate(['/app']);
-            }
-            else {
-                this.router.navigate(['/login', { startingApp: true }]);
-            }
-        }, 1);
+        if (!this.userService.logged) {
+            this.router.navigate(['/login', { startingApp: true }]);
+        }
     }
 }
