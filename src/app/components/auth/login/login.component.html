@@ -1,4 +1,4 @@
-<ScrollView>
+<ScrollView [ngClass]="{ 'loading' : spinner }">
     <StackLayout *ngIf="!signup">
         <StackLayout class="authContainer text-center">
 
@@ -42,3 +42,5 @@
         </StackLayout>
     </StackLayout>
 </ScrollView>
+
+<ns-custom-spinner *ngIf="spinner"></ns-custom-spinner>

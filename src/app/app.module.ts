@@ -4,8 +4,8 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
-import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
+import { CustomSpinnerModule } from "./components/custom-spinner/custom-spinner.module";
+import { AuthModule } from "./components/auth/auth.module";
 
 @NgModule({
     bootstrap: [
@@ -14,12 +14,12 @@ import { SignupComponent } from './components/auth/signup/signup.component';
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        CustomSpinnerModule,
+        AuthModule
     ],
     declarations: [
         AppComponent,
-        LoginComponent,
-        SignupComponent,
     ],
     providers: [
     ],

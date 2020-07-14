@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
 
 	errorMessage: boolean;
 
+	spinner: boolean;
+
 	constructor(private route: ActivatedRoute, private router: RouterExtensions, private userService: UserService) { }
 
 	ngOnInit(): void {
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin() {
-		if(this.validatorFields()){
+		/* if(this.validatorFields()){
 			if (this.userService.logIn(this.email, this.password)) {
 				this.errorMessage = false;
 	
@@ -56,7 +58,12 @@ export class LoginComponent implements OnInit {
 			else {
 				this.errorMessage = true;
 			}
-		}
+		} */
+		this.spinner = true;
+
+		setTimeout(() => {
+			this.spinner = false;
+		}, 10000);
 	}
 
 	validatorFields(): boolean {
