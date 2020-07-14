@@ -1,4 +1,4 @@
-<ScrollView [ngClass]="{ 'loading' : spinner }">
+<ScrollView>
     <StackLayout *ngIf="!signup">
         <StackLayout class="authContainer text-center">
 
@@ -18,26 +18,29 @@
 
             <Label *ngIf="invalidEmail" class="errorMessage"
                 text="Veuillez rentrer une addresse e-mail valide."></Label>
-            <TextField class="field" hint="E-mail..." [(ngModel)]="email" [ngClass]="{ 'invalidField' : invalidEmail }">
+            <TextField class="field" hint="E-mail..." [(ngModel)]="email" [ngClass]="{ 'invalidField' : invalidEmail }"
+                editable="{{!spinner}}">
             </TextField>
 
 
             <Label *ngIf="invalidPassword" class="errorMessage" text="Veuillez rentrer un mot de passe."></Label>
             <TextField class="field" secure="true" hint="Mot de passe..." [(ngModel)]="password"
-                [ngClass]="{ 'invalidField' : invalidPassword }"></TextField>
+                [ngClass]="{ 'invalidField' : invalidPassword }" editable="{{!spinner}}"></TextField>
 
 
             <Label *ngIf="errorMessage" class="errorMessage" text="Adresse e-mail ou mot de passe incorrect."></Label>
-            <Button class="loginButton" text="CONNEXION" (tap)="onLogin()"></Button>
+            <Button class="loginButton" text="CONNEXION" (tap)="onLogin()" isEnabled="{{!spinner}}"></Button>
 
 
             <StackLayout orientation="horizontal">
                 <Label class="goToSignupLabel" text="Vous ne possédez pas encore de compte ?"></Label>
-                <Button class="goToSignupButton" text="Créez-en un" (tap)="goToSignup()"></Button>
+                <Button class="goToSignupButton" text="Créez-en un" (tap)="goToSignup()"
+                    isEnabled="{{!spinner}}"></Button>
             </StackLayout>
 
 
-            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"></Button>
+            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"
+                isEnabled="{{!spinner}}"></Button>
 
         </StackLayout>
     </StackLayout>

@@ -35,6 +35,8 @@ export class SignupComponent implements OnInit {
 	invalidLastName: boolean;
 	invalidFirstName: boolean;
 
+	spinner: boolean;
+
 	constructor(private router: RouterExtensions, private route: ActivatedRoute, private userService: UserService) { }
 
 	ngOnInit(): void {
@@ -83,12 +85,17 @@ export class SignupComponent implements OnInit {
 
 	onSignup() {
 		if(this.validatorFields()){
-			this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
-				null, null, null, null, null, null);
-	
-			this.userService.createUser(this.user);
-	
-			this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+			this.spinner = true;
+			setTimeout(() => {
+				this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
+					null, null, null, null, null, null);
+		
+				this.userService.createUser(this.user);
+		
+				this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+
+				this.spinner = false;
+			}, 3000);
 		}
 	}
 

@@ -49,21 +49,22 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin() {
-		/* if(this.validatorFields()){
+		if(this.validatorFields()){
+			this.spinner = true;
 			if (this.userService.logIn(this.email, this.password)) {
 				this.errorMessage = false;
-	
-				this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+				setTimeout(() => {
+					this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+					this.spinner = false;
+				}, 2000);
 			}
 			else {
-				this.errorMessage = true;
+				setTimeout(() => {
+					this.spinner = false;
+					this.errorMessage = true;
+				}, 1000);
 			}
-		} */
-		this.spinner = true;
-
-		setTimeout(() => {
-			this.spinner = false;
-		}, 10000);
+		}
 	}
 
 	validatorFields(): boolean {

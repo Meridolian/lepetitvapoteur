@@ -8,19 +8,20 @@
             <Label class="errorMessage" *ngIf="invalidEmail"
                 text="Veuillez rentrer une addresse e-mail valide."></Label>
             <TextField class="field" id="email" hint="E-mail..." [(ngModel)]="email"
-                [ngClass]="{ 'invalidField' : invalidEmail }"></TextField>
+                [ngClass]="{ 'invalidField' : invalidEmail }" editable="{{!spinner}}"></TextField>
 
 
             <Label class="errorMessage" *ngIf="invalidPassword" text="Veuillez rentrer un mot de passe."></Label>
             <TextField class="field" id="password" secure="true" hint="Mot de passe..." [(ngModel)]="password"
-                [ngClass]="{ 'invalidField' : invalidPassword || invalidConfirmPassword }">
+                [ngClass]="{ 'invalidField' : invalidPassword || invalidConfirmPassword }" editable="{{!spinner}}">
             </TextField>
 
 
             <Label class="errorMessage" *ngIf="invalidConfirmPassword"
                 text="Les mots de passe ne correspondent pas."></Label>
             <TextField class="field" id="confirmPassword" secure="true" hint="Confirmer mot de passe..."
-                [(ngModel)]="confirmPassword" [ngClass]="{ 'invalidField' : invalidConfirmPassword }"></TextField>
+                [(ngModel)]="confirmPassword" [ngClass]="{ 'invalidField' : invalidConfirmPassword }"
+                editable="{{!spinner}}"></TextField>
 
 
             <StackLayout width="90%" class="civilityContainer">
@@ -30,13 +31,13 @@
                     <Label class="civilityLabel" text="CIVILITÉ"></Label>
                     <Button class="civilityButton civilityButton1"
                         [ngClass]="{'civilityButtonActive' : civility === 'MONSIEUR', 'invalidField' : invalidCivility }"
-                        text="MONSIEUR" (tap)="onCivility('MONSIEUR')" id="civility"></Button>
+                        text="MONSIEUR" (tap)="onCivility('MONSIEUR')" id="civility" isEnabled="{{!spinner}}"></Button>
                     <Button class="civilityButton civilityButton2"
                         [ngClass]="{'civilityButtonActive' : civility === 'MADAME', 'invalidField' : invalidCivility }"
-                        text="MADAME" (tap)="onCivility('MADAME')" id="civility"></Button>
+                        text="MADAME" (tap)="onCivility('MADAME')" id="civility" isEnabled="{{!spinner}}"></Button>
                     <Button class="civilityButton civilityButton3"
                         [ngClass]="{'civilityButtonActive' : civility === 'AUTRE', 'invalidField' : invalidCivility }"
-                        text="AUTRE" (tap)="onCivility('AUTRE')" id="civility"></Button>
+                        text="AUTRE" (tap)="onCivility('AUTRE')" id="civility" isEnabled="{{!spinner}}"></Button>
                 </StackLayout>
             </StackLayout>
 
@@ -47,32 +48,37 @@
                 <StackLayout orientation="horizontal">
                     <Label class="birthdayLabel" text="DATE DE NAISSANCE"></Label>
                     <Button class="birthdayButton" id="birthday" [text]="birthdayShort" (tap)="onBirthday()"
-                        [ngClass]="{ 'invalidField' : invalidBirthday }"></Button>
+                        [ngClass]="{ 'invalidField' : invalidBirthday }" isEnabled="{{!spinner}}"></Button>
                 </StackLayout>
             </StackLayout>
 
 
             <Label class="errorMessage" *ngIf="invalidLastName" text="Veuillez rentrer un nom de famille."></Label>
             <TextField class="field" id="lastName" hint="Nom..." [(ngModel)]="lastName"
-                [ngClass]="{ 'invalidField' : invalidLastName }"></TextField>
+                [ngClass]="{ 'invalidField' : invalidLastName }" editable="{{!spinner}}"></TextField>
 
 
             <Label class="errorMessage" *ngIf="invalidFirstName" text="Veuillez rentrer un prénom."></Label>
             <TextField class="field" id="firstName" hint="Prénom..." [(ngModel)]="firstName"
-                [ngClass]="{ 'invalidField' : invalidFirstName }"></TextField>
+                [ngClass]="{ 'invalidField' : invalidFirstName }" editable="{{!spinner}}"></TextField>
 
 
-            <Button type="submit" class="signupButton" text="CRÉER UN COMPTE !" (tap)="onSignup($event)"></Button>
+            <Button type="submit" class="signupButton" text="CRÉER UN COMPTE !" (tap)="onSignup($event)"
+                isEnabled="{{!spinner}}"></Button>
 
 
             <StackLayout orientation="horizontal" width="90%">
                 <Label class="goToLoginLabel" text="VOUS POSSÉDEZ DÉJÀ UN COMPTE ?"></Label>
-                <Button class="goToLoginButton" text="SE CONNECTER" (tap)="goToLogin()"></Button>
+                <Button class="goToLoginButton" text="SE CONNECTER" (tap)="goToLogin()"
+                    isEnabled="{{!spinner}}"></Button>
             </StackLayout>
 
 
-            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"></Button>
+            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"
+                isEnabled="{{!spinner}}"></Button>
 
         </StackLayout>
     </StackLayout>
 </ScrollView>
+
+<ns-custom-spinner *ngIf="spinner"></ns-custom-spinner>
