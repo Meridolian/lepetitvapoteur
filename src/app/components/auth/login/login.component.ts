@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '~/app/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular';
 import { Image } from "tns-core-modules/ui/image";
 import { UserService } from '~/app/services/user.service';
-import { Validators } from '@angular/forms';
 
 @Component({
 	selector: 'ns-login',
@@ -25,10 +23,15 @@ export class LoginComponent implements OnInit {
 
 	spinner: boolean;
 
+	welcome: boolean;
+	welcomeLabel: string = "Oh te revoilà ! Quel plaisir de te revoir !";
+
 	constructor(private route: ActivatedRoute, private router: RouterExtensions, private userService: UserService) { }
 
 	ngOnInit(): void {
 		this.errorMessage = false;
+
+		this.welcome = false;
 
 		this.startingApp = JSON.parse(this.route.snapshot.paramMap.get("startingApp"));
 
@@ -54,9 +57,13 @@ export class LoginComponent implements OnInit {
 			if (this.userService.logIn(this.email, this.password)) {
 				this.errorMessage = false;
 				setTimeout(() => {
-					this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
 					this.spinner = false;
+					this.welcome = true;
 				}, 2000);
+				setTimeout(() => {
+					this.welcome = false;
+					this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+				}, 5000);
 			}
 			else {
 				setTimeout(() => {

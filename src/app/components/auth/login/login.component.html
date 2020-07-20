@@ -47,3 +47,7 @@
 </ScrollView>
 
 <ns-custom-spinner *ngIf="spinner"></ns-custom-spinner>
+
+<AbsoluteLayout *ngIf="welcome" class="welcomeMessageContainer" verticalAlignment="center">
+    <Label class="welcomeMessage" [text]="welcomeLabel" textWrap="true"></Label>
+</AbsoluteLayout>

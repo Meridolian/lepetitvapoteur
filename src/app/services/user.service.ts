@@ -10,6 +10,8 @@ import { Subject } from "rxjs";
 export class UserService {
 
     logged: boolean;
+    loggedSubject: Subject<boolean>;
+
     showLoginSignup: boolean;
 
     user: User;
@@ -19,13 +21,18 @@ export class UserService {
 
     constructor() {
         this.userSubject = new Subject<User>();
+        this.loggedSubject = new Subject<boolean>();
         if (getString("user") !== undefined) {
             this.user = JSON.parse(getString("user"));
-            this.emitUser();
             this.logged = true;
+            setTimeout(() => {
+                this.emitUser();
+                this.emitLogged();
+            },1);
         }
         else {
             this.logged = false;
+            this.emitLogged();
         }
 
         if (getString("users") !== undefined) {
@@ -33,7 +40,8 @@ export class UserService {
         }
 
         if (getString("showLoginSignup") !== undefined) {
-            this.showLoginSignup = JSON.parse(getString("showLoginSignup"));
+            /* this.showLoginSignup = JSON.parse(getString("showLoginSignup")); */
+            this.showLoginSignup = true;
         }
         else {
             this.showLoginSignup = true;
@@ -44,6 +52,10 @@ export class UserService {
         this.userSubject.next(this.user);
     }
 
+    emitLogged() {
+        this.loggedSubject.next(this.logged);
+    }
+
     createUser(user: User) {
         if (this.users === undefined) {
             this.users = new Array();
@@ -52,6 +64,7 @@ export class UserService {
         this.user = user;
         this.emitUser();
         this.logged = true;
+        this.emitLogged();
         setString("users", JSON.stringify(this.users));
         this.showLoginSignup = false;
         setString("showLoginSignup", JSON.stringify(this.showLoginSignup));
@@ -65,6 +78,7 @@ export class UserService {
                     this.user = currentUser;
                     this.emitUser();
                     this.logged = true;
+                    this.emitLogged();
                     setString("user", JSON.stringify(currentUser));
                     break;
                 }
@@ -99,7 +113,10 @@ export class UserService {
         delete this.user;
         this.emitUser();
         this.logged = false;
+        this.emitLogged();
+        this.showLoginSignup = true;
         remove("user");
+        setString("showLoginSignup", JSON.stringify(this.showLoginSignup));
     }
 
     setShowLoginSignup(showLoginSignup: boolean) {

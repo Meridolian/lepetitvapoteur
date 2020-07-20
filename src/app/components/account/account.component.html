@@ -6,6 +6,14 @@
     </GridLayout>
 </ActionBar>
 
+<StackLayout verticalAlignment="top">
+    <TextView editable="false" [text]="userString"></TextView>
+</StackLayout>
+
 <StackLayout verticalAlignment="center">
     <Image src="~/fonts/in_build.png"></Image>
+</StackLayout>
+
+<StackLayout verticalAlignment="bottom" *ngIf="logged">
+    <Button class="logoutButton" text="Se déconnecter" (tap)="onLogout()" verticalAlignment="bottom"></Button>
 </StackLayout>
