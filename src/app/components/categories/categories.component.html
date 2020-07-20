@@ -2,7 +2,6 @@
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="categoryRoute.length > 0"></Button>
         <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center" stretch="none"></Image>
-        <Button row="0" col="2" class="settings fas" text="&#xf013;" (tap)="onSettings()"></Button>
     </GridLayout>
 </ActionBar>
 

@@ -1,19 +1,68 @@
 <ActionBar class="actionbar">
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
-        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center" stretch="none"></Image>
-        <Button row="0" col="2" class="settings fas" text="&#xf013;" horizontalAlignment="right" (tap)="onSettings()"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center"
+            stretch="none"></Image>
     </GridLayout>
 </ActionBar>
 
-<StackLayout verticalAlignment="top">
-    <TextView editable="false" [text]="userString"></TextView>
-</StackLayout>
+<StackLayout class="accountContainer">
 
-<StackLayout verticalAlignment="center">
-    <Image src="~/fonts/in_build.png"></Image>
-</StackLayout>
+    <Tabs selectedIndex="0">
 
-<StackLayout verticalAlignment="bottom" *ngIf="logged">
-    <Button class="logoutButton" text="Se déconnecter" (tap)="onLogout()" verticalAlignment="bottom"></Button>
+        <TabStrip class="tabs">
+            <TabStripItem class="tab">
+                <Label text="MON PROFIL"></Label>
+            </TabStripItem>
+            <TabStripItem class="tab">
+                <Label text="MES COMMANDES"></Label>
+            </TabStripItem>
+            <TabStripItem class="tab">
+                <Label text="MES ACHATS FRÉQUENTS"></Label>
+            </TabStripItem>
+            <TabStripItem class="tab">
+                <Label text="S.A.V"></Label>
+            </TabStripItem>
+            <TabStripItem class="tab">
+                <Label text="MES AVANTAGES"></Label>
+            </TabStripItem>
+            <TabStripItem class="tab">
+                <Label text="FAVORIS"></Label>
+            </TabStripItem>
+            <TabStripItem class="tab">
+                <Label text="PARAMÈTRES"></Label>
+            </TabStripItem>
+        </TabStrip>
+
+
+
+        <TabContentItem class="profile">
+            <ns-profile></ns-profile>
+        </TabContentItem>
+
+        <TabContentItem class="orders">
+            <ns-orders></ns-orders>
+        </TabContentItem>
+
+        <TabContentItem class="frequentPurchase">
+            <ns-frequent-purchase></ns-frequent-purchase>
+        </TabContentItem>
+
+        <TabContentItem class="sav">
+            <ns-sav></ns-sav>
+        </TabContentItem>
+
+        <TabContentItem class="benefits">
+            <ns-benefits></ns-benefits>
+        </TabContentItem>
+
+        <TabContentItem class="favorites">
+            <ns-favorites></ns-favorites>
+        </TabContentItem>
+
+        <TabContentItem class="settings">
+            <ns-settings></ns-settings>
+        </TabContentItem>
+
+    </Tabs>
 </StackLayout>
