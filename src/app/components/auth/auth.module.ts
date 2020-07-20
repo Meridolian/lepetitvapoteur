@@ -4,7 +4,6 @@ import { LoginComponent } from "./login/login.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { SignupComponent } from "./signup/signup.component";
 import { CustomSpinnerModule } from "../custom-spinner/custom-spinner.module";
-import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
 	imports: [
@@ -14,8 +13,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 	],
 	declarations: [
 		LoginComponent,
-		SignupComponent,
-		WelcomeComponent
+		SignupComponent
 	],
 	providers: [
 	],
@@ -24,8 +22,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 	],
 	exports: [
 		LoginComponent,
-		SignupComponent,
-		WelcomeComponent
+		SignupComponent
 	]
 })
 export class AuthModule { }

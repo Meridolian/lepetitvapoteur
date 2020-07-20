@@ -40,8 +40,7 @@ export class UserService {
         }
 
         if (getString("showLoginSignup") !== undefined) {
-            /* this.showLoginSignup = JSON.parse(getString("showLoginSignup")); */
-            this.showLoginSignup = true;
+            this.showLoginSignup = JSON.parse(getString("showLoginSignup"));
         }
         else {
             this.showLoginSignup = true;

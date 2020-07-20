@@ -48,6 +48,8 @@
 
 <ns-custom-spinner *ngIf="spinner"></ns-custom-spinner>
 
-<AbsoluteLayout *ngIf="welcome" class="welcomeMessageContainer" verticalAlignment="center">
-    <Label class="welcomeMessage" [text]="welcomeLabel" textWrap="true"></Label>
-</AbsoluteLayout>
+<StackLayout *ngIf="welcome" class="welcomeMessageContainer" verticalAlignment="center">
+    <StackLayout>
+        <Label class="welcomeMessage" text="Oh te revoilà ! Quel plaisir de te revoir !" textWrap="true"></Label>
+    </StackLayout>
+</StackLayout>

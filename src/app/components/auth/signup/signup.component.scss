@@ -135,3 +135,16 @@ $custom_darkSand: #a49981;
 .invalidField {
     border-color: red;
 }
+
+.welcomeMessageContainer {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.welcomeMessage {
+    font-size: 50;
+    font-family: "Carrington";
+    color: $custom_orange;
+    text-align: center;
+}

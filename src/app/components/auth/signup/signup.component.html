@@ -83,4 +83,8 @@
 
 <ns-custom-spinner *ngIf="spinner"></ns-custom-spinner>
 
-<ns-welcome *ngIf="welcome" [welcomeLabel]="welcomeLabel" textWrap="true"></ns-welcome>
+<StackLayout *ngIf="welcome" class="welcomeMessageContainer" verticalAlignment="center">
+    <StackLayout>
+        <Label class="welcomeMessage" text="Bienvenue à toi petit vapoteur !" textWrap="true"></Label>
+    </StackLayout>
+</StackLayout>

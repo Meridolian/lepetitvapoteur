@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 	spinner: boolean;
 
 	welcome: boolean;
-	welcomeLabel: string = "Oh te revoilà ! Quel plaisir de te revoir !";
 
 	constructor(private route: ActivatedRoute, private router: RouterExtensions, private userService: UserService) { }
 
@@ -63,7 +62,7 @@ export class LoginComponent implements OnInit {
 				setTimeout(() => {
 					this.welcome = false;
 					this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
-				}, 5000);
+				}, 8000);
 			}
 			else {
 				setTimeout(() => {

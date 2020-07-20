@@ -86,11 +86,12 @@ $custom_darkSand: #a49981;
 .welcomeMessageContainer {
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
 .welcomeMessage {
-    font-size: 35;
+    font-size: 50;
     font-family: "Carrington";
     color: $custom_orange;
+    text-align: center;
 }
