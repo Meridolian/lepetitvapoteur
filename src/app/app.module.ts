@@ -4,9 +4,8 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
-import { CustomSpinnerModule } from "./components/custom-spinner/custom-spinner.module";
 import { AuthModule } from "./modules/auth/auth.module";
-import { TitleHeadComponent } from './components/title-head/title-head.component';
+import { ComponentsModule } from "./components/components.module";
 
 @NgModule({
     bootstrap: [
@@ -16,12 +15,11 @@ import { TitleHeadComponent } from './components/title-head/title-head.component
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        CustomSpinnerModule,
+        ComponentsModule,
         AuthModule
     ],
     declarations: [
         AppComponent,
-        TitleHeadComponent,
     ],
     providers: [
     ],

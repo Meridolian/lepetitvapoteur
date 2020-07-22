@@ -1,1 +1,11 @@
-<Button text="title-head works!" class="btn btn-primary"></Button>
+<GridLayout rows="auto" columns="*,auto,*" orientation="horizontal" class="head">
+    <StackLayout row="0" col="0" verticalAlignment="center">
+        <Label class="blueLine"></Label>
+    </StackLayout>
+    <StackLayout row="0" col="1" class="title">
+        <Label [text]="title"></Label>
+    </StackLayout>
+    <StackLayout row="0" col="2" verticalAlignment="center">
+        <Label class="blueLine"></Label>
+    </StackLayout>
+</GridLayout>

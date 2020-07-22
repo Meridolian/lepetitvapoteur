@@ -17,6 +17,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     shoppingCart: ShoppingCart;
     shoppingCartSubscription: Subscription;
     emptyShoppingCart: boolean;
+    title: string = "MON PANIER";
 
     constructor(private shoppingCartService: ShoppingCartService) { }
 

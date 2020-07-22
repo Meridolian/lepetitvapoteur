@@ -8,17 +8,8 @@
 
 <ScrollView class="shoppingCartContainer">
     <StackLayout orientation="vertical">
-        <GridLayout rows="auto" columns="*,auto,*" orientation="horizontal" class="head">
-            <StackLayout row="0" col="0" verticalAlignment="center">
-                <Label class="blueLine"></Label>
-            </StackLayout>
-            <StackLayout row="0" col="1" class="cartHead">
-                <Label text="MON PANIER NUMERO"></Label>
-            </StackLayout>
-            <StackLayout row="0" col="2" verticalAlignment="center">
-                <Label class="blueLine"></Label>
-            </StackLayout>
-        </GridLayout>
+        
+        <ns-title-head [title]="title"></ns-title-head>
 
         <StackLayout orientation="vertical" class="itemsContainer" *ngIf="!emptyShoppingCart">
             <GridLayout rows="*,*,*,*,*" columns="*,*,*,*,*" class="item"

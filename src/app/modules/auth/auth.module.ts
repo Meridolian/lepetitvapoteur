@@ -3,13 +3,13 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { LoginComponent } from "./login/login.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { SignupComponent } from "./signup/signup.component";
-import { CustomSpinnerModule } from "../../components/custom-spinner/custom-spinner.module";
+import { ComponentsModule } from "~/app/components/components.module";
 
 @NgModule({
 	imports: [
 		NativeScriptCommonModule,
 		NativeScriptFormsModule,
-		CustomSpinnerModule
+		ComponentsModule
 	],
 	declarations: [
 		LoginComponent,
