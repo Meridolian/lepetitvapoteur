@@ -5,7 +5,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { CustomSpinnerModule } from "./components/custom-spinner/custom-spinner.module";
-import { AuthModule } from "./components/auth/auth.module";
+import { AuthModule } from "./modules/auth/auth.module";
+import { TitleHeadComponent } from './components/title-head/title-head.component';
 
 @NgModule({
     bootstrap: [
@@ -20,6 +21,7 @@ import { AuthModule } from "./components/auth/auth.module";
     ],
     declarations: [
         AppComponent,
+        TitleHeadComponent,
     ],
     providers: [
     ],
