@@ -17,6 +17,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 	user: User;
 	logged: boolean;
 	userString: string;
+	welcome: string;
 
 	constructor(private userService: UserService) { }
 
@@ -24,7 +25,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 		this.userSubscription = this.userService.userSubject.subscribe(
 			(user: User) => {
 				this.user = user;
-				this.userString = JSON.stringify(this.user);
+				this.welcome = "BONJOUR " + user.firstName;
 			}
 		);
 		this.loggedSubscription = this.userService.loggedSubject.subscribe(

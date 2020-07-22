@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ns-sav',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sav.component.scss']
 })
 export class SavComponent implements OnInit {
+
+  @Input()
+  welcome: string;
 
   constructor() { }
 

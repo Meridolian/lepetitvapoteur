@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ns-frequent-purchase',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./frequent-purchase.component.scss']
 })
 export class FrequentPurchaseComponent implements OnInit {
+
+  @Input()
+  welcome: string;
 
   constructor() { }
 

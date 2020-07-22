@@ -7,9 +7,7 @@ $custom_grey: #808185;
 $custom_greyWhite: #e7e7e7;
 $custom_darkSand: #a49981;
 
-
 .accountContainer {
-
 }
 
 .tabs {
@@ -19,21 +17,18 @@ $custom_darkSand: #a49981;
     height: 65;
     font-size: 20;
     background-color: $main_color;
-    color: $custom_blue;
+}
+
+TabStrip {
+    selected-item-color: $custom_orange;
+    un-selected-item-color: $custom_blue;
+    highlight-color: $custom_orange;
 }
 
 .back {
     font-size: 20;
     color: white;
     background-color: $custom_orange;
-}
-
-.settings {
-    width: 75;
-    height: 75;
-    background-color: $main_color;
-    color: $custom_grey;
-    font-size: 30;
 }
 
 .logoutButton {

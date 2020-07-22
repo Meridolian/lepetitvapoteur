@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ns-benefits',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./benefits.component.scss']
 })
 export class BenefitsComponent implements OnInit {
+
+  @Input()
+  welcome: string;
 
   constructor() { }
 

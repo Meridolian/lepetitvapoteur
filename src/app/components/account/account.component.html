@@ -11,7 +11,7 @@
     <Tabs selectedIndex="0">
 
         <TabStrip class="tabs">
-            <TabStripItem class="tab">
+            <TabStripItem class="tab" highlightColor="black">
                 <Label text="MON PROFIL"></Label>
             </TabStripItem>
             <TabStripItem class="tab">
@@ -34,34 +34,34 @@
             </TabStripItem>
         </TabStrip>
 
-
+        
 
         <TabContentItem class="profile">
-            <ns-profile></ns-profile>
+            <ns-profile [welcome]="welcome"></ns-profile>
         </TabContentItem>
 
         <TabContentItem class="orders">
-            <ns-orders></ns-orders>
+            <ns-orders [welcome]="welcome"></ns-orders>
         </TabContentItem>
 
         <TabContentItem class="frequentPurchase">
-            <ns-frequent-purchase></ns-frequent-purchase>
+            <ns-frequent-purchase [welcome]="welcome"></ns-frequent-purchase>
         </TabContentItem>
 
         <TabContentItem class="sav">
-            <ns-sav></ns-sav>
+            <ns-sav [welcome]="welcome"></ns-sav>
         </TabContentItem>
 
         <TabContentItem class="benefits">
-            <ns-benefits></ns-benefits>
+            <ns-benefits [welcome]="welcome"></ns-benefits>
         </TabContentItem>
 
         <TabContentItem class="favorites">
-            <ns-favorites></ns-favorites>
+            <ns-favorites [welcome]="welcome"></ns-favorites>
         </TabContentItem>
 
         <TabContentItem class="settings">
-            <ns-settings></ns-settings>
+            <ns-settings [welcome]="welcome"></ns-settings>
         </TabContentItem>
 
     </Tabs>
