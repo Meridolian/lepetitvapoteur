@@ -1,10 +1,63 @@
-<StackLayout class="profileContainer">
+<ScrollView>
+    <StackLayout class="profileContainer">
 
-    <Label [text]="welcome" class="welcomeAccount"></Label>
+        <Label [text]="welcome" class="welcomeAccount"></Label>
 
-    <GridLayout rows="*" columns="*,*,*">
-        <StackLayout>
+        <StackLayout class="infoContainer">
+
+            <ns-title-head [title]="title"></ns-title-head>
+
+
+            <StackLayout width="90%" class="civilityContainer" orientation="horizontal">
+                <Label class="label" text="CIVILITÉ"></Label>
+                <Button class="civilityButton civilityButton1"
+                    [ngClass]="{'civilityButtonActive' : civility === 'MONSIEUR'}" text="MONSIEUR"
+                    (tap)="onCivility('MONSIEUR')" id="civility"></Button>
+                <Button class="civilityButton civilityButton2"
+                    [ngClass]="{'civilityButtonActive' : civility === 'MADAME'}" text="MADAME"
+                    (tap)="onCivility('MADAME')" id="civility"></Button>
+                <Button class="civilityButton civilityButton3"
+                    [ngClass]="{'civilityButtonActive' : civility === 'AUTRE'}" text="AUTRE" (tap)="onCivility('AUTRE')"
+                    id="civility"></Button>
+            </StackLayout>
+
+
+            <Label class="label leftLabel" text="NOM" marginTop="15"></Label>
+            <TextField class="field text-center" id="lastName" hint="Nom..." [(ngModel)]="lastName">
+            </TextField>
+
+
+            <Label class="label leftLabel" text="PRÉNOM"></Label>
+            <TextField class="field text-center" id="firstName" hint="Prénom..." [(ngModel)]="firstName">
+            </TextField>
+
+
+            <StackLayout width="90%" class="birthdayContainer" orientation="horizontal">
+                <Label class="label" text="DATE DE NAISSANCE"></Label>
+                <Button class="birthdayButton" id="birthday" [text]="birthdayShort" (tap)="onBirthday()"></Button>
+            </StackLayout>
+
+
+            <Label class="label leftLabel" text="E-MAIL" marginTop="15"></Label>
+            <TextField class="field text-center" id="email" hint="E-mail..." [(ngModel)]="email">
+            </TextField>
+
+
+            <Label class="label leftLabel" text="MOT DE PASSE"></Label>
+            <TextField class="field text-center" id="password" secure="true" hint="Mot de passe..." [(ngModel)]="password">
+            </TextField>
+
+
+            <Label class="label leftLabel" text="CONFIRMER MOT DE PASSE"></Label>
+            <TextField class="field text-center" id="confirmPassword" secure="true" hint="Confirmation..."
+                [(ngModel)]="confirmPassword"></TextField>
+
             
+            <!-- TODO checkbox with "would you like to receive email from LPV" -->
+
+
+            <Button class="updateButton" text="ENREGISTRER" (tap)="onUpdateUser()"></Button>
+
         </StackLayout>
-    </GridLayout>
-</StackLayout>
+    </StackLayout>
+</ScrollView>

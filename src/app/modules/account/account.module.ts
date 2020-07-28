@@ -9,24 +9,28 @@ import { OrdersComponent } from './orders/orders.component';
 import { SavComponent } from './sav/sav.component';
 import { SettingsComponent } from './settings/settings.component';
 import { BenefitsComponent } from './benefits/benefits.component';
+import { ComponentsModule } from '~/app/components/components.module';
+import { NativeScriptFormsModule } from 'nativescript-angular';
 
 
 
 @NgModule({
-  imports: [
-    NativeScriptCommonModule,
-    AccountRoutingModule
-  ],
-  declarations: [
-    AccountComponent,
-    ProfileComponent,
-    FavoritesComponent,
-    FrequentPurchaseComponent,
-    OrdersComponent,
-    SavComponent,
-    SettingsComponent,
-    BenefitsComponent
-  ],
-  schemas: [NO_ERRORS_SCHEMA]
+	imports: [
+		NativeScriptCommonModule,
+		NativeScriptFormsModule,
+		AccountRoutingModule,
+		ComponentsModule
+	],
+	declarations: [
+		AccountComponent,
+		ProfileComponent,
+		FavoritesComponent,
+		FrequentPurchaseComponent,
+		OrdersComponent,
+		SavComponent,
+		SettingsComponent,
+		BenefitsComponent
+	],
+	schemas: [NO_ERRORS_SCHEMA]
 })
 export class AccountModule { }

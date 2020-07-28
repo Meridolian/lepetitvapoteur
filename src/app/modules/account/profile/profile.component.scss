@@ -8,9 +8,106 @@ $custom_greyWhite: #e7e7e7;
 $custom_darkSand: #a49981;
 
 
+.profileContainer {
+    background-color: $custom_greyWhite;
+}
+
 .welcomeAccount {
     text-align: center;
-    font-size: 25;
+    font-size: 30;
     color: $custom_grey;
     margin-top: 15;
+}
+
+.infoContainer {
+    background-color: white;
+    border-radius: 5;
+    margin: 15;
+}
+
+
+
+.label {
+    vertical-align: center;
+    font-size: 20;
+    color: $custom_grey;
+}
+.leftLabel {
+    margin-left: 15;
+    margin-bottom: 0;
+}
+
+.field {
+    height: 50;
+    border-width: 2px;
+    border-color: $custom_grey;
+    border-radius: 5;
+    font-size: 20;
+    color: $custom_grey;
+    font-family: "Courrier New";
+    placeholder-color: $custom_grey;
+}
+
+
+.civilityButton {
+    width: 27.5%;
+    border-color: $custom_grey;
+    font-size: 20;
+    color: $custom_blue;
+    &:active {
+        background-color: $custom_blue;
+        color: white;
+    }
+}
+.civilityButton1 {
+    border-width: 0.5 0.5 0.5 0.5;
+    border-radius: 5 0 0 5;
+    margin-right: 0;
+    margin-right: 0px;
+}
+.civilityButton2 {
+    border-width: 0.5 0 0.5 0;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.civilityButton3 {
+    border-width: 0.5 0.5 0.5 0.5;
+    border-radius: 0 5 5 0;
+    margin-left: 0px;
+}
+.civilityButtonActive {
+    background-color: $custom_blue;
+    color: white;
+}
+
+
+.birthdayButton {
+    width: 150;
+    height: 50;
+    border-width: 0.5;
+    border-color: $custom_grey;
+    border-radius: 5;
+    font-size: 20;
+    color: $custom_blue;
+    &:active {
+        background-color: $custom_blue;
+        color: white;
+    }
+}
+
+
+.invalidField {
+    border-color: red;
+}
+
+
+.updateButton {
+    background-color: $custom_orange;
+    color: white;
+    font-size: 25;
+    width: 50%;
+    &:active {
+        background-color: $custom_blue;
+        color: white;
+    }
 }
