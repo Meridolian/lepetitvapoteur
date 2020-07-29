@@ -1,19 +1,17 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
-import { LoginComponent } from "./login/login.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
-import { SignupComponent } from "./signup/signup.component";
-import { ComponentsModule } from "~/app/components/components.module";
+import { AddressComponent } from "./address.component";
+import { ReusableModule } from "../reusable/reusable.module";
 
 @NgModule({
 	imports: [
 		NativeScriptCommonModule,
 		NativeScriptFormsModule,
-		ComponentsModule
+		ReusableModule
 	],
 	declarations: [
-		LoginComponent,
-		SignupComponent
+		AddressComponent
 	],
 	providers: [
 	],
@@ -21,8 +19,7 @@ import { ComponentsModule } from "~/app/components/components.module";
 		NO_ERRORS_SCHEMA
 	],
 	exports: [
-		LoginComponent,
-		SignupComponent
+		AddressComponent
 	]
 })
-export class AuthModule { }
+export class AddressModule { }

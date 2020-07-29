@@ -46,6 +46,7 @@ $custom_darkSand: #a49981;
     color: $custom_grey;
     font-family: "Courrier New";
     placeholder-color: $custom_grey;
+    text-align: center;
 }
 
 
@@ -101,6 +102,14 @@ $custom_darkSand: #a49981;
 }
 
 
+.errorMessage {
+    color: red;
+    font-size: 15;
+    text-align: center;
+    margin: 0 15 15 15;
+}
+
+
 .updateButton {
     background-color: $custom_orange;
     color: white;
@@ -110,4 +119,12 @@ $custom_darkSand: #a49981;
         background-color: $custom_blue;
         color: white;
     }
+}
+
+
+
+.addressContainer {
+    background-color: white;
+    border-radius: 5;
+    margin: 15;
 }

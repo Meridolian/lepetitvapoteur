@@ -17,31 +17,31 @@ const routes: Routes = [
             {
                 path: "home",
                 component: NSEmptyOutletComponent,
-                loadChildren: () => import("~/app/modules/home/home.module").then((m) => m.HomeModule),
+                loadChildren: () => import("~/app/components/home/home.module").then((m) => m.HomeModule),
                 outlet: "home"
             },
             {
                 path: "search",
                 component: NSEmptyOutletComponent,
-                loadChildren: () => import("~/app/modules/search/search.module").then((m) => m.SearchModule),
+                loadChildren: () => import("~/app/components/search/search.module").then((m) => m.SearchModule),
                 outlet: "search"
             },
             {
                 path: "categories",
                 component: NSEmptyOutletComponent,
-                loadChildren: () => import("~/app/modules/categories/categories.module").then((m) => m.CategoriesModule),
+                loadChildren: () => import("~/app/components/categories/categories.module").then((m) => m.CategoriesModule),
                 outlet: "categories"
             },
             {
                 path: "account",
                 component: NSEmptyOutletComponent,
-                loadChildren: () => import("~/app/modules/account/account.module").then((m) => m.AccountModule),
+                loadChildren: () => import("~/app/components/account/account.module").then((m) => m.AccountModule),
                 outlet: "account"
             },
             {
                 path: "shoppingCart",
                 component: NSEmptyOutletComponent,
-                loadChildren: () => import("~/app/modules/shopping-cart/shopping-cart.module").then((m) => m.ShoppingCartModule),
+                loadChildren: () => import("~/app/components/shopping-cart/shopping-cart.module").then((m) => m.ShoppingCartModule),
                 outlet: "shoppingCart"
             }
         ]

@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { LoginComponent } from "./modules/auth/login/login.component";
-import { SignupComponent } from "./modules/auth/signup/signup.component";
+import { LoginComponent } from "./components/auth/login/login.component";
+import { SignupComponent } from "./components/auth/signup/signup.component";
 
 const routes: Routes = [
     {
@@ -20,7 +20,7 @@ const routes: Routes = [
     },
     {
         path: "app",
-        loadChildren: () => import("~/app/modules/navbar/navbar.module").then((m) => m.NavbarModule)
+        loadChildren: () => import("~/app/components/navbar/navbar.module").then((m) => m.NavbarModule)
     }
 ];
 

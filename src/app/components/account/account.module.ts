@@ -9,8 +9,9 @@ import { OrdersComponent } from './orders/orders.component';
 import { SavComponent } from './sav/sav.component';
 import { SettingsComponent } from './settings/settings.component';
 import { BenefitsComponent } from './benefits/benefits.component';
-import { ComponentsModule } from '~/app/components/components.module';
 import { NativeScriptFormsModule } from 'nativescript-angular';
+import { AddressModule } from '../address/address.module';
+import { ReusableModule } from '../reusable/reusable.module';
 
 
 
@@ -19,7 +20,8 @@ import { NativeScriptFormsModule } from 'nativescript-angular';
 		NativeScriptCommonModule,
 		NativeScriptFormsModule,
 		AccountRoutingModule,
-		ComponentsModule
+		ReusableModule,
+		AddressModule
 	],
 	declarations: [
 		AccountComponent,

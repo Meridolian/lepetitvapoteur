@@ -4,8 +4,8 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
-import { AuthModule } from "./modules/auth/auth.module";
-import { ComponentsModule } from "./components/components.module";
+import { AuthModule } from "./components/auth/auth.module";
+import { ReusableModule } from "./components/reusable/reusable.module";
 
 @NgModule({
     bootstrap: [
@@ -15,7 +15,7 @@ import { ComponentsModule } from "./components/components.module";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        ComponentsModule,
+        ReusableModule,
         AuthModule
     ],
     declarations: [

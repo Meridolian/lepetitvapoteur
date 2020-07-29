@@ -1,0 +1,88 @@
+<ScrollView>
+    <StackLayout class="profileContainer">
+
+        <Label [text]="welcome" class="welcomeAccount"></Label>
+
+        <StackLayout class="infoContainer">
+
+            <ns-title-head [title]="infoTitle"></ns-title-head>
+
+
+            <StackLayout width="90%" class="civilityContainer" orientation="horizontal">
+                <Label class="label" text="CIVILITÉ"></Label>
+                <Button class="civilityButton civilityButton1"
+                    [ngClass]="{'civilityButtonActive' : civility === 'MONSIEUR'}" text="MONSIEUR"
+                    (tap)="onCivility('MONSIEUR')" id="civility"></Button>
+                <Button class="civilityButton civilityButton2"
+                    [ngClass]="{'civilityButtonActive' : civility === 'MADAME'}" text="MADAME"
+                    (tap)="onCivility('MADAME')" id="civility"></Button>
+                <Button class="civilityButton civilityButton3"
+                    [ngClass]="{'civilityButtonActive' : civility === 'AUTRE'}" text="AUTRE" (tap)="onCivility('AUTRE')"
+                    id="civility"></Button>
+            </StackLayout>
+
+
+            <Label class="label leftLabel" text="NOM" marginTop="15"></Label>
+            <TextField class="field" id="lastName" hint="Nom..." [(ngModel)]="lastName">
+            </TextField>
+
+
+            <Label class="label leftLabel" text="PRÉNOM"></Label>
+            <TextField class="field" id="firstName" hint="Prénom..." [(ngModel)]="firstName">
+            </TextField>
+
+
+            <StackLayout width="90%" class="birthdayContainer" orientation="horizontal">
+                <Label class="label" text="DATE DE NAISSANCE"></Label>
+                <Button class="birthdayButton" id="birthday" [text]="birthdayShort" (tap)="onBirthday()"></Button>
+            </StackLayout>
+            <Label *ngIf="invalidBirthday" class="errorMessage" text="La vente de e-cigarettes et de produits nicotinés est interdite aux mineurs. 
+            Vous devez avoir 18 ans ou plus pour créer un compte Le Petit Vapoteur." textWrap="true"></Label>
+
+
+            <Label class="label leftLabel" text="E-MAIL" marginTop="15"></Label>
+            <TextField class="field" id="email" hint="E-mail..." [(ngModel)]="email"
+                [ngClass]="{'invalidField': invalidEmail}">
+            </TextField>
+            <Label *ngIf="invalidEmail" class="errorMessage" text="Veuillez rentrer une adresse e-mail valide."></Label>
+
+
+            <Label class="label leftLabel" text="ANCIEN MOT DE PASSE"></Label>
+            <TextField class="field" id="lastPassword" secure="true" hint="Ancien mot de passe..."
+                [(ngModel)]="lastPassword" [ngClass]="{'invalidField': invalidLastPassword}">
+            </TextField>
+            <Label *ngIf="invalidLastPassword" class="errorMessage"
+                text="Ce n'est pas votre ancien mot de passe."></Label>
+
+
+            <Label class="label leftLabel" text="MOT DE PASSE"></Label>
+            <TextField class="field" id="password" secure="true" hint="Mot de passe..." [(ngModel)]="password"
+                [ngClass]="{'invalidField': invalidPassword || invalidConfirmPassword}">
+            </TextField>
+            <Label *ngIf="invalidPassword" class="errorMessage" textWrap="true"
+                text="Veuillez rentrer un mot de passe différent de votre ancien de mot de passe"></Label>
+
+
+            <Label class="label leftLabel" text="CONFIRMER MOT DE PASSE"></Label>
+            <TextField class="field" id="confirmPassword" secure="true" hint="Confirmation..."
+                [(ngModel)]="confirmPassword" [ngClass]="{'invalidField': invalidConfirmPassword}"></TextField>
+            <Label *ngIf="invalidConfirmPassword" class="errorMessage" text="Les mots de passe ne correspondent pas."></Label>
+
+
+            <!-- TODO checkbox with "would you like to receive email from LPV" -->
+
+
+            <Button class="updateButton" text="ENREGISTRER" (tap)="onUpdateUser()"></Button>
+
+        </StackLayout>
+
+        <StackLayout class="addressContainer">
+
+            <ns-title-head [title]="addressTitle"></ns-title-head>
+
+            <ns-address *ngFor="let address of user.addresses"></ns-address>
+
+            <Button text="AJOUTER UNE NOUVELLE ADRESSE"></Button>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
