@@ -66,23 +66,26 @@
             <Label class="label leftLabel" text="CONFIRMER MOT DE PASSE"></Label>
             <TextField class="field" id="confirmPassword" secure="true" hint="Confirmation..."
                 [(ngModel)]="confirmPassword" [ngClass]="{'invalidField': invalidConfirmPassword}"></TextField>
-            <Label *ngIf="invalidConfirmPassword" class="errorMessage" text="Les mots de passe ne correspondent pas."></Label>
+            <Label *ngIf="invalidConfirmPassword" class="errorMessage"
+                text="Les mots de passe ne correspondent pas."></Label>
 
 
             <!-- TODO checkbox with "would you like to receive email from LPV" -->
 
 
-            <Button class="updateButton" text="ENREGISTRER" (tap)="onUpdateUser()"></Button>
+            <ns-custom-button [type]="'orange'" [text]="'ENREGISTRER'" [width]="'50%'" (tap)="onUpdateUser()">
+            </ns-custom-button>
 
         </StackLayout>
 
         <StackLayout class="addressContainer">
 
-            <ns-title-head [title]="addressTitle"></ns-title-head>
+            <ns-title-head [title]="'MES ADRESSES'"></ns-title-head>
 
-            <ns-address *ngFor="let address of user.addresses"></ns-address>
+            <!-- <ns-address *ngFor="let address of user.addresses"></ns-address> -->
 
-            <Button text="AJOUTER UNE NOUVELLE ADRESSE"></Button>
+            <ns-custom-button [type]="'blue'" [text]="'AJOUTER UNE NOUVELLE ADRESSE'" [width]="'75%'" [fontSize]="20">
+            </ns-custom-button>
         </StackLayout>
     </StackLayout>
 </ScrollView>

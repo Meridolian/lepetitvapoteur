@@ -46,15 +46,3 @@ $custom_greyWhite: #e7e7e7;
     margin-right: 5;
     margin-bottom: 0;
 }
-
-.buyButton {
-    margin-top: 5;
-    margin-left: 5;
-    margin-right: 5;
-    margin-bottom: 0;
-    background-color: $custom_blue;
-    color: white;
-    &:active {
-        background-color: $custom_orange;
-    }
-}

@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { TitleHeadComponent } from "./title-head/title-head.component";
 import { CustomSpinnerComponent } from "./custom-spinner/custom-spinner.component";
+import { CustomButtonComponent } from './custom-button/custom-button.component';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { CustomSpinnerComponent } from "./custom-spinner/custom-spinner.componen
     ],
     declarations: [
         TitleHeadComponent,
-        CustomSpinnerComponent
+        CustomSpinnerComponent,
+        CustomButtonComponent
     ],
     providers: [
     ],
@@ -20,7 +22,8 @@ import { CustomSpinnerComponent } from "./custom-spinner/custom-spinner.componen
     ],
     exports: [
         TitleHeadComponent,
-        CustomSpinnerComponent
+        CustomSpinnerComponent,
+        CustomButtonComponent
     ]
 })
 export class ReusableModule { }

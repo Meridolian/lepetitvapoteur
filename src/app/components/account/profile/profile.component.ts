@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit {
 	welcome: string;
 
 	infoTitle: string = "MES INFOS";
-	addressTitle: string = "MES ADRESSES";
 
 	@Input()
 	user: User;

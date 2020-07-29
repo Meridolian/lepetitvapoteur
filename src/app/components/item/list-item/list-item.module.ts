@@ -3,11 +3,13 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular";
 
 import { ListItemComponent } from "./list-item.component";
+import { ReusableModule } from "../../reusable/reusable.module";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        ReusableModule
     ],
     declarations: [
         ListItemComponent,

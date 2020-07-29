@@ -63,19 +63,20 @@
                 [ngClass]="{ 'invalidField' : invalidFirstName }" editable="{{!spinner}}"></TextField>
 
 
-            <Button type="submit" class="signupButton" text="CRÉER UN COMPTE !" (tap)="onSignup($event)"
-                isEnabled="{{!spinner}}"></Button>
+            <ns-custom-button [type]="'orange'" [text]="'CRÉER UN COMPTE !'" [width]="'75%'" (tap)="onSignup($event)"
+                isEnabled="{{!spinner}}"></ns-custom-button>
 
 
             <StackLayout orientation="horizontal" width="90%">
                 <Label class="goToLoginLabel" text="VOUS POSSÉDEZ DÉJÀ UN COMPTE ?"></Label>
-                <Button class="goToLoginButton" text="SE CONNECTER" (tap)="goToLogin()"
-                    isEnabled="{{!spinner}}"></Button>
+                <ns-custom-button [type]="'blue'" [text]="'SE CONNECTER'" [width]="'50%'" [fontSize]="'20'"
+                    (tap)="goToLogin()" isEnabled="{{!spinner}}"></ns-custom-button>
             </StackLayout>
 
 
-            <Button *ngIf="startingApp" class="noLogin" text="SE CONNECTER PLUS TARD" (tap)="goToApp()"
-                isEnabled="{{!spinner}}"></Button>
+            <ns-custom-button *ngIf="startingApp" [type]="white" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'"
+                [fontSize]="'15'" (tap)="goToApp()" isEnabled="{{!spinner}}">
+            </ns-custom-button>
 
         </StackLayout>
     </StackLayout>

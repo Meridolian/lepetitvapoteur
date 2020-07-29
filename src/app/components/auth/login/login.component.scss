@@ -62,22 +62,7 @@ $custom_darkSand: #a49981;
     vertical-align: center;
     font-size: 15;
 }
-.goToSignupButton {
-    width: 100vw;
-    background-color: $custom_blue;
-    color: white;
-    font-size: 20;
-    &:active {
-        background-color: $custom_orange;
-    }
-}
 
-.noLogin {
-    width: 50%;
-    background-color: $custom_grey;
-    font-size: 15;
-    color: white;
-}
 
 .invalidField {
     border-color: red;

@@ -8,14 +8,15 @@
 
 <ScrollView class="shoppingCartContainer">
     <StackLayout orientation="vertical">
-        
+
         <ns-title-head [title]="title"></ns-title-head>
 
         <StackLayout orientation="vertical" class="itemsContainer" *ngIf="!emptyShoppingCart">
             <GridLayout rows="*,*,*,*,*" columns="*,*,*,*,*" class="item"
                 *ngFor="let item of shoppingCart.items; let index = index">
                 <Image id="{{'picture' + index}}" row="0" col="0" colSpan="2" rowSpan="3"
-                    src="~/item_pictures/{{item[0].pictures[0]}}.jpg" class="image" (loaded)="onInitPicture(index, $event)"></Image>
+                    src="~/item_pictures/{{item[0].pictures[0]}}.jpg" class="image"
+                    (loaded)="onInitPicture(index, $event)"></Image>
 
                 <Label row="0" col="2" colSpan="3" [text]="item[0].name" class="itemName" textWrap="true"></Label>
 
@@ -46,8 +47,8 @@
 
                 <Label row="3" col="3" colSpan="2" class="totalItemPrice" [text]="(item[2]).toFixed(2) + '€'"></Label>
 
-                <Button row="4" col="0" colSpan="5" class="deleteButton" text="SUPPRIMER"
-                    (tap)="onDeleteItem(index)"></Button>
+                <ns-custom-button row="4" col="0" colSpan="5" [type]="'white'" [text]="'SUPPRIMER'" [width]="'50%'"
+                    [fontSize]="'20'" (tap)="onDeleteItem(index)"></ns-custom-button>
             </GridLayout>
         </StackLayout>
 
@@ -57,7 +58,8 @@
         </GridLayout>
 
         <StackLayout class="validateCart" *ngIf="!emptyShoppingCart">
-            <Button class="validateCartButton" text="VALIDER LA COMMANDE"></Button>
+            <ns-custom-button [type]="'orange'" [text]="'VALIDER LA COMMANDE'" [width]="'85%'" [fontSize]="'30'">
+            </ns-custom-button>
         </StackLayout>
 
         <StackLayout *ngIf="emptyShoppingCart" class="emptyShoppingCart">

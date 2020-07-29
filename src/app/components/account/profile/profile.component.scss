@@ -110,19 +110,6 @@ $custom_darkSand: #a49981;
 }
 
 
-.updateButton {
-    background-color: $custom_orange;
-    color: white;
-    font-size: 25;
-    width: 50%;
-    &:active {
-        background-color: $custom_blue;
-        color: white;
-    }
-}
-
-
-
 .addressContainer {
     background-color: white;
     border-radius: 5;
