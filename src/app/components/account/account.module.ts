@@ -12,6 +12,7 @@ import { BenefitsComponent } from './benefits/benefits.component';
 import { NativeScriptFormsModule } from 'nativescript-angular';
 import { AddressModule } from '../address/address.module';
 import { ReusableModule } from '../reusable/reusable.module';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -21,7 +22,8 @@ import { ReusableModule } from '../reusable/reusable.module';
 		NativeScriptFormsModule,
 		AccountRoutingModule,
 		ReusableModule,
-		AddressModule
+		AddressModule,
+		AuthModule
 	],
 	declarations: [
 		AccountComponent,

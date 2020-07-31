@@ -84,8 +84,16 @@
 
             <!-- <ns-address *ngFor="let address of user.addresses"></ns-address> -->
 
+            <!-- <Label *ngIf="user.addresses.length < 1" class="noAddresses"
+                text="VOUS N'AVEZ PAS ENCORE D'ADRESSES ENREGISTRÉES"></Label> -->
+
             <ns-custom-button [type]="'blue'" [text]="'AJOUTER UNE NOUVELLE ADRESSE'" [width]="'75%'" [fontSize]="20">
             </ns-custom-button>
         </StackLayout>
+
+
+        <ns-custom-button [type]="'grey'" [text]="'DÉCONNEXION'" [width]="'50%'" [fontSize]="'30'" (tap)="onLogout()">
+        </ns-custom-button>
+
     </StackLayout>
 </ScrollView>

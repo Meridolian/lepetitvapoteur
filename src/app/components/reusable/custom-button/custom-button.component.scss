@@ -43,3 +43,13 @@ $custom_darkSand: #a49981;
         color: $custom_darkSand;
     }
 }
+
+.greyButton {
+    background-color: $custom_grey;
+    color: white;
+    font-size: 25;
+    &:active {
+        background-color: white;
+        color: $custom_grey;
+    }
+}

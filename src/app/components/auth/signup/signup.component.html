@@ -69,12 +69,12 @@
 
             <StackLayout orientation="horizontal" width="90%">
                 <Label class="goToLoginLabel" text="VOUS POSSÉDEZ DÉJÀ UN COMPTE ?"></Label>
-                <ns-custom-button [type]="'blue'" [text]="'SE CONNECTER'" [width]="'50%'" [fontSize]="'20'"
+                <ns-custom-button [type]="'blue'" [text]="'SE CONNECTER'" [width]="'40%'" [fontSize]="'20'"
                     (tap)="goToLogin()" isEnabled="{{!spinner}}"></ns-custom-button>
             </StackLayout>
 
 
-            <ns-custom-button *ngIf="startingApp" [type]="white" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'"
+            <ns-custom-button *ngIf="startingApp" [type]="'grey'" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'"
                 [fontSize]="'15'" (tap)="goToApp()" isEnabled="{{!spinner}}">
             </ns-custom-button>
 

@@ -18,7 +18,7 @@
 
             <Label *ngIf="invalidEmail" class="errorMessage"
                 text="Veuillez rentrer une addresse e-mail valide."></Label>
-            <TextField class="field" hint="E-mail..." [(ngModel)]="email" [ngClass]="{ 'invalidField' : invalidEmail }"
+            <TextField class="field" hint="Adresse e-mail..." [(ngModel)]="email" [ngClass]="{ 'invalidField' : invalidEmail }"
                 editable="{{!spinner}}">
             </TextField>
 
@@ -35,14 +35,12 @@
 
             <StackLayout orientation="horizontal">
                 <Label class="goToSignupLabel" text="Vous ne possédez pas encore de compte ?"></Label>
-                <Button class="goToSignupButton" text="Créez-en un" (tap)="goToSignup()"
-                    isEnabled="{{!spinner}}"></Button>
-                <ns-custom-button [type]="'blue'" [text]="'CRÉEZ-EN-UN'" [width]="'50%'" [fontSize]="'20'"
+                <ns-custom-button [type]="'blue'" [text]="'CRÉEZ-EN-UN'" [width]="'32.5%'" [fontSize]="'20'"
                     (tap)="goToSignup()" isEnabled="{{!spinner}}"></ns-custom-button>
             </StackLayout>
 
 
-            <ns-custom-button *ngIf="startingApp" [type]="'white'" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'" [fontSize]="'15'"
+            <ns-custom-button *ngIf="startingApp" [type]="'grey'" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'" [fontSize]="'15'"
                 (tap)="goToApp()" isEnabled="{{!spinner}}"></ns-custom-button>
 
         </StackLayout>

@@ -94,7 +94,7 @@ export class SignupComponent implements OnInit {
 			}, 3000);
 			setTimeout(() => {
 				this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
-					null, null, null, null, null, null);
+					[], null, null, null, null, null);
 		
 				this.userService.createUser(this.user);
 		

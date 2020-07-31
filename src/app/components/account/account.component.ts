@@ -3,6 +3,7 @@ import { Image } from "tns-core-modules/ui/image";
 import { UserService } from '~/app/services/user.service';
 import { Subscription } from 'rxjs';
 import { User } from '~/app/models/user.model';
+import { RouterExtensions } from 'nativescript-angular';
 
 @Component({
 	selector: 'ns-account',
@@ -19,7 +20,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 	userString: string;
 	welcome: string;
 
-	constructor(private userService: UserService) { }
+	constructor(private userService: UserService, private router: RouterExtensions) { }
 
 	ngOnInit(): void {
 		this.userSubscription = this.userService.userSubject.subscribe(
@@ -31,6 +32,9 @@ export class AccountComponent implements OnInit, OnDestroy {
 		this.loggedSubscription = this.userService.loggedSubject.subscribe(
 			(logged: boolean) => {
 				this.logged = logged;
+				if(this.logged === false){
+					this.router.navigate(['login', { startingApp: false}]);
+				}
 			}
 		);
 	}
@@ -48,10 +52,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 			rotate: 360,
 			duration: 750
 		}).then(() => image.rotate = 0);
-	}
-
-	onLogout() {
-		this.userService.logOut();
 	}
 
 	ngOnDestroy(): void {

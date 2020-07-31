@@ -95,22 +95,22 @@ export class ProfileComponent implements OnInit {
 					let tempBirthday = this.user.birthday;
 					let tempEmail = this.user.email;
 					let tempPassword = this.user.password;
-					if(this.civility !== this.user.civility) {
+					if (this.civility !== this.user.civility) {
 						tempCivility = this.civility;
 					}
-					if(this.lastName !== this.user.lastName && this.lastName.length > 0){
+					if (this.lastName !== this.user.lastName && this.lastName.length > 0) {
 						tempLastName = this.lastName;
 					}
-					if(this.firstName !== this.user.firstName && this.firstName.length > 0) {
+					if (this.firstName !== this.user.firstName && this.firstName.length > 0) {
 						tempFirstName = this.firstName;
 					}
-					if(this.birthday !== this.user.birthday) {
+					if (this.birthday !== this.user.birthday) {
 						tempBirthday = this.birthday;
 					}
-					if(this.email !== this.user.email) {
+					if (this.email !== this.user.email) {
 						tempEmail = this.email;
 					}
-					if(this.password.length > 0) {
+					if (this.password.length > 0) {
 						tempPassword = this.password;
 					}
 
@@ -147,7 +147,7 @@ export class ProfileComponent implements OnInit {
 
 		// check password and confirmPassword fields
 		if (this.lastPassword.length > 0 || this.password.length > 0 || this.confirmPassword.length > 0) {
-			if(this.lastPassword !== this.user.password){
+			if (this.lastPassword !== this.user.password) {
 				this.invalidLastPassword = true;
 				validator = false;
 			}
@@ -155,7 +155,7 @@ export class ProfileComponent implements OnInit {
 				this.invalidLastPassword = false;
 			}
 
-			if(this.password === this.user.password) {
+			if (this.password === this.user.password) {
 				this.invalidPassword = true;
 				validator = false;
 			}
@@ -204,5 +204,20 @@ export class ProfileComponent implements OnInit {
 			age--;
 		}
 		return age;
+	}
+
+
+	onLogout() {
+		dialogs.confirm({
+			title: "DÉCONNEXION",
+			message: "Êtes-vous certain de vouloir vous déconnecter ?",
+			okButtonText: "OUI",
+			cancelButtonText: "NON",
+			neutralButtonText: "ANNULER"
+		}).then(result => {
+			if (result) {
+				this.userService.logOut();
+			}
+		});
 	}
 }

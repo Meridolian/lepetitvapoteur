@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular';
 import { Image } from "tns-core-modules/ui/image";
@@ -11,6 +11,7 @@ import { UserService } from '~/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+	@Input()
 	startingApp: boolean;
 
 	email: string;
