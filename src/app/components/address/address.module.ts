@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { AddressComponent } from "./address.component";
 import { ReusableModule } from "../reusable/reusable.module";
+import { FormAddressComponent } from './form-address/form-address.component';
 
 @NgModule({
 	imports: [
@@ -11,7 +12,8 @@ import { ReusableModule } from "../reusable/reusable.module";
 		ReusableModule
 	],
 	declarations: [
-		AddressComponent
+		AddressComponent,
+		FormAddressComponent
 	],
 	providers: [
 	],
@@ -19,7 +21,8 @@ import { ReusableModule } from "../reusable/reusable.module";
 		NO_ERRORS_SCHEMA
 	],
 	exports: [
-		AddressComponent
+		AddressComponent,
+		FormAddressComponent
 	]
 })
 export class AddressModule { }

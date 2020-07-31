@@ -33,3 +33,13 @@ $custom_darkSand: #a49981;
     color: $custom_grey;
     font-size: 25;
 }
+
+.sandButton {
+    background-color: $custom_darkSand;
+    color: white;
+    font-size: 25;
+    &:active {
+        background-color: white;
+        color: $custom_darkSand;
+    }
+}
