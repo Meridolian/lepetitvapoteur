@@ -33,7 +33,7 @@ import { AuthModule } from '../auth/auth.module';
 		OrdersComponent,
 		SavComponent,
 		SettingsComponent,
-		BenefitsComponent
+		BenefitsComponent,
 	],
 	schemas: [NO_ERRORS_SCHEMA]
 })

@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Image } from "tns-core-modules/ui/image";
 import { UserService } from '~/app/services/user.service';
 import { Subscription } from 'rxjs';
-import { User } from '~/app/models/user.model';
 import { RouterExtensions } from 'nativescript-angular';
+import { User } from '~/app/models/user.model';
 
 @Component({
 	selector: 'ns-account',
@@ -13,37 +13,33 @@ import { RouterExtensions } from 'nativescript-angular';
 export class AccountComponent implements OnInit, OnDestroy {
 
 	back: boolean = false;
+
 	userSubscription: Subscription;
-	loggedSubscription: Subscription;
 	user: User;
+
+	loggedSubscription: Subscription;
 	logged: boolean;
+
 	userString: string;
 	welcome: string;
 
 	constructor(private userService: UserService, private router: RouterExtensions) { }
 
 	ngOnInit(): void {
+		this.loggedSubscription = this.userService.loggedSubject.subscribe(
+			(logged: boolean) => {
+				this.logged = logged;
+			}
+		);
 		this.userSubscription = this.userService.userSubject.subscribe(
 			(user: User) => {
 				this.user = user;
 				this.welcome = "BONJOUR " + user.firstName;
 			}
 		);
-		this.loggedSubscription = this.userService.loggedSubject.subscribe(
-			(logged: boolean) => {
-				this.logged = logged;
-				if(this.logged === false){
-					this.router.navigate(['login', { startingApp: false}]);
-				}
-			}
-		);
 	}
 
 	goBack(): void {
-	}
-
-	onSettings(): void {
-		alert("coucou")
 	}
 
 	onRotate(args) {
@@ -55,7 +51,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.userSubscription.unsubscribe();
 		this.loggedSubscription.unsubscribe();
+		this.userSubscription.unsubscribe();
 	}
 }

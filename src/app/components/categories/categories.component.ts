@@ -36,30 +36,30 @@ export class CategoriesComponent implements OnInit {
   onCategory(index: number): void {
     let tempCategory = this.currentCategory[index];
     let nextCategory: string;
-    if(tempCategory[2] === "Category"){
+    if (tempCategory[2] === "Category") {
       this.showListItems = false;
       this.categoryRoute.push(this.currentCategory);
       nextCategory = tempCategory[1] + tempCategory[2];
       this.currentCategory = this.categoryUtil[nextCategory];
     }
-    else if(tempCategory[2] === "ViewList"){
+    else if (tempCategory[2] === "ViewList") {
       this.categoryRoute.push(this.currentCategory);
 
-      
+
       this.arrayItem = this.itemService.getItemByCategory(Categories[tempCategory[1]]);
 
       this.showListItems = true;
     }
   }
 
-  onSingleItem(id: number){
-      this.singleItem = this.itemService.getItem(id);
-      this.showSingleItem = true;
-      this.showListItems = false;
+  onSingleItem(id: number) {
+    this.singleItem = this.itemService.getItem(id);
+    this.showSingleItem = true;
+    this.showListItems = false;
   }
 
   goBack(): void {
-    if(this.showSingleItem === true){
+    if (this.showSingleItem === true) {
       this.showSingleItem = false;
       this.showListItems = true;
     }
@@ -73,13 +73,9 @@ export class CategoriesComponent implements OnInit {
   onRotate(args) {
     let image = <Image>args.object;
     image.animate({
-        rotate: 360, 
-        duration: 750
+      rotate: 360,
+      duration: 750
     }).then(() => image.rotate = 0);
-}
-
-  onSettings(): void {
-    alert("coucou")
   }
 
 }

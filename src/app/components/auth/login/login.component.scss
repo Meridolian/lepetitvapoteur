@@ -7,9 +7,16 @@ $custom_grey: #808185;
 $custom_greyWhite: #e7e7e7;
 $custom_darkSand: #a49981;
 
-.authContainer {
+.loginContainer {
     height: 100%;
     width: 90%;
+}
+
+.noMargin {
+    margin-top: 0;
+}
+
+.startingAppMargin {
     margin-top: 20;
 }
 

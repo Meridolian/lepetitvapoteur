@@ -4,25 +4,25 @@ import { LoginComponent } from "./login/login.component";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { SignupComponent } from "./signup/signup.component";
 import { ReusableModule } from "../reusable/reusable.module";
+import { AuthComponent } from './auth.component';
+import { AuthRoutingModule } from "./auth-routing.module";
 
 @NgModule({
 	imports: [
 		NativeScriptCommonModule,
 		NativeScriptFormsModule,
+		AuthRoutingModule,
 		ReusableModule
 	],
 	declarations: [
 		LoginComponent,
-		SignupComponent
+		SignupComponent,
+		AuthComponent
 	],
 	providers: [
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
-	],
-	exports: [
-		LoginComponent,
-		SignupComponent
 	]
 })
 export class AuthModule { }

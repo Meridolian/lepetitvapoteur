@@ -1,0 +1,13 @@
+<ActionBar class="actionbar" *ngIf="!startingApp">
+    <GridLayout rows="*" columns="*,*,*">
+        <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center"
+            stretch="none"></Image>
+    </GridLayout>
+</ActionBar>
+
+
+<ns-login *ngIf="showLogin" [startingApp]="startingApp" (goToApp)="goToApp()" (goToSignup)="goToSignup()"></ns-login>
+
+
+<ns-signup *ngIf="showSignup" [startingApp]="startingApp" (goToApp)="goToApp()" (goToLogin)="goToLogin()"></ns-signup>

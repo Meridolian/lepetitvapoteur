@@ -7,6 +7,13 @@ $custom_grey: #808185;
 $custom_greyWhite: #e7e7e7;
 $custom_darkSand: #a49981;
 
+.back {
+    font-size: 20;
+    color: white;
+    background-color: $custom_orange;
+}
+
+
 .accountContainer {
 }
 
@@ -20,20 +27,4 @@ $custom_darkSand: #a49981;
     height: 65;
     font-size: 20;
     background-color: $main_color;
-}
-
-.back {
-    font-size: 20;
-    color: white;
-    background-color: $custom_orange;
-}
-
-.logoutButton {
-    width: 50%;
-    background-color: $custom_orange;
-    color: white;
-    font-size: 25;
-    &:active {
-        background-color: $custom_blue;
-    }
 }

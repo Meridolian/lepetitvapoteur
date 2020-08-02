@@ -1,10 +1,11 @@
-<ActionBar class="actionbar">
+<ActionBar class="actionbar" *ngIf="logged">
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
         <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center"
             stretch="none"></Image>
     </GridLayout>
 </ActionBar>
+
 
 <StackLayout class="accountContainer" *ngIf="logged">
 
@@ -66,3 +67,5 @@
 
     </Tabs>
 </StackLayout>
+
+<ns-auth *ngIf="!logged"></ns-auth>

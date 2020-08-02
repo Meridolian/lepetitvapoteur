@@ -1,15 +1,15 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { AccountComponent } from "./account.component";
+import { AuthComponent } from "./auth.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "auth", pathMatch: "full" },
-    { path: "account", component: AccountComponent }
+    { path: "auth", component: AuthComponent },
 ];
 
 @NgModule({
     imports: [NativeScriptRouterModule.forChild(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class AccountRoutingModule { }
+export class AuthRoutingModule { }

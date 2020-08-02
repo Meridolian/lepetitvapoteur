@@ -128,10 +128,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     goBack(): void {
     }
 
-    onSettings(): void {
-        alert("coucou")
-    }
-
     onRotate(args) {
         let image = <Image>args.object;
         image.animate({

@@ -39,11 +39,6 @@ export class SearchComponent implements OnInit {
         this.back = false;
     }
 
-    onSettings(): void {
-        alert("Settings")
-    }
-
-
     onSearch(args): void {
         this.arrayItem = [];
         if (this.searchField !== undefined && this.searchField !== "" && this.searchField !== null) {

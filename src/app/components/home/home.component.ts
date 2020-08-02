@@ -25,10 +25,6 @@ export class HomeComponent implements OnInit {
     goBack(): void {
     }
 
-    onSettings(): void {
-        alert("coucou")
-    }
-
     onRotate(args) {
         let image = <Image>args.object;
         image.animate({

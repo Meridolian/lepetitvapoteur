@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.userService.showLoginSignup) {
-            this.router.navigate(['/login', { startingApp: true }]);
+            this.router.navigate(['/auth', { startingApp: true }]);
         }
     }
 }

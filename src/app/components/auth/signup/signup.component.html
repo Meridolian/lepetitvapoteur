@@ -1,6 +1,16 @@
+<ActionBar class="actionbar" *ngIf="!startingApp">
+    <GridLayout rows="*" columns="*,*,*">
+        <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center"
+            stretch="none"></Image>
+    </GridLayout>
+</ActionBar>
+
+
 <ScrollView>
     <StackLayout>
-        <StackLayout class="authContainer text-center">
+        <StackLayout class="signupContainer text-center"
+            [ngClass]="{'noMargin': !startingApp, 'startingAppMargin': startingApp}">
 
             <Label class="signupLabel" text="CRÉER UN COMPTE LE PETIT VAPOTEUR" textWrap="true"></Label>
 
@@ -63,19 +73,19 @@
                 [ngClass]="{ 'invalidField' : invalidFirstName }" editable="{{!spinner}}"></TextField>
 
 
-            <ns-custom-button [type]="'orange'" [text]="'CRÉER UN COMPTE !'" [width]="'75%'" (tap)="onSignup($event)"
-                isEnabled="{{!spinner}}"></ns-custom-button>
+            <ns-custom-button [type]="'orange'" [text]="'CRÉER UN COMPTE !'" [width]="'75%'" [fontSize]="'25'"
+                (tap)="onSignup($event)" isEnabled="{{!spinner}}"></ns-custom-button>
 
 
             <StackLayout orientation="horizontal" width="90%">
                 <Label class="goToLoginLabel" text="VOUS POSSÉDEZ DÉJÀ UN COMPTE ?"></Label>
                 <ns-custom-button [type]="'blue'" [text]="'SE CONNECTER'" [width]="'40%'" [fontSize]="'20'"
-                    (tap)="goToLogin()" isEnabled="{{!spinner}}"></ns-custom-button>
+                    (tap)="onGoToLogin()" isEnabled="{{!spinner}}"></ns-custom-button>
             </StackLayout>
 
 
             <ns-custom-button *ngIf="startingApp" [type]="'grey'" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'"
-                [fontSize]="'15'" (tap)="goToApp()" isEnabled="{{!spinner}}">
+                [fontSize]="'15'" (tap)="onGoToApp(false)" isEnabled="{{!spinner}}">
             </ns-custom-button>
 
         </StackLayout>

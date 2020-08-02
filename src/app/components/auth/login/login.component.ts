@@ -1,6 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RouterExtensions } from 'nativescript-angular';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from "tns-core-modules/ui/image";
 import { UserService } from '~/app/services/user.service';
 
@@ -11,8 +9,7 @@ import { UserService } from '~/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-	@Input()
-	startingApp: boolean;
+	@Input() startingApp: boolean;
 
 	email: string;
 	password: string;
@@ -26,14 +23,15 @@ export class LoginComponent implements OnInit {
 
 	welcome: boolean;
 
-	constructor(private route: ActivatedRoute, private router: RouterExtensions, private userService: UserService) { }
+	@Output() goToSignup = new EventEmitter();
+	@Output() goToApp = new EventEmitter();
+
+	constructor(private userService: UserService) { }
 
 	ngOnInit(): void {
 		this.errorMessage = false;
 
 		this.welcome = false;
-
-		this.startingApp = JSON.parse(this.route.snapshot.paramMap.get("startingApp"));
 
 		this.initFields();
 	}
@@ -52,7 +50,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin() {
-		if(this.validatorFields()){
+		if (this.validatorFields()) {
 			this.spinner = true;
 			if (this.userService.logIn(this.email, this.password)) {
 				this.errorMessage = false;
@@ -62,7 +60,7 @@ export class LoginComponent implements OnInit {
 				}, 2000);
 				setTimeout(() => {
 					this.welcome = false;
-					this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+					this.onGoToApp(false);
 				}, 8000);
 			}
 			else {
@@ -79,7 +77,7 @@ export class LoginComponent implements OnInit {
 
 		//check email field
 		let regexEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-		if(!regexEmail.test(this.email)){
+		if (!regexEmail.test(this.email)) {
 			this.invalidEmail = true;
 			validator = false;
 		}
@@ -88,7 +86,7 @@ export class LoginComponent implements OnInit {
 		}
 
 		//check password field
-		if(this.password.length < 1){
+		if (this.password.length < 1) {
 			this.invalidPassword = true;
 			validator = false;
 		}
@@ -99,12 +97,21 @@ export class LoginComponent implements OnInit {
 		return validator;
 	}
 
-	goToSignup() {
-		this.router.navigate(['/signup', { startingApp: this.startingApp }], { animated: true, transition: { name: 'slide', duration: 250 } });
+	onGoToSignup() {
+		this.goToSignup.emit(null);
 	}
 
-	goToApp() {
-		this.userService.setShowLoginSignup(false);
-		this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+	onGoToApp(showAuth: boolean) {
+		this.userService.setShowLoginSignup(showAuth);
+		this.goToApp.emit(null);
+	}
+
+
+	onRotateActionBar(args) {
+		let image = <Image>args.object;
+		image.animate({
+			rotate: 360,
+			duration: 750
+		}).then(() => image.rotate = 0);
 	}
 }

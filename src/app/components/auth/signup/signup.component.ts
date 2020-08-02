@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from "tns-core-modules/ui/image";
-import { RouterExtensions } from 'nativescript-angular';
 import { User } from '~/app/models/user.model';
 import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
-import { ActivatedRoute } from '@angular/router';
 import { UserService } from '~/app/services/user.service';
 
 @Component({
@@ -13,7 +11,7 @@ import { UserService } from '~/app/services/user.service';
 })
 export class SignupComponent implements OnInit {
 
-	startingApp: boolean;
+	@Input() startingApp: boolean;
 
 	user: User;
 	email: string;
@@ -39,11 +37,12 @@ export class SignupComponent implements OnInit {
 
 	welcome: boolean;
 
-	constructor(private router: RouterExtensions, private route: ActivatedRoute, private userService: UserService) { }
+	@Output() goToLogin = new EventEmitter();
+	@Output() goToApp = new EventEmitter();
+
+	constructor(private userService: UserService) { }
 
 	ngOnInit(): void {
-		this.startingApp = JSON.parse(this.route.snapshot.paramMap.get("startingApp"));
-
 		this.initFields();
 
 		this.shortDate(this.birthday);
@@ -86,19 +85,19 @@ export class SignupComponent implements OnInit {
 	}
 
 	onSignup() {
-		if(this.validatorFields()){
+		if (this.validatorFields()) {
 			this.spinner = true;
 			setTimeout(() => {
 				this.spinner = false;
 				this.welcome = true;
 			}, 3000);
 			setTimeout(() => {
-				this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday, 
+				this.user = new User(this.civility, this.firstName, this.lastName, this.email, this.password, this.birthday,
 					[], null, null, null, null, null);
-		
+
 				this.userService.createUser(this.user);
-		
-				this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+
+				this.onGoToApp(false);
 
 				this.welcome = false;
 			}, 8000);
@@ -107,10 +106,10 @@ export class SignupComponent implements OnInit {
 
 	validatorFields(): boolean {
 		let validator: boolean = true;
-		
+
 		//check email field
 		let regexEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-		if(!regexEmail.test(this.email)){
+		if (!regexEmail.test(this.email)) {
 			this.invalidEmail = true;
 			validator = false;
 		}
@@ -119,7 +118,7 @@ export class SignupComponent implements OnInit {
 		}
 
 		//check password field
-		if(this.password.length < 1){
+		if (this.password.length < 1) {
 			this.invalidPassword = true;
 			validator = false;
 		}
@@ -128,7 +127,7 @@ export class SignupComponent implements OnInit {
 		}
 
 		//check confirmPassword field
-		if(this.confirmPassword !== this.password){
+		if (this.confirmPassword !== this.password) {
 			this.invalidConfirmPassword = true;
 			validator = false;
 		}
@@ -137,17 +136,17 @@ export class SignupComponent implements OnInit {
 		}
 
 		//check civility field
-		if(this.civility.length < 1){
+		if (this.civility.length < 1) {
 			this.invalidCivility = true;
 			validator = false;
 		}
 		else {
 			this.invalidCivility = false;
 		}
-	
+
 		//check birthday field
 		let age = this.calculateAge(this.birthday);
-		if(age < 18){
+		if (age < 18) {
 			this.invalidBirthday = true;
 			validator = false;
 		}
@@ -156,7 +155,7 @@ export class SignupComponent implements OnInit {
 		}
 
 		//check lastName field
-		if(this.lastName.length < 1){
+		if (this.lastName.length < 1) {
 			this.invalidLastName = true;
 			validator = false;
 		}
@@ -165,7 +164,7 @@ export class SignupComponent implements OnInit {
 		}
 
 		//check firstName field
-		if(this.firstName.length < 1){
+		if (this.firstName.length < 1) {
 			this.invalidFirstName = true;
 			validator = false;
 		}
@@ -176,23 +175,23 @@ export class SignupComponent implements OnInit {
 		return validator;
 	}
 
-	calculateAge(birthday: Date): number{
+	calculateAge(birthday: Date): number {
 		let today: Date = new Date();
 		let age = today.getFullYear() - birthday.getFullYear();
 		let month = today.getMonth() - birthday.getMonth();
-		if(month < 0 || (month === 0 && today.getDate() < birthday.getDate())){
+		if (month < 0 || (month === 0 && today.getDate() < birthday.getDate())) {
 			age--;
 		}
 		return age;
 	}
 
-	goToLogin() {
-		this.router.navigate(['/login', { startingApp: this.startingApp }], { animated: true, transition: { name: 'slideRight', duration: 250 } });
+	onGoToLogin() {
+		this.goToLogin.emit(null);
 	}
 
-	goToApp() {
-		this.userService.setShowLoginSignup(false);
-		this.router.navigate(['/app'], { animated: true, transition: { name: 'slide', duration: 250 } });
+	onGoToApp(showAuth: boolean) {
+		this.userService.setShowLoginSignup(showAuth);
+		this.goToApp.emit(null);
 	}
 
 	shortDate(date: Date) {
@@ -203,4 +202,12 @@ export class SignupComponent implements OnInit {
 		this.birthdayShort = day + " " + month + " " + year;
 	}
 
+
+	onRotateActionBar(args) {
+		let image = <Image>args.object;
+		image.animate({
+			rotate: 360,
+			duration: 750
+		}).then(() => image.rotate = 0);
+	}
 }

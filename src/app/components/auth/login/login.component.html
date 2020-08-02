@@ -1,6 +1,7 @@
 <ScrollView>
-    <StackLayout *ngIf="!signup">
-        <StackLayout class="authContainer text-center">
+    <StackLayout>
+        <StackLayout class="loginContainer text-center"
+            [ngClass]="{'noMargin': !startingApp, 'startingAppMargin': startingApp}">
 
 
             <Image *ngIf="startingApp" src="~/fonts/logo_lpv.png" (tap)="onRotate($event)"></Image>
@@ -18,8 +19,8 @@
 
             <Label *ngIf="invalidEmail" class="errorMessage"
                 text="Veuillez rentrer une addresse e-mail valide."></Label>
-            <TextField class="field" hint="Adresse e-mail..." [(ngModel)]="email" [ngClass]="{ 'invalidField' : invalidEmail }"
-                editable="{{!spinner}}">
+            <TextField class="field" hint="Adresse e-mail..." [(ngModel)]="email"
+                [ngClass]="{ 'invalidField' : invalidEmail }" editable="{{!spinner}}">
             </TextField>
 
 
@@ -29,19 +30,19 @@
 
 
             <Label *ngIf="errorMessage" class="errorMessage" text="Adresse e-mail ou mot de passe incorrect."></Label>
-            <ns-custom-button [type]="'orange'" [text]="'CONNEXION'" [width]="'75%'" (tap)="onLogin()"
+            <ns-custom-button [type]="'orange'" [text]="'CONNEXION'" [width]="'75%'" [fontSize]="'25'" (tap)="onLogin()"
                 isEnabled="{{!spinner}}"></ns-custom-button>
 
 
             <StackLayout orientation="horizontal">
                 <Label class="goToSignupLabel" text="Vous ne possédez pas encore de compte ?"></Label>
                 <ns-custom-button [type]="'blue'" [text]="'CRÉEZ-EN-UN'" [width]="'32.5%'" [fontSize]="'20'"
-                    (tap)="goToSignup()" isEnabled="{{!spinner}}"></ns-custom-button>
+                    (tap)="onGoToSignup()" isEnabled="{{!spinner}}"></ns-custom-button>
             </StackLayout>
 
 
-            <ns-custom-button *ngIf="startingApp" [type]="'grey'" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'" [fontSize]="'15'"
-                (tap)="goToApp()" isEnabled="{{!spinner}}"></ns-custom-button>
+            <ns-custom-button *ngIf="startingApp" [type]="'grey'" [text]="'SE CONNECTER PLUS TARD'" [width]="'50%'"
+                [fontSize]="'15'" (tap)="onGoToApp(false)" isEnabled="{{!spinner}}"></ns-custom-button>
 
         </StackLayout>
     </StackLayout>
