@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { AuthComponent } from "./components/auth/auth.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "app", pathMatch: "full" },

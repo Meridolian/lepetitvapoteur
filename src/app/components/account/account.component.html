@@ -68,4 +68,4 @@
     </Tabs>
 </StackLayout>
 
-<ns-auth *ngIf="!logged"></ns-auth>
+<ns-auth [accountAuth]="true" *ngIf="!logged"></ns-auth>

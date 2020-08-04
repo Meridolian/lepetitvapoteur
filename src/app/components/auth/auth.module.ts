@@ -23,6 +23,11 @@ import { AuthRoutingModule } from "./auth-routing.module";
 	],
 	schemas: [
 		NO_ERRORS_SCHEMA
+	],
+	exports: [
+		LoginComponent,
+		SignupComponent,
+		AuthComponent
 	]
 })
 export class AuthModule { }

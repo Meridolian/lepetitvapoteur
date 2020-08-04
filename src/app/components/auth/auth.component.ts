@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular';
 import { Image } from "tns-core-modules/ui/image";
@@ -12,6 +12,9 @@ export class AuthComponent implements OnInit {
 
 	startingApp: boolean;
 
+	@Input()
+	accountAuth: boolean;
+
 	showLogin: boolean;
 	showSignup: boolean;
 
@@ -19,6 +22,11 @@ export class AuthComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.startingApp = JSON.parse(this.route.snapshot.paramMap.get("startingApp"));
+		setTimeout(() => {
+			if(this.accountAuth) {
+				this.startingApp = false;
+			}
+		},1);
 		this.showLogin = true;
 		this.showSignup = false;
 	}

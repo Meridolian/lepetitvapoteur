@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 	userString: string;
 	welcome: string;
 
-	constructor(private userService: UserService, private router: RouterExtensions) { }
+	constructor(private userService: UserService) { }
 
 	ngOnInit(): void {
 		this.loggedSubscription = this.userService.loggedSubject.subscribe(

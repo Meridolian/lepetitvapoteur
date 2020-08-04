@@ -4,7 +4,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { AccountComponent } from "./account.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "auth", pathMatch: "full" },
+    { path: "", redirectTo: "account", pathMatch: "full" },
     { path: "account", component: AccountComponent }
 ];
 
