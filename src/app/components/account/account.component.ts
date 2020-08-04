@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Image } from "tns-core-modules/ui/image";
 import { UserService } from '~/app/services/user.service';
 import { Subscription } from 'rxjs';
-import { RouterExtensions } from 'nativescript-angular';
 import { User } from '~/app/models/user.model';
+import { ProfileComponent } from './profile/profile.component';
 
 @Component({
 	selector: 'ns-account',
@@ -12,7 +12,8 @@ import { User } from '~/app/models/user.model';
 })
 export class AccountComponent implements OnInit, OnDestroy {
 
-	back: boolean = false;
+	back: boolean;
+	backContext: string;
 
 	userSubscription: Subscription;
 	user: User;
@@ -22,6 +23,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
 	userString: string;
 	welcome: string;
+
+	@ViewChild(ProfileComponent, null) profile: ProfileComponent;
 
 	constructor(private userService: UserService) { }
 
@@ -35,12 +38,29 @@ export class AccountComponent implements OnInit, OnDestroy {
 			(user: User) => {
 				this.user = user;
 				this.welcome = "BONJOUR " + user.firstName;
+				this.profile.initFields();
 			}
 		);
+
+		this.back = false;
 	}
 
 	goBack(): void {
+		switch(this.backContext) {
+			case "formAddres": 
+				this.profile.goBack();
+			break;
+
+		}
+
+		this.back = false;
 	}
+
+	onBackHandler(context: string) {
+		this.backContext = context;
+		this.back = true;
+	}
+
 
 	onRotate(args) {
 		let image = <Image>args.object;

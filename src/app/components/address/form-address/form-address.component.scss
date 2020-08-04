@@ -1,1 +1,66 @@
-/* Add mobile styles for the component here.  */
+// colors
+$main_color: #eeebe4;
+$custom_blue: #2cc1b2;
+$custom_orange: #f28231;
+$custom_sand: #dbd1bc;
+$custom_grey: #808185;
+$custom_greyWhite: #e7e7e7;
+$custom_darkSand: #a49981;
+
+
+.formAddressContainer {
+
+}
+
+
+.label {
+    font-size: 20;
+    color: $custom_grey;
+    margin-left: 15;
+}
+
+
+.field {
+    height: 50;
+    border-width: 0.5;
+    border-color: $custom_grey;
+    border-radius: 5;
+    font-size: 20;
+    color: $custom_grey;
+    font-family: "Courrier New";
+    placeholder-color: $custom_grey;
+    text-align: center;
+}
+.bigField {
+    height: 100;
+    border-width: 0.5;
+    border-color: $custom_grey;
+    border-radius: 5;
+    font-size: 20;
+    color: $custom_grey;
+    font-family: "Courrier New";
+    placeholder-color: $custom_grey;
+    text-align: center;
+}
+
+
+.countryContainer {
+    margin-right: 5;
+    margin-bottom: 15;
+}
+.countryButton {
+    border-width: 0.5;
+    border-color: $custom_grey;
+    border-radius: 5;
+    font-size: 20;
+    color: $custom_blue;
+    &:active {
+        background-color: $custom_blue;
+        color: white;
+    }
+}
+
+
+.switchContainer {
+    margin: 25;
+}

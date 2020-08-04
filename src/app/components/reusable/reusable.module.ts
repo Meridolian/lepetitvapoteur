@@ -4,6 +4,7 @@ import { NativeScriptFormsModule } from "nativescript-angular";
 import { TitleHeadComponent } from "./title-head/title-head.component";
 import { CustomSpinnerComponent } from "./custom-spinner/custom-spinner.component";
 import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { CustomSwitchComponent } from './custom-switch/custom-switch.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { CustomButtonComponent } from './custom-button/custom-button.component';
     declarations: [
         TitleHeadComponent,
         CustomSpinnerComponent,
-        CustomButtonComponent
+        CustomButtonComponent,
+        CustomSwitchComponent
     ],
     providers: [
     ],
@@ -23,7 +25,8 @@ import { CustomButtonComponent } from './custom-button/custom-button.component';
     exports: [
         TitleHeadComponent,
         CustomSpinnerComponent,
-        CustomButtonComponent
+        CustomButtonComponent,
+        CustomSwitchComponent
     ]
 })
 export class ReusableModule { }

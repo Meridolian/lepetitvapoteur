@@ -38,7 +38,7 @@
         
 
         <TabContentItem class="profile">
-            <ns-profile [welcome]="welcome" [user]="user"></ns-profile>
+            <ns-profile [welcome]="welcome" [user]="user" (formAddressBack)="onBackHandler('formAddress')"></ns-profile>
         </TabContentItem>
 
         <TabContentItem class="orders">

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from '~/app/models/user.model';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { User, Address } from '~/app/models/user.model';
 import { ModalDatetimepicker } from 'nativescript-modal-datetimepicker';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { UserService } from '~/app/services/user.service';
@@ -35,20 +35,29 @@ export class ProfileComponent implements OnInit {
 	invalidConfirmPassword: boolean;
 	invalidBirthday: boolean;
 
+	showFormAddressNew: boolean;
+	showFormAddressEdit: boolean;
+
+	addressToEdit: Address;
+
+	@Output() formAddressBack = new EventEmitter();
+
 	constructor(private userService: UserService) { }
 
 	ngOnInit(): void {
-		setTimeout(() => {
-			this.civility = this.user.civility;
-			this.lastName = this.user.lastName;
-			this.firstName = this.user.firstName;
-			this.birthday = this.user.birthday;
-			this.shortDate(this.user.birthday);
-			this.email = this.user.email;
-			this.lastPassword = "";
-			this.password = "";
-			this.confirmPassword = "";
-		}, 1);
+		this.initFields();
+	}
+
+	initFields() {
+		this.civility = this.user.civility;
+		this.lastName = this.user.lastName;
+		this.firstName = this.user.firstName;
+		this.birthday = this.user.birthday;
+		this.shortDate(this.user.birthday);
+		this.email = this.user.email;
+		this.lastPassword = "";
+		this.password = "";
+		this.confirmPassword = "";
 	}
 
 	onCivility(choice) {
@@ -118,9 +127,6 @@ export class ProfileComponent implements OnInit {
 					let tempUser = new User(tempCivility, tempFirstName, tempLastName, tempEmail, tempPassword, tempBirthday, this.user.addresses,
 						this.user.phoneNumber, this.user.orders, this.user.frequentPurchases, this.user.loyaltyPoints, this.user.wishList);
 					this.userService.updateUser(tempUser);
-					this.lastPassword = "";
-					this.password = "";
-					this.confirmPassword = "";
 				}
 			});
 		}
@@ -207,6 +213,19 @@ export class ProfileComponent implements OnInit {
 	}
 
 
+	showFormAddress(type: string, address: Address) {
+		if(type === "new") {
+			this.showFormAddressNew = true;
+			this.formAddressBack.emit(null);
+		}
+		else if(type === "edit") {
+			this.addressToEdit = address;
+			this.showFormAddressEdit = true;
+			this.formAddressBack.emit(null);
+		}
+	}
+
+
 	onLogout() {
 		dialogs.confirm({
 			title: "DÉCONNEXION",
@@ -219,5 +238,11 @@ export class ProfileComponent implements OnInit {
 				this.userService.logOut();
 			}
 		});
+	}
+
+	goBack() {
+		this.showFormAddressNew = false;
+		this.showFormAddressEdit = false;
+		delete this.addressToEdit;
 	}
 }

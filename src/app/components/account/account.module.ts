@@ -13,6 +13,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular';
 import { AddressModule } from '../address/address.module';
 import { ReusableModule } from '../reusable/reusable.module';
 import { AuthModule } from '../auth/auth.module';
+import { CountryUtil } from '~/app/utils/country.util';
 
 
 
@@ -34,6 +35,9 @@ import { AuthModule } from '../auth/auth.module';
 		SavComponent,
 		SettingsComponent,
 		BenefitsComponent,
+	],
+	providers: [
+		CountryUtil
 	],
 	schemas: [NO_ERRORS_SCHEMA]
 })

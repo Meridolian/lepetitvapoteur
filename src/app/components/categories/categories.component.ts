@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoryUtil } from '~/app/utils/category.util';
 import { ItemService } from '~/app/services/item.service';
 import { Item } from '~/app/models/item.model';

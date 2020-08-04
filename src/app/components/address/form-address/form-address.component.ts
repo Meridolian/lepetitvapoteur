@@ -42,7 +42,7 @@ export class FormAddressComponent implements OnInit {
 	instructions: string;
 
 	showAdditionalAddress: boolean;
-	complementAddressButton: string = "AJOUTER UN COMPLÉMENT D'ADRESSE";
+	additionalAddressButton: string = "AJOUTER UN COMPLÉMENT D'ADRESSE";
 
 	constructor(private countryUtil: CountryUtil) { }
 
@@ -113,5 +113,9 @@ export class FormAddressComponent implements OnInit {
 
 	onShowAdditionalAddress() {
 		this.showAdditionalAddress = !this.showAdditionalAddress;
+	}
+
+	onDefault() {
+		this.default = !this.default;
 	}
 }

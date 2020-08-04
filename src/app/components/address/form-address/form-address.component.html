@@ -1,12 +1,12 @@
 <ScrollView>
 	<StackLayout>
 
-		<StackLayout class="newAddressContainer">
+		<StackLayout class="formAddressContainer">
 
 			<ns-title-head [title]="title"></ns-title-head>
 
 
-			<Label class="label" text="NOM DE CETTE ADRESSE (EX: CHEZ MOI, AU BOULOT, ...)"></Label>
+			<Label class="label" text="NOM DE CETTE ADRESSE (EX: CHEZ MOI, AU BOULOT, ...)" textWrap="true"></Label>
 			<TextField class="field" hint="Libellé..." [(ngModel)]="label"></TextField>
 
 
@@ -30,17 +30,17 @@
 			<TextField class="field" hint="Ville..." [(ngModel)]="city"></TextField>
 
 
-			<StackLayout orientation="horizontal">
-				<Label class="label" text="PAYS"></Label>
-				<Button class="countryButton" [text]="country" (tap)="onCountry()"></Button>
-			</StackLayout>
+			<GridLayout class="countryContainer" rows="*" columns="auto,*">
+				<Label row="0" col="0" class="label" text="PAYS" verticalAlignment="middle"></Label>
+				<Button row="0" col="1" class="countryButton" [text]="country" (tap)="onCountry()"></Button>
+			</GridLayout>
 
 
 			<Label class="label" text="Téléphone"></Label>
-			<TextField class="field" hint="Téléphone..." [(ngModel)]="phoneNumber"></TextField>
+			<TextField class="field" hint="Téléphone..." [(ngModel)]="phoneNumber" keyboardType="number"></TextField>
 
 
-			<ns-custom-button [type]="'sand'" [text]="additionalAddressButton" [width]="'50%'" [fontSize]="'20'"
+			<ns-custom-button [type]="'sand'" [text]="additionalAddressButton" [width]="'70%'" [fontSize]="'17.5'"
 				(tap)="onShowAdditionalAddress()">
 			</ns-custom-button>
 
@@ -79,14 +79,15 @@
 			</StackLayout>
 
 
-			<StackLayout orientation="horizontal">
-				<Button *ngIf="!default" class="unchecked" text="&#xe835;" (tap)="onDefaultAddress()"></Button>
-				<Button *ngIf="default" class="checked" text="&#xe834;" (tap)="onDefaultAddress()"></Button>
-				<Label class="label" text="DÉFINIR COMME ADRESSE PAR DÉFAUT"></Label>
+			<StackLayout orientation="horizontal" class="switchContainer">
+				<ns-custom-switch (checkedEmitter)="onDefault()"></ns-custom-switch>
+				<Label class="label" text="DÉFINIR COMME ADRESSE PAR DÉFAUT" fontSize="17.5"
+					verticalAlignment="middle"></Label>
 			</StackLayout>
 
 
-			<ns-custom-button [type]="'orange'" [text]="'VALIDER'" [width]="'40%'" (tap)="onAddAddress()">
+			<ns-custom-button [type]="'orange'" [text]="'VALIDER'" [width]="'40%'" [fontSize]="'25'"
+				(tap)="onAddAddress()">
 			</ns-custom-button>
 		</StackLayout>
 

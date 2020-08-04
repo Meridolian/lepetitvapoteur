@@ -1,9 +1,9 @@
 <ScrollView>
     <StackLayout class="profileContainer">
 
-        <Label [text]="welcome" class="welcomeAccount"></Label>
+        <Label [text]="welcome" class="welcomeAccount" *ngIf="!showFormAddressNew && !showFormAddressEdit"></Label>
 
-        <StackLayout class="infoContainer">
+        <StackLayout class="infoContainer" *ngIf="!showFormAddressNew && !showFormAddressEdit">
 
             <ns-title-head [title]="infoTitle"></ns-title-head>
 
@@ -78,7 +78,7 @@
 
         </StackLayout>
 
-        <StackLayout class="addressContainer">
+        <StackLayout class="addressContainer" *ngIf="!showFormAddressNew && !showFormAddressEdit">
 
             <ns-title-head [title]="'MES ADRESSES'"></ns-title-head>
 
@@ -87,13 +87,22 @@
             <!-- <Label *ngIf="user.addresses.length < 1" class="noAddresses"
                 text="VOUS N'AVEZ PAS ENCORE D'ADRESSES ENREGISTRÉES"></Label> -->
 
-            <ns-custom-button [type]="'blue'" [text]="'AJOUTER UNE NOUVELLE ADRESSE'" [width]="'75%'" [fontSize]="20">
+            <ns-custom-button [type]="'blue'" [text]="'AJOUTER UNE NOUVELLE ADRESSE'" [width]="'75%'" [fontSize]="20"
+                (tap)="showFormAddress('new')">
             </ns-custom-button>
         </StackLayout>
 
 
-        <ns-custom-button [type]="'grey'" [text]="'DÉCONNEXION'" [width]="'50%'" [fontSize]="'30'" (tap)="onLogout()">
+        <ns-custom-button [type]="'grey'" [text]="'DÉCONNEXION'" [width]="'50%'" [fontSize]="'30'" (tap)="onLogout()"
+            *ngIf="!showFormAddressNew && !showFormAddressEdit">
         </ns-custom-button>
 
+
+        <StackLayout class="formAddressContainer">
+            <ns-form-address *ngIf="showFormAddressNew" [type]="'new'"></ns-form-address>
+
+
+            <ns-form-address *ngIf="showFormAddressEdit" [type]="'edit'" [address]="addressToEdit"></ns-form-address>
+        </StackLayout>
     </StackLayout>
 </ScrollView>
