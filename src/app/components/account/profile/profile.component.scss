@@ -7,7 +7,6 @@ $custom_grey: #808185;
 $custom_greyWhite: #e7e7e7;
 $custom_darkSand: #a49981;
 
-
 .profileContainer {
     background-color: $custom_greyWhite;
 }
@@ -24,8 +23,6 @@ $custom_darkSand: #a49981;
     border-radius: 5;
     margin: 15;
 }
-
-
 
 .label {
     vertical-align: center;
@@ -48,7 +45,6 @@ $custom_darkSand: #a49981;
     placeholder-color: $custom_grey;
     text-align: center;
 }
-
 
 .civilityButton {
     width: 27.5%;
@@ -81,7 +77,6 @@ $custom_darkSand: #a49981;
     color: white;
 }
 
-
 .birthdayButton {
     width: 150;
     height: 50;
@@ -96,11 +91,9 @@ $custom_darkSand: #a49981;
     }
 }
 
-
 .invalidField {
     border-color: red;
 }
-
 
 .errorMessage {
     color: red;
@@ -109,11 +102,17 @@ $custom_darkSand: #a49981;
     margin: 0 15 15 15;
 }
 
-
 .addressContainer {
     background-color: white;
     border-radius: 5;
     margin: 15;
+}
+
+.noAddresses {
+    margin: 10;
+    font-size: 17.5;
+    color: $custom_grey;
+    text-align: center;
 }
 
 .formAddressContainer {

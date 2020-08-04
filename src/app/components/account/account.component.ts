@@ -47,7 +47,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
 	goBack(): void {
 		switch(this.backContext) {
-			case "formAddres": 
+			case "formAddress": 
 				this.profile.goBack();
 			break;
 
