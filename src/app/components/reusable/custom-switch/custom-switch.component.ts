@@ -27,22 +27,24 @@ export class CustomSwitchComponent implements OnInit {
 	}
 
 	initSwitch(args: EventData) {
-		if (this.checked) {
-			let switchView = <LayoutBase>args.object;
+		setTimeout(() => {
+			if (this.checked) {
+				let switchView = <LayoutBase>args.object;
 
-			let toggler = <View>switchView.page.getViewById('toggler');
-			let position1 = <View>switchView.page.getViewById('position1');
+				let toggler = <View>switchView.page.getViewById('toggler');
+				let position1 = <View>switchView.page.getViewById('position1');
 
-			let location1 = position1.getLocationRelativeTo(switchView);
+				let location1 = position1.getLocationRelativeTo(switchView);
 
-			toggler.animate({
-				translate: { x: location1.x, y: 0 },
-				duration: 150
-			})
+				toggler.animate({
+					translate: { x: location1.x, y: 0 },
+					duration: 150
+				})
 
-			this.backgroundColor = "rgba(242, 130, 49, 0.2)";
-			this.togglerColor = "#f28231";
-		}
+				this.backgroundColor = "rgba(242, 130, 49, 0.2)";
+				this.togglerColor = "#f28231";
+			}
+		}, 1);
 	}
 
 	onSwitch(args: EventData) {
