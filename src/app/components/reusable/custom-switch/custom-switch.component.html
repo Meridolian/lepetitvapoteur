@@ -1,5 +1,5 @@
 <GridLayout rows="*" columns="*,*" class="switch" (tap)="onSwitch($event)" [backgroundColor]="backgroundColor">
-    <Label id="toggler" class="toggler" [backgroundColor]="togglerColor"></Label>
+    <Label id="toggler" class="toggler" [backgroundColor]="togglerColor" (loaded)="initSwitch($event)"></Label>
 
     <Label row="0" col="0" class="position position0" id="position0"></Label>
 

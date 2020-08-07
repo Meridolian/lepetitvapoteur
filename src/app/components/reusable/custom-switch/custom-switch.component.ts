@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { EventData, View } from 'tns-core-modules/ui/page';
 import { LayoutBase } from 'tns-core-modules/ui/layouts/layout-base';
 
@@ -13,6 +13,7 @@ export class CustomSwitchComponent implements OnInit {
 
 	backgroundColor: string;
 
+	@Input()
 	checked: boolean;
 
 	@Output() checkedEmitter = new EventEmitter;
@@ -20,11 +21,28 @@ export class CustomSwitchComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-		this.checked = false;
-
 		this.togglerColor = "#808185";
 
 		this.backgroundColor = "rgba(128, 129, 133, 0.25)";
+	}
+
+	initSwitch(args: EventData) {
+		if (this.checked) {
+			let switchView = <LayoutBase>args.object;
+
+			let toggler = <View>switchView.page.getViewById('toggler');
+			let position1 = <View>switchView.page.getViewById('position1');
+
+			let location1 = position1.getLocationRelativeTo(switchView);
+
+			toggler.animate({
+				translate: { x: location1.x, y: 0 },
+				duration: 150
+			})
+
+			this.backgroundColor = "rgba(242, 130, 49, 0.2)";
+			this.togglerColor = "#f28231";
+		}
 	}
 
 	onSwitch(args: EventData) {

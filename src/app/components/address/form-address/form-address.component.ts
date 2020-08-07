@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Address } from '~/app/models/user.model';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { CountryUtil } from '~/app/utils/country.util';
+import { UserService } from '~/app/services/user.service';
 
 @Component({
 	selector: 'ns-form-address',
@@ -18,71 +19,38 @@ export class FormAddressComponent implements OnInit {
 
 	// section title
 	title: string;
-
-	// address
-	label: string;
-	lastName: string;
-	firstName: string;
-	fullAddress: string;
-	postalCode: string;
-	city: string;
-	state: string;
-	country: string;
-	phoneNumber: string;
-	default: boolean;
-
-	// address complement
-	society: string;
-	staircase: string;
-	doorCode1: string;
-	building: string;
-	doorCode2: string;
-	intercom: string;
-	secondPhoneNumber: string;
-	instructions: string;
+	
+	checked: boolean;
 
 	showAdditionalAddress: boolean;
 	additionalAddressButton: string = "AJOUTER UN COMPLÉMENT D'ADRESSE";
 
-	constructor(private countryUtil: CountryUtil) { }
+	@Output() hideForm = new EventEmitter();
+
+	constructor(private countryUtil: CountryUtil, private userService: UserService) { }
 
 	ngOnInit(): void {
 		if (this.type === "new") {
 			this.title = "AJOUTER UNE ADRESSE";
 
-			this.country = "Pays...";
+			this.address = new Address(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+			this.address.country = "Pays...";
 
 			this.showAdditionalAddress = false;
+
+			this.checked = false;
 		}
 		else if (this.type === "edit") {
 			// section title
 			this.title = "MODIFIER CETTE ADRESSE";
 
-			// address
-			this.label = this.address.label;
-			this.lastName = this.address.lastName;
-			this.firstName = this.address.firstName;
-			this.fullAddress = this.address.fullAddress;
-			this.postalCode = this.address.postalCode;
-			this.city = this.address.city;
-			this.state = this.address.state;
-			this.country = this.address.country;
-			this.phoneNumber = this.address.phoneNumber;
-			this.default = this.address.default;
+			this.checked = this.address.default;
 
-			// address complement
-			this.society = this.address.society;
-			this.staircase = this.address.staircase;
-			this.doorCode1 = this.address.doorCode1;
-			this.building = this.address.building;
-			this.doorCode2 = this.address.doorCode2;
-			this.intercom = this.address.intercom;
-			this.secondPhoneNumber = this.address.secondPhoneNumber;
-			this.instructions = this.address.instructions;
-
-			if (this.society !== null || this.staircase !== null || this.doorCode1 !== null || this.building !== null || this.doorCode2 !== null
-				|| this.intercom !== null || this.secondPhoneNumber !== null || this.instructions !== null) {
-					this.showAdditionalAddress = true;
+			if (this.address.society !== null || this.address.staircase !== null || this.address.doorCode1 !== null ||
+				this.address.building !== null || this.address.doorCode2 !== null || this.address.intercom !== null ||
+				this.address.secondPhoneNumber !== null || this.address.instructions !== null) {
+				this.showAdditionalAddress = true;
 			}
 		}
 	}
@@ -94,19 +62,28 @@ export class FormAddressComponent implements OnInit {
 			actions: this.countryUtil.countries
 		}).then(result => {
 			if (result !== "Annuler") {
-				this.country = result;
+				this.address.country = result;
 			}
 		});
 	}
 
-	onAddAddress() {
+	onSaveAddress() {
 		if (this.checkFields()) {
-
+			if (this.type === "new") {
+				this.userService.addAddress(this.address);
+				this.hideForm.emit(null);
+			}
+			else if (this.type === "edit") {
+				this.userService.updateAddress(this.address, this.address.default);
+				this.hideForm.emit(null);
+			}
 		}
 	}
 
 	checkFields(): boolean {
 		let validator: boolean = true;
+
+		// TODO
 
 		return validator;
 	}
@@ -116,6 +93,6 @@ export class FormAddressComponent implements OnInit {
 	}
 
 	onDefault() {
-		this.default = !this.default;
+		this.address.default = !this.address.default;
 	}
 }

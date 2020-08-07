@@ -73,19 +73,26 @@
             <!-- TODO checkbox with "would you like to receive email from LPV" -->
 
 
-            <ns-custom-button [type]="'orange'" [text]="'ENREGISTRER'" [width]="'50%'" [fontSize]="'25'" (tap)="onUpdateUser()">
+            <ns-custom-button [type]="'orange'" [text]="'ENREGISTRER'" [width]="'50%'" [fontSize]="'25'"
+                (tap)="onUpdateUser()">
             </ns-custom-button>
 
         </StackLayout>
 
         <StackLayout class="addressContainer" *ngIf="!showFormAddressNew && !showFormAddressEdit">
 
+
             <ns-title-head [title]="'MES ADRESSES'"></ns-title-head>
 
-            <!-- <ns-address *ngFor="let address of user.addresses"></ns-address> -->
 
-            <Label *ngIf="user.addresses.length < 1" class="noAddresses"
-                text="VOUS N'AVEZ PAS ENCORE D'ADRESSES ENREGISTRÉES" textWrap="true"></Label>
+            <ns-address class="addresses" *ngIf="user.addresses.length > 0" [addresses]="user.addresses" (editAddress)="showFormAddress('edit', $event)"></ns-address>
+
+
+            <StackLayout *ngIf="user.addresses.length < 1">
+                <Label class="noAddresses" text="VOUS N'AVEZ PAS ENCORE D'ADRESSES ENREGISTRÉES"
+                    textWrap="true"></Label>
+            </StackLayout>
+
 
             <ns-custom-button [type]="'blue'" [text]="'AJOUTER UNE NOUVELLE ADRESSE'" [width]="'75%'" [fontSize]="20"
                 (tap)="showFormAddress('new')">
@@ -98,11 +105,12 @@
         </ns-custom-button>
 
 
-        <StackLayout class="formAddressContainer">
-            <ns-form-address *ngIf="showFormAddressNew" [type]="'new'"></ns-form-address>
+        <StackLayout class="formAddressContainer" *ngIf="showFormAddressNew || showFormAddressEdit">
+            <ns-form-address *ngIf="showFormAddressNew" [type]="'new'" (hideForm)="hideForm()"></ns-form-address>
 
 
-            <ns-form-address *ngIf="showFormAddressEdit" [type]="'edit'" [address]="addressToEdit"></ns-form-address>
+            <ns-form-address *ngIf="showFormAddressEdit" [type]="'edit'" [address]="addressToEdit"
+                (hideForm)="hideForm()"></ns-form-address>
         </StackLayout>
     </StackLayout>
 </ScrollView>

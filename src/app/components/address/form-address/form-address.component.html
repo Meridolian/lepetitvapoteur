@@ -7,37 +7,38 @@
 
 
 			<Label class="label" text="NOM DE CETTE ADRESSE (EX: CHEZ MOI, AU BOULOT, ...)" textWrap="true"></Label>
-			<TextField class="field" hint="Libellé..." [(ngModel)]="label"></TextField>
+			<TextField class="field" hint="Libellé..." [(ngModel)]="address.label"></TextField>
 
 
 			<Label class="label" text="NOM"></Label>
-			<TextField class="field" hint="Nom..." [(ngModel)]="lastName"></TextField>
+			<TextField class="field" hint="Nom..." [(ngModel)]="address.lastName"></TextField>
 
 
 			<Label class="label" text="PRÉNOM"></Label>
-			<TextField class="field" hint="Prénom..." [(ngModel)]="firstName"></TextField>
+			<TextField class="field" hint="Prénom..." [(ngModel)]="address.firstName"></TextField>
 
 
 			<Label class="label" text="ADRESSE"></Label>
-			<TextView class="bigField" hint="Adresse..." [(ngModel)]="fullAddress"></TextView>
+			<TextView class="bigField" hint="Adresse..." [(ngModel)]="address.fullAddress"></TextView>
 
 
 			<Label class="label" text="CODE POSTAL"></Label>
-			<TextField class="field" hint="Code postal..." [(ngModel)]="postalCode"></TextField>
+			<TextField class="field" hint="Code postal..." [(ngModel)]="address.postalCode"></TextField>
 
 
 			<Label class="label" text="VILLE"></Label>
-			<TextField class="field" hint="Ville..." [(ngModel)]="city"></TextField>
+			<TextField class="field" hint="Ville..." [(ngModel)]="address.city"></TextField>
 
 
 			<GridLayout class="countryContainer" rows="*" columns="auto,*">
 				<Label row="0" col="0" class="label" text="PAYS" verticalAlignment="middle"></Label>
-				<Button row="0" col="1" class="countryButton" [text]="country" (tap)="onCountry()"></Button>
+				<Button row="0" col="1" class="countryButton" [text]="address.country" (tap)="onCountry()"></Button>
 			</GridLayout>
 
 
 			<Label class="label" text="Téléphone"></Label>
-			<TextField class="field" hint="Téléphone..." [(ngModel)]="phoneNumber" keyboardType="number"></TextField>
+			<TextField class="field" hint="Téléphone..." [(ngModel)]="address.phoneNumber" keyboardType="number">
+			</TextField>
 
 
 			<ns-custom-button [type]="'sand'" [text]="additionalAddressButton" [width]="'70%'" [fontSize]="'17.5'"
@@ -47,47 +48,48 @@
 
 			<StackLayout *ngIf="showAdditionalAddress">
 				<Label class="label" text="SOCIÉTÉ"></Label>
-				<TextField class="field" hint="Société..." [(ngModel)]="society"></TextField>
+				<TextField class="field" hint="Société..." [(ngModel)]="address.society"></TextField>
 
 
 				<Label class="label" text="ESCALIER"></Label>
-				<TextField class="field" hint="Escalier..." [(ngModel)]="staircase"></TextField>
+				<TextField class="field" hint="Escalier..." [(ngModel)]="address.staircase"></TextField>
 
 
 				<Label class="label" text="CODE PORTE"></Label>
-				<TextField class="field" hint="Code porte..." [(ngModel)]="doorCode1"></TextField>
+				<TextField class="field" hint="Code porte..." [(ngModel)]="address.doorCode1"></TextField>
 
 
 				<Label class="label" text="BÂTIMENT"></Label>
-				<TextField class="field" hint="Bâtiment..." [(ngModel)]="building"></TextField>
+				<TextField class="field" hint="Bâtiment..." [(ngModel)]="address.building"></TextField>
 
 
 				<Label class="label" text="CODE PORTE 2"></Label>
-				<TextField class="field" hint="Code porte 2..." [(ngModel)]="doorCode2"></TextField>
+				<TextField class="field" hint="Code porte 2..." [(ngModel)]="address.doorCode2"></TextField>
 
 
 				<Label class="label" text="INTERPHONE"></Label>
-				<TextField class="field" hint="Interphone..." [(ngModel)]="intercom"></TextField>
+				<TextField class="field" hint="Interphone..." [(ngModel)]="address.intercom"></TextField>
 
 
 				<Label class="label" text="TÉLÉPHONE SECONDAIRE"></Label>
-				<TextField class="field" hint="Téléphone secondaire..." [(ngModel)]="secondPhoneNumber"></TextField>
+				<TextField class="field" hint="Téléphone secondaire..." [(ngModel)]="address.secondPhoneNumber">
+				</TextField>
 
 
 				<Label class="label" text="INSTRUCTIONS"></Label>
-				<TextView class="bigField" hint="Instructions..." [(ngModel)]="instructions"></TextView>
+				<TextView class="bigField" hint="Instructions..." [(ngModel)]="address.instructions"></TextView>
 			</StackLayout>
 
 
 			<StackLayout orientation="horizontal" class="switchContainer">
-				<ns-custom-switch (checkedEmitter)="onDefault()"></ns-custom-switch>
+				<ns-custom-switch (checkedEmitter)="onDefault()" [checked]="checked"></ns-custom-switch>
 				<Label class="label" text="DÉFINIR COMME ADRESSE PAR DÉFAUT" fontSize="17.5"
 					verticalAlignment="middle"></Label>
 			</StackLayout>
 
 
 			<ns-custom-button [type]="'orange'" [text]="'VALIDER'" [width]="'40%'" [fontSize]="'25'"
-				(tap)="onAddAddress()">
+				(tap)="onSaveAddress()">
 			</ns-custom-button>
 		</StackLayout>
 

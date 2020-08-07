@@ -1,2 +1,27 @@
-<StackLayout>
+<StackLayout *ngFor="let address of addresses; let index = index">
+    <StackLayout class="addressContainer" [borderColor]="borderColors[index]">
+        <Label class="name" [text]="address.firstName + ' ' + address.lastName" [color]="nameColors[index]"></Label>
+
+        <Label class="label" [text]="address.fullAddress" marginTop="15"></Label>
+
+        <Label class="label" [text]="address.postalCode + '  -  ' + address.city"></Label>
+
+        <Label class="label" [text]="address.country"></Label>
+
+        <StackLayout class="editButton">
+            <ns-custom-button [type]="'sand'" [text]="'METTRE À JOUR'" [width]="'50%'" [fontSize]="'25'"
+                (tap)="onEditAddress(index)">
+            </ns-custom-button>
+        </StackLayout>
+
+        <Label class="sandBar"></Label>
+
+        <Label *ngIf="address.default" class="label" text="(Adresse par défault)" marginTop="5"></Label>
+
+        <StackLayout class="defaultCircle" (tap)="onDefault(index)">
+            <StackLayout class="innerCircle">
+                <Label class="bluePoint" *ngIf="address.default"></Label>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
 </StackLayout>

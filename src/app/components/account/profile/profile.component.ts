@@ -213,13 +213,13 @@ export class ProfileComponent implements OnInit {
 	}
 
 
-	showFormAddress(type: string, address: Address) {
+	showFormAddress(type: string, index) {
 		if(type === "new") {
 			this.showFormAddressNew = true;
 			this.formAddressBack.emit(null);
 		}
 		else if(type === "edit") {
-			this.addressToEdit = address;
+			this.addressToEdit = this.user.addresses[index];
 			this.showFormAddressEdit = true;
 			this.formAddressBack.emit(null);
 		}
@@ -241,6 +241,12 @@ export class ProfileComponent implements OnInit {
 	}
 
 	goBack() {
+		this.showFormAddressNew = false;
+		this.showFormAddressEdit = false;
+		delete this.addressToEdit;
+	}
+
+	hideForm() {
 		this.showFormAddressNew = false;
 		this.showFormAddressEdit = false;
 		delete this.addressToEdit;

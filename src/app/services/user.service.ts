@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from "@angular/core";
-import { User } from "../models/user.model";
+import { User, Address } from "../models/user.model";
 import { getString, setString, remove } from "tns-core-modules/application-settings";
 import { Subject } from "rxjs";
 
@@ -106,6 +106,35 @@ export class UserService {
         }
         setString("users", JSON.stringify(this.users));
         setString("user", JSON.stringify(this.user));
+    }
+
+    addAddress(address: Address) {
+        this.user.addresses.push(address);
+        this.updateUser(this.user);
+    }
+
+    updateAddress(address: Address, changeDefault: boolean) {
+        for(let i = 0; i < this.user.addresses.length; i++) {
+            let currentAddress = this.user.addresses[i];
+            if(address === currentAddress) {
+                this.user.addresses[i] = address;
+                break;
+            }
+        }
+
+        if(changeDefault) {
+            for(let i = 0; i < this.user.addresses.length; i++) {
+                let currentAddress = this.user.addresses[i];
+                if(currentAddress !== address) {
+                    if(currentAddress.default) {
+                        this.user.addresses[i].default = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        this.updateUser(this.user);
     }
 
     logOut() {
