@@ -85,7 +85,8 @@
             <ns-title-head [title]="'MES ADRESSES'"></ns-title-head>
 
 
-            <ns-address class="addresses" *ngIf="user.addresses.length > 0" [addresses]="user.addresses" (editAddress)="showFormAddress('edit', $event)"></ns-address>
+            <ns-address *ngIf="user.addresses.length > 0" [addresses]="user.addresses"
+                (editAddress)="showFormAddress('edit', $event)"></ns-address>
 
 
             <StackLayout *ngIf="user.addresses.length < 1">

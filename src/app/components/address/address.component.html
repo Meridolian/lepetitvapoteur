@@ -1,4 +1,4 @@
-<StackLayout *ngFor="let address of addresses; let index = index">
+<StackLayout class="addressesContainer" *ngFor="let address of addresses; let index = index">
     <StackLayout class="addressContainer" [borderColor]="borderColors[index]">
         <Label class="name" [text]="address.firstName + ' ' + address.lastName" [color]="nameColors[index]"></Label>
 

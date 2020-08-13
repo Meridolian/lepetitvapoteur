@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Image } from 'tns-core-modules/ui/image';
+import { Carousel } from "nativescript-carousel";
 
 @Component({
     selector: "Home",
@@ -11,15 +12,22 @@ export class HomeComponent implements OnInit {
     back: boolean = false;
 
     slides: string[] = ["home1", "home2", "home3", "home4"];
-    currentSlide: string;
-    currentSlideNumber: number;
+
+    currentSlide: number;
 
     constructor() { }
 
     ngOnInit(): void {
-        this.currentSlide = this.slides[0];
-        this.currentSlideNumber = 0;
-        this.slideImages();
+        this.currentSlide = 0;
+
+        setInterval(() => {
+            if(this.currentSlide === (this.slides.length - 1)){
+                this.currentSlide = 0;
+            }
+            else {
+                this.currentSlide++;
+            }
+        }, 5000);
     }
 
     goBack(): void {
@@ -28,21 +36,8 @@ export class HomeComponent implements OnInit {
     onRotate(args) {
         let image = <Image>args.object;
         image.animate({
-            rotate: 360, 
+            rotate: 360,
             duration: 750
         }).then(() => image.rotate = 0);
-    }
-
-    slideImages(){
-        setInterval(() => {
-            if(this.currentSlideNumber === (this.slides.length - 1)){
-                this.currentSlide = this.slides[0];
-                this.currentSlideNumber = 0;
-            }
-            else {
-                this.currentSlide = this.slides[this.currentSlideNumber + 1];
-                this.currentSlideNumber++;
-            }
-        }, 5000)
     }
 }

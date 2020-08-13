@@ -1,6 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular";
 import { UserService } from "./services/user.service";
+import { registerElement } from 'nativescript-angular/element-registry';
+// Register Custom Elements for Angular
+import { Carousel, CarouselItem } from 'nativescript-carousel';
+
+registerElement('Carousel', () => Carousel);
+registerElement('CarouselItem', () => CarouselItem);
 
 @Component({
     selector: "ns-app",

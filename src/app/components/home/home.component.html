@@ -1,10 +1,29 @@
 <ActionBar class="actionbar">
     <GridLayout rows="*" columns="*,*,*">
         <Button row="0" col="0" class="back" text="RETOUR" (tap)="goBack()" *ngIf="back"></Button>
-        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center" stretch="none"></Image>
+        <Image row="0" col="1" src="~/fonts/logo-menu-uni.png" (touch)="onRotate($event)" horizontalAlignment="center"
+            stretch="none"></Image>
     </GridLayout>
 </ActionBar>
 
-<GridLayout rows="*,*" columns="">
-    <Image row="0" src="~/fonts/{{currentSlide}}.jpg"></Image>
-</GridLayout>
+<StackLayout class="homeContainer">
+
+    <GridLayout height="410px" verticalAlignment="top" margin="0" class="carousel">
+        <Carousel #myCarousel debug="true" [items]="slides" height="100%" width="100%" color="white"
+            android:indicatorAnimation="slide" indicatorColor="#fff" indicatorOffset="0, 0" showIndicator="true"
+            [selectedPage]="currentSlide">
+            <CarouselItem *ngFor="let slide of slides" verticalAlignment="middle">
+                <GridLayout>
+                    <Image src="~/fonts/{{slide}}.jpg" stretch="fill"></Image>
+                </GridLayout>
+            </CarouselItem>
+        </Carousel>
+    </GridLayout>
+
+
+    <GridLayout rows="auto" columns="*,*,*" class="infos" marginTop="15">
+        <Image row="0" col="0" src="~/fonts/reward-circle.png" margin="5"></Image>
+        <Image row="0" col="1" src="~/fonts/shipment-circle.png" marginTop="5" marginBottom="5"></Image>
+        <Image row="0" col="2" src="~/fonts/fdp-circle.png" margin="5"></Image>
+    </GridLayout>
+</StackLayout>
